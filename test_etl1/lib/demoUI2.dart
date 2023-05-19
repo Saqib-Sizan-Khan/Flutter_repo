@@ -45,7 +45,24 @@ class DemoUI2 extends StatelessWidget {
     ];
 
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          toolbarHeight: 70,
+          title: Text(
+            'Stories',
+            style: TextStyle(fontSize: 24, color: Colors.black),
+          ),
+          backgroundColor: Colors.white,
+          leading: Padding(
+            padding: const EdgeInsets.all(9.0),
+            child: CircleAvatar(
+              backgroundColor: Colors.black12,
+              child: Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ),
         body: GridView.builder(
             itemCount: arText.length,
             padding: EdgeInsets.all(8),
