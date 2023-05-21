@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DemoUI3 extends StatelessWidget {
-
   const DemoUI3({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF241F33),
       appBar: AppBar(
         title: Text('Account Login'),
         leading: Icon(Icons.account_balance),
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.lightBlue,
       ),
       body: Column(
         children: [
@@ -19,21 +20,25 @@ class DemoUI3 extends StatelessWidget {
               'Login Information',
               style: TextStyle(
                   fontSize: 30,
-                  color: Colors.purple,
+                  color: Colors.lightBlue,
                   fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 30, right: 30, top: 30),
             child: TextField(
+              style: TextStyle(color: Colors.white, fontSize: 20),
               decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.black12,
                   hintText: 'Username',
-                  prefixIcon: Icon(Icons.person_add, color: Colors.lightBlue,),
+                  hintStyle: TextStyle(color: Colors.lightBlue, fontSize: 20),
+                  prefixIcon: Icon(
+                    Icons.person_add,
+                    color: Colors.lightBlue,
+                  ),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(width: 3, color: Colors.purple)),
+                      borderSide:
+                          BorderSide(width: 3, color: Colors.lightBlue)),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
@@ -41,42 +46,62 @@ class DemoUI3 extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(30.0),
             child: TextField(
+              obscureText: true,
+              style: TextStyle(color: Colors.white, fontSize: 20),
               decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.black12,
                   hintText: 'Password',
-                  prefixIcon: Icon(Icons.lock, color: Colors.lightBlue,),
+                  hintStyle: TextStyle(color: Colors.lightBlue, fontSize: 20),
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: Colors.lightBlue,
+                  ),
+                  suffixIcon: Icon(Icons.remove_red_eye, color: Colors.lightBlue,),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(width: 3, color: Colors.purple)),
+                      borderSide:
+                          BorderSide(width: 3, color: Colors.lightBlue)),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
           ),
           SizedBox(
-            height: 50,
-            width: 100,
+            height: 60,
+            width: 110,
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.purple,
-              ),
-                onPressed: (){}, child: Text('Log In', style: TextStyle(fontSize: 20),)),
-          ),
-          SizedBox(
-            height: 20,
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.lightBlue,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
+                onPressed: () {},
+                child: Text(
+                  'Log In',
+                  style: TextStyle(fontSize: 20),
+                )),
           ),
           SizedBox(
             height: 50,
-            width: 300,
+          ),
+          SizedBox(
+            height: 50,
+            width: 320,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.indigo,
                 ),
-                onPressed: (){}, child: Row(
+                onPressed: () {},
+                child: Row(
                   children: [
-                    Icon(Icons.facebook_rounded),
-                    SizedBox(width: 30,),
-                    Text('Login with facebook', style: TextStyle(fontSize: 20),),
+                    FaIcon(
+                      FontAwesomeIcons.facebookF,
+                      size: 25,
+                    ),
+                    SizedBox(
+                      width: 40,
+                    ),
+                    Text(
+                      'Login with facebook',
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ],
                 )),
           ),
@@ -85,25 +110,51 @@ class DemoUI3 extends StatelessWidget {
           ),
           SizedBox(
             height: 50,
-            width: 300,
+            width: 320,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.red,
                 ),
-                onPressed: (){}, child: Row(
-              children: [
-                ,
-                SizedBox(width: 30,),
-                Text('Login with Google', style: TextStyle(fontSize: 20),),
-              ],
-            )),
+                onPressed: () {},
+                child: Row(
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.google,
+                      size: 25,
+                    ),
+                    SizedBox(
+                      width: 40,
+                    ),
+                    Center(
+                        child: Text('Login with Google',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ))),
+                  ],
+                )),
           ),
-          SizedBox(height: 20,),
-          InkWell(
-            onTap: (){},
-            child: Text('Go to Registration', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+          SizedBox(
+            height: 20,
           ),
-
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Need a new account? Go to ',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
+              InkWell(
+                onTap: (){},
+                child: Text('Registration',
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent)),
+              )
+            ],
+          ),
         ],
       ),
     );
