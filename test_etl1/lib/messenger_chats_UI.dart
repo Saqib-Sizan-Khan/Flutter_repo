@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DemoUI extends StatelessWidget {
-  const DemoUI({Key? key}) : super(key: key);
+class Messenger_Chats_UI extends StatelessWidget {
+  const Messenger_Chats_UI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class DemoUI extends StatelessWidget {
                 ),
                 SizedBox(width: 10,),
                 Text('Chats', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                SizedBox(width: 300,),
+                SizedBox(width: 270,),
                 CircleAvatar(
                   child: Icon(
                     Icons.add_a_photo_rounded,
@@ -68,7 +68,7 @@ class DemoUI extends StatelessWidget {
                   radius: 20,
                   backgroundColor: Colors.black26,
                 ),
-                SizedBox(width: 10,),
+                SizedBox(width: 15,),
                 CircleAvatar(
                   child: Icon(
                     Icons.edit_sharp,
@@ -89,7 +89,7 @@ class DemoUI extends StatelessWidget {
                   color: Colors.black26,
                   borderRadius: BorderRadius.circular(30)),
               height: 50,
-              width: 480,
+              width: 450,
               child: Row(
                 children: [
                   Icon(Icons.search),
@@ -98,7 +98,7 @@ class DemoUI extends StatelessWidget {
                   ),
                   Text('Search Friend'),
                   SizedBox(
-                    width: 300,
+                    width: 270,
                   ),
                   Icon(Icons.delete)
                 ],

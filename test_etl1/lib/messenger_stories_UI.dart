@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DemoUI2 extends StatelessWidget {
-  const DemoUI2({Key? key}) : super(key: key);
+class Messenger_Stories_UI extends StatelessWidget {
+  const Messenger_Stories_UI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
