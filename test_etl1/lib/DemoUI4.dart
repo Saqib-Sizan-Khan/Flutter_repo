@@ -5,6 +5,11 @@ class DemoUI4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var arImage = [
+      AssetImage('assets/images/29.jpg'),
+      AssetImage('assets/images/50.jpg'),
+    ];
+
     return Scaffold(
       backgroundColor: Color(0xff513CBD),
       appBar: AppBar(
@@ -46,35 +51,56 @@ class DemoUI4 extends StatelessWidget {
               style: TextStyle(fontSize: 18, color: Colors.white),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 30, top: 20),
-            child: Container(
-              margin: EdgeInsets.only(),
-              height: 150,
-              width: 350,
-              color: Color(0xff5250D5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text(
-                      'Mobile App Design',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
+          Container(
+            margin: EdgeInsets.only(left: 25, top: 30),
+            height: 150,
+            width: 350,
+            decoration: BoxDecoration(
+                color: Color(0xff5250D5),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [BoxShadow(blurRadius: 5)]),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 10),
+                  child: Text(
+                    'Mobile App Design',
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text(
-                      'Saqib and Sizan',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    'Saqib and Sizan',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 23, top: 20),
+                  child: Row(
+                    children: [
+                      for (int i = 0; i < arImage.length; i++)
+                        Align(
+                          widthFactor: 0.7,
+                          child: CircleAvatar(
+                            radius: 23,
+                            backgroundColor: Colors.white,
+                            child: CircleAvatar(
+                              radius: 20,
+                              backgroundImage: arImage[i],
+                            ),
+                          ),
+                        ),
+                      SizedBox(width: 200,),
+                      Text('Now', style: TextStyle(fontSize: 16, color: Colors.white),)
+                    ],
+                  ),
+                ),
+              ],
             ),
           )
         ],
