@@ -17,9 +17,15 @@ class DemoUI4 extends StatelessWidget {
       backgroundColor: Color(0xff513CBD),
       appBar: AppBar(
         toolbarHeight: 120,
-        elevation: 0.0,
+        elevation: 40,
         backgroundColor: Colors.transparent,
-        leading: Icon(Icons.more_vert),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 25),
+          child: Icon(
+            Icons.menu_sharp,
+            size: 40,
+          ),
+        ),
         actions: [
           CircleAvatar(
             radius: 25,
@@ -144,7 +150,6 @@ class DemoUI4 extends StatelessWidget {
             ],
           ),
 
-
           //Tasks Grid
           Container(
             height: 380,
@@ -161,7 +166,8 @@ class DemoUI4 extends StatelessWidget {
                   return Container(
                     decoration: BoxDecoration(
                         color: Color(0xff5250D5),
-                        borderRadius: BorderRadius.circular(20)),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [BoxShadow(blurRadius: 2)]),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -180,7 +186,21 @@ class DemoUI4 extends StatelessWidget {
                     ),
                   );
                 }),
-          )
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.transparent,
+        elevation: 25,
+        type: BottomNavigationBarType.fixed,
+        iconSize: 30,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.file_copy_outlined), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outlined), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications_outlined), label: ''),
         ],
       ),
     );
