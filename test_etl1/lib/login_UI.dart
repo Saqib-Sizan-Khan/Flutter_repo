@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class DemoUI3 extends StatelessWidget {
-  const DemoUI3({Key? key}) : super(key: key);
+class LoginUI extends StatelessWidget {
+  const LoginUI({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
