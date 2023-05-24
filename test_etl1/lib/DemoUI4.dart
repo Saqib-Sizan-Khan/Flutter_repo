@@ -10,10 +10,13 @@ class DemoUI4 extends StatelessWidget {
       AssetImage('assets/images/50.jpg'),
     ];
 
+    var arDate = [22, 7, 10, 12];
+    var arStatus = ['Done', 'In progess', 'Ongoing', 'Wating for Review'];
+
     return Scaffold(
       backgroundColor: Color(0xff513CBD),
       appBar: AppBar(
-        toolbarHeight: 150,
+        toolbarHeight: 120,
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: Icon(Icons.more_vert),
@@ -51,10 +54,12 @@ class DemoUI4 extends StatelessWidget {
               style: TextStyle(fontSize: 18, color: Colors.white),
             ),
           ),
+
+          //task pending box
           Container(
             margin: EdgeInsets.only(left: 25, top: 30),
-            height: 150,
-            width: 350,
+            height: 145,
+            width: 360,
             decoration: BoxDecoration(
                 color: Color(0xff5250D5),
                 borderRadius: BorderRadius.circular(20),
@@ -63,7 +68,7 @@ class DemoUI4 extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 10),
+                  padding: const EdgeInsets.only(left: 20, top: 12),
                   child: Text(
                     'Mobile App Design',
                     style: TextStyle(
@@ -95,13 +100,86 @@ class DemoUI4 extends StatelessWidget {
                             ),
                           ),
                         ),
-                      SizedBox(width: 200,),
-                      Text('Now', style: TextStyle(fontSize: 16, color: Colors.white),)
+                      SizedBox(
+                        width: 210,
+                      ),
+                      Text(
+                        'Now',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      )
                     ],
                   ),
                 ),
               ],
             ),
+          ),
+
+          //Review section
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 35, top: 25),
+                child: Text(
+                  'Monthly Review',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                width: 140,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: CircleAvatar(
+                  backgroundColor: Color(0xff57D4F1),
+                  radius: 23,
+                  child: Icon(
+                    Icons.card_travel_outlined,
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            ],
+          ),
+
+
+          //Tasks Grid
+          Container(
+            height: 380,
+            width: 380,
+            child: GridView.builder(
+                itemCount: arDate.length,
+                padding: EdgeInsets.only(left: 30, top: 20),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                ),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xff5250D5),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          arDate[index].toString(),
+                          style: TextStyle(
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          arStatus[index],
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
           )
         ],
       ),
