@@ -6,6 +6,13 @@ class DemoUI2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var arAvatarImage = [
+      AssetImage('assets/images/29.jpg'),
+      AssetImage('assets/images/50.jpg'),
+      AssetImage('assets/images/51.jpg'),
+      AssetImage('assets/images/53.jpg'),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -103,7 +110,6 @@ class DemoUI2 extends StatelessWidget {
                 }),
           ),
 
-
           //Date
           Row(
             children: [
@@ -127,37 +133,97 @@ class DemoUI2 extends StatelessWidget {
                   width: 45,
                   decoration: BoxDecoration(
                       color: Colors.black26,
-                      borderRadius: BorderRadius.circular(15)
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Icon(
+                    Icons.date_range,
+                    color: Colors.indigo,
                   ),
-                  child: Icon(Icons.calendar_month),
                 ),
               )
             ],
           ),
 
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('10:00 AM', style: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),),
-
-              SizedBox(width: 30,),
-
-              Container(
-                width: 260,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: Color(0xffFFE2EA),
-                  borderRadius: BorderRadius.circular(20)
-                ),
-
-                child: Column(
-                  children: [
-                    Text('Meeting with front-end developers')
-                  ],
-                ),
-              )
-            ],
+          //Task List
+          Container(
+            width: 400,
+            height: 460,
+            padding: EdgeInsets.only(top: 30),
+            child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '10:00 AM',
+                          style: TextStyle(
+                              color: Colors.deepPurple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          width: 270,
+                          height: 130,
+                          decoration: BoxDecoration(
+                              color: Color(0xffffcacb),
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 12, left: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Meeting with front-end developers',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.purple),
+                                ),
+                                Text(
+                                  'Marketing Department',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w700,
+                                      color: Color(0xffff5154)),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  children: [
+                                    for (int i = 0; i < arAvatarImage.length; i++)
+                                      Align(
+                                        widthFactor: 0.7,
+                                        child: CircleAvatar(
+                                          radius: 17,
+                                          backgroundImage: arAvatarImage[i],
+                                        ),
+                                      ),
+                                    SizedBox(
+                                      width: 25,
+                                    ),
+                                    Text(
+                                      '9:50 AM - 10:50 AM',
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w700,
+                                          color: Color(0xffff5154)),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
           )
         ],
       ),
