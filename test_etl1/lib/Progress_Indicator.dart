@@ -10,9 +10,9 @@ class my_progress_indicator extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: CircularPercentIndicator(
-          radius: 60.0,
-          lineWidth: 5.0,
-          percent: 1.0,
+          radius: 80.0,
+          lineWidth: 10.0,
+          percent: 0.5,
           center: new Text("100%"),
           progressColor: Colors.green,
         ),

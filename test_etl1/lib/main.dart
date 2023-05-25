@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_etl1/demoUI4.dart';
+import 'package:test_etl1/demoUI2.dart';
+import 'package:test_etl1/demoUI.dart';
 import 'package:test_etl1/Progress_Indicator.dart';
 import 'package:test_etl1/messenger_chats_UI.dart';
 import 'package:test_etl1/login_UI.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DemoUI4(),
+      home: DemoUI2(),
     );
   }
 }
