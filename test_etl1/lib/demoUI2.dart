@@ -13,6 +13,21 @@ class DemoUI2 extends StatelessWidget {
       AssetImage('assets/images/53.jpg'),
     ];
 
+    var arColor = [
+      Color(0xffff4e3d),
+      Color(0xff12acff),
+      Color(0xff31c251),
+      Color(0xfff87845),
+      Color(0xffd706f1),
+    ];
+
+    var arProgress = [0.5, 0.4, 0.7, 0.9, 0.3];
+
+    var arProgressType = ['Working\nHours', 'Your\nEfficiency', 'Dedication', 'Leisure\ntime', 'Other\nactivities'];
+
+    var arProgressResult = ['3 hours exceeded work', 'Excellent result', 'Well dedicated', 'Too much controlled', 'Properly done'];
+
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
@@ -52,7 +67,7 @@ class DemoUI2 extends StatelessWidget {
               'Your progress',
               style: TextStyle(
                   fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w900,
                   color: Colors.deepPurple),
             ),
           ),
@@ -72,7 +87,7 @@ class DemoUI2 extends StatelessWidget {
                     padding: EdgeInsets.only(left: 10, top: 20),
                     margin: EdgeInsets.all(7),
                     decoration: BoxDecoration(
-                        color: Color(0xffF56D61),
+                        color: arColor[index],
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [BoxShadow(blurRadius: 7)]),
                     child: Column(
@@ -81,27 +96,30 @@ class DemoUI2 extends StatelessWidget {
                         CircularPercentIndicator(
                           radius: 32.0,
                           lineWidth: 5.0,
-                          percent: 0.5,
+                          percent: arProgress[index],
                           center: Text(
-                            "19/40",
-                            style: TextStyle(color: Colors.white),
+                            '${arProgress[index] * 100}%',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
                           progressColor: Colors.white,
                           backgroundColor: Colors.transparent,
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 40,
                         ),
-                        Text('Working\nHours',
+                        Text('${arProgressType[index]}',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 15)),
+                                fontSize: 16)),
                         SizedBox(
                           height: 10,
                         ),
                         Text(
-                          'Working hours exceeded by 3 hours',
+                          '${arProgressResult[index]}',
                           style: TextStyle(color: Colors.white),
                         ),
                       ],
@@ -118,13 +136,13 @@ class DemoUI2 extends StatelessWidget {
                 child: Text(
                   'Wednesday, March 7',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w900,
                       fontSize: 20,
                       color: Colors.deepPurple),
                 ),
               ),
               SizedBox(
-                width: 110,
+                width: 100,
               ),
               Padding(
                 padding: EdgeInsets.only(top: 27),
@@ -142,6 +160,7 @@ class DemoUI2 extends StatelessWidget {
               )
             ],
           ),
+
 
           //Task List
           Container(
@@ -161,7 +180,7 @@ class DemoUI2 extends StatelessWidget {
                           '10:00 AM',
                           style: TextStyle(
                               color: Colors.deepPurple,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w800),
                         ),
                         SizedBox(
                           width: 20,
@@ -196,16 +215,18 @@ class DemoUI2 extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    for (int i = 0; i < arAvatarImage.length; i++)
+                                    for (int i = 0;
+                                        i < arAvatarImage.length;
+                                        i++)
                                       Align(
-                                        widthFactor: 0.7,
+                                        widthFactor: 0.5,
                                         child: CircleAvatar(
                                           radius: 17,
                                           backgroundImage: arAvatarImage[i],
                                         ),
                                       ),
                                     SizedBox(
-                                      width: 25,
+                                      width: 40,
                                     ),
                                     Text(
                                       '9:50 AM - 10:50 AM',
