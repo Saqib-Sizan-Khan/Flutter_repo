@@ -10,7 +10,7 @@ class DemoUI2 extends StatelessWidget {
       AssetImage('assets/images/29.jpg'),
       AssetImage('assets/images/50.jpg'),
       AssetImage('assets/images/51.jpg'),
-      AssetImage('assets/images/53.jpg'),
+      AssetImage('assets/images/24.jpg'),
     ];
 
     var arColor = [
@@ -21,12 +21,65 @@ class DemoUI2 extends StatelessWidget {
       Color(0xffd706f1),
     ];
 
+    var arColor2 = [
+      Color(0xffffcacb),
+      Color(0xffcad6ff),
+      Color(0xff8cfc83),
+      Color(0xffe4caff),
+      Color(0xfff5e973),
+    ];
+
+    var arColorText = [
+      Color(0xffff5154),
+      Color(0xff3954c0),
+      Color(0xff238528),
+      Color(0xff92279b),
+      Color(0xffa65133),
+    ];
+
     var arProgress = [0.5, 0.4, 0.7, 0.9, 0.3];
 
-    var arProgressType = ['Working\nHours', 'Your\nEfficiency', 'Dedication', 'Leisure\ntime', 'Other\nactivities'];
+    var arProgressType = [
+      'Working\nHours',
+      'Your\nEfficiency',
+      'Dedication',
+      'Leisure\ntime',
+      'Other\nactivities'
+    ];
 
-    var arProgressResult = ['3 hours exceeded work', 'Excellent result', 'Well dedicated', 'Too much controlled', 'Properly done'];
+    var arProgressResult = [
+      '3 hours exceeded work',
+      'Excellent result',
+      'Well dedicated',
+      'Too much controlled',
+      'Properly done'
+    ];
 
+    var arTaskTime = ['10:00 AM', '11:00 AM', '12:00 PM', '3:00 PM', '4:00 PM'];
+
+    var arTaskDuration = [
+      '9:50 AM-10:50 AM',
+      '10:50 AM-11:50 AM',
+      '11:50 AM-12:50 PM',
+      '2:50 PM-3:50 PM',
+      '3:50 PM-5:00 PM'
+    ];
+
+    var arTaskName = [
+      'Meeting with front-end developers',
+      'Check the app test result',
+      'Check repository update',
+      'Meeting with Clients',
+      'Requirement Analysis'
+    ];
+
+    var arTaskDept = [
+      'UI/UX and front-end Department',
+      'QA Department',
+      'Dev-ops Department',
+      'Management and QA Department',
+      'Business Analysis Department'
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -161,14 +214,13 @@ class DemoUI2 extends StatelessWidget {
             ],
           ),
 
-
           //Task List
           Container(
             width: 400,
             height: 460,
             padding: EdgeInsets.only(top: 30),
             child: ListView.builder(
-                itemCount: 5,
+                itemCount: arColor2.length,
                 itemBuilder: (context, index) {
                   return Container(
                     margin: EdgeInsets.all(10),
@@ -177,7 +229,7 @@ class DemoUI2 extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '10:00 AM',
+                          '${arTaskTime[index]}',
                           style: TextStyle(
                               color: Colors.deepPurple,
                               fontWeight: FontWeight.w800),
@@ -186,10 +238,10 @@ class DemoUI2 extends StatelessWidget {
                           width: 20,
                         ),
                         Container(
-                          width: 270,
+                          width: 290,
                           height: 130,
                           decoration: BoxDecoration(
-                              color: Color(0xffffcacb),
+                              color: arColor2[index],
                               borderRadius: BorderRadius.circular(15)),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 12, left: 15),
@@ -197,43 +249,41 @@ class DemoUI2 extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Meeting with front-end developers',
+                                  '${arTaskName[index]}',
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w900,
-                                      color: Colors.purple),
+                                      color: arColorText[index]),
                                 ),
                                 Text(
-                                  'Marketing Department',
+                                  '${arTaskDept[index]}',
                                   style: TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w700,
-                                      color: Color(0xffff5154)),
+                                      color: arColorText[index]),
                                 ),
                                 SizedBox(
                                   height: 30,
                                 ),
                                 Row(
                                   children: [
-                                    for (int i = 0;
-                                        i < arAvatarImage.length;
-                                        i++)
+                                    for (int i = 0; i < arAvatarImage.length; i++)
                                       Align(
                                         widthFactor: 0.5,
                                         child: CircleAvatar(
-                                          radius: 17,
+                                          radius: 18,
                                           backgroundImage: arAvatarImage[i],
                                         ),
                                       ),
                                     SizedBox(
-                                      width: 40,
+                                      width: 50,
                                     ),
                                     Text(
-                                      '9:50 AM - 10:50 AM',
+                                      '${arTaskDuration[index]}',
                                       style: TextStyle(
                                           fontSize: 13,
                                           fontWeight: FontWeight.w700,
-                                          color: Color(0xffff5154)),
+                                          color: arColorText[index]),
                                     )
                                   ],
                                 )
