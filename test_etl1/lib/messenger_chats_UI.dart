@@ -31,83 +31,83 @@ class Messenger_Chats_UI extends StatelessWidget {
       AssetImage('assets/images/53.jpg'),
     ];
 
-    var arColor = [
-      Colors.teal,
-      Colors.amber,
-      Colors.pink,
-      Colors.lightBlue,
-      Colors.purple,
-      Colors.blueGrey,
-      Colors.deepOrangeAccent
-    ];
-
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 80,
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text(
+          'Chats',
+          style: TextStyle(color: Colors.black, fontSize: 30),
+        ),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 15),
+          child: CircleAvatar(
+            child: Icon(
+              Icons.menu,
+              color: Colors.black,
+            ),
+            radius: 20,
+            backgroundColor: Colors.black26,
+          ),
+        ),
+        actions: [
+          CircleAvatar(
+            child: Icon(
+              Icons.add_a_photo_rounded,
+              color: Colors.black,
+            ),
+            radius: 20,
+            backgroundColor: Colors.black26,
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          CircleAvatar(
+            child: Icon(
+              Icons.edit_sharp,
+              color: Colors.black,
+            ),
+            radius: 20,
+            backgroundColor: Colors.black26,
+          ),
+          SizedBox(
+            width: 20,
+          )
+        ],
+      ),
       body: Column(
         children: [
-          SingleChildScrollView(scrollDirection: Axis.vertical,),
+          //Search Box
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  child: Icon(
-                    Icons.menu,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              style: TextStyle(fontSize: 18),
+              decoration: InputDecoration(
+                  hintText: 'Search Friend',
+                  hintStyle: TextStyle(fontSize: 18),
+                  prefixIcon: Icon(
+                    Icons.search,
                     color: Colors.black,
                   ),
-                  radius: 20,
-                  backgroundColor: Colors.black26,
-                ),
-                SizedBox(width: 10,),
-                Text('Chats', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                SizedBox(width: 270,),
-                CircleAvatar(
-                  child: Icon(
-                    Icons.add_a_photo_rounded,
-                    color: Colors.black,
+                  filled: true,
+                  fillColor: Colors.grey[400],
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(color: Colors.transparent),
                   ),
-                  radius: 20,
-                  backgroundColor: Colors.black26,
-                ),
-                SizedBox(width: 15,),
-                CircleAvatar(
-                  child: Icon(
-                    Icons.edit_sharp,
-                    color: Colors.black,
-                  ),
-                  radius: 20,
-                  backgroundColor: Colors.black26,
-                ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  )),
+            ),
+          ),
 
-              ],
-            ),
-          ),
-          Center(
-            child: Container(
-              margin: EdgeInsets.only(top: 10, bottom: 10),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  color: Colors.black26,
-                  borderRadius: BorderRadius.circular(30)),
-              height: 50,
-              width: 450,
-              child: Row(
-                children: [
-                  Icon(Icons.search),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text('Search Friend'),
-                  SizedBox(
-                    width: 270,
-                  ),
-                  Icon(Icons.delete)
-                ],
-              ),
-            ),
-          ),
+          SizedBox(height: 15),
+
+          //Active List
           Container(
             width: 500,
-            height: 100,
+            height: 110,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: arText.length,
@@ -127,7 +127,11 @@ class Messenger_Chats_UI extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
-                              Text(arText[index])
+                              Text(
+                                arText[index],
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w700),
+                              )
                             ],
                           ),
                         ],
@@ -136,8 +140,10 @@ class Messenger_Chats_UI extends StatelessWidget {
                   );
                 }),
           ),
+
+          //Chats List
           Container(
-            height: 500,
+            height: 630,
             child: ListView.builder(
                 itemCount: arText.length,
                 itemBuilder: (context, index) {

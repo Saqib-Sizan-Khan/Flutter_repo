@@ -46,20 +46,19 @@ class Messenger_Stories_UI extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 70,
-          title: Text(
-            'Stories',
-            style: TextStyle(fontSize: 24, color: Colors.black),
-          ),
-          backgroundColor: Colors.white,
+          toolbarHeight: 80,
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          title: Text('Stories', style: TextStyle(fontSize: 30, color: Colors.black),),
           leading: Padding(
-            padding: const EdgeInsets.all(9.0),
+            padding: const EdgeInsets.only(left: 15),
             child: CircleAvatar(
-              backgroundColor: Colors.black12,
               child: Icon(
                 Icons.menu,
                 color: Colors.black,
               ),
+              radius: 20,
+              backgroundColor: Colors.grey[400],
             ),
           ),
         ),

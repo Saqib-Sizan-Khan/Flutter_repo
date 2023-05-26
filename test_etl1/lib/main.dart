@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DemoUI2(),
+      home: Messenger_Chats_UI(),
     );
   }
 }

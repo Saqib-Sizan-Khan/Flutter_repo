@@ -14,6 +14,7 @@ class LoginUI extends StatelessWidget {
       ),
       body: Column(
         children: [
+          SizedBox(height: 50,),
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
