@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 
 class DemoUI2 extends StatelessWidget {
   const DemoUI2({Key? key}) : super(key: key);
@@ -93,7 +94,7 @@ class DemoUI2 extends StatelessWidget {
             style: TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,
-                color: Colors.deepPurple),
+                color: Color(0xff1e086b)),
           ),
         ),
         actions: [
@@ -121,7 +122,7 @@ class DemoUI2 extends StatelessWidget {
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
-                  color: Colors.deepPurple),
+                  color: Color(0xff1e086b)),
             ),
           ),
 
@@ -191,7 +192,7 @@ class DemoUI2 extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 20,
-                      color: Colors.deepPurple),
+                      color: Color(0xff1e086b)),
                 ),
               ),
               SizedBox(
@@ -217,7 +218,7 @@ class DemoUI2 extends StatelessWidget {
           //Task List
           Container(
             width: 400,
-            height: 460,
+            height: 393,
             padding: EdgeInsets.only(top: 30),
             child: ListView.builder(
                 itemCount: arColor2.length,
@@ -296,6 +297,24 @@ class DemoUI2 extends StatelessWidget {
                   );
                 }),
           )
+        ],
+      ),
+
+      bottomNavigationBar: FloatingNavbar(
+        //onTap: (int val) => setState(() => _index = val),
+        currentIndex: 0,
+        backgroundColor: Color(0xff160c36),
+        selectedBackgroundColor: Colors.transparent,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey[600],
+        borderRadius: 30,
+        iconSize: 25,
+        items: [
+          FloatingNavbarItem(icon: Icons.grid_view_outlined),
+          FloatingNavbarItem(icon: Icons.date_range),
+          FloatingNavbarItem(icon: Icons.calendar_month_outlined),
+          FloatingNavbarItem(icon: Icons.sms),
+          FloatingNavbarItem(icon: Icons.settings),
         ],
       ),
     );
