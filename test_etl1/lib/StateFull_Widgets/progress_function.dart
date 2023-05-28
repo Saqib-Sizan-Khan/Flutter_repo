@@ -18,7 +18,7 @@ class _Progress_FunctionState extends State<Progress_Function> {
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.only(left: 18),
       decoration: BoxDecoration(
-        color: Colors.white,
+          color: Colors.white,
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20))),
@@ -30,7 +30,7 @@ class _Progress_FunctionState extends State<Progress_Function> {
               CircularPercentIndicator(
                 radius: 50.0,
                 lineWidth: 12.0,
-                percent: progress/100,
+                percent: progress / 100,
                 progressColor: Colors.greenAccent[400],
                 backgroundColor: Colors.grey,
               ),
@@ -116,8 +116,6 @@ class _Progress_FunctionState extends State<Progress_Function> {
           SizedBox(
             height: 40,
           ),
-
-
           SizedBox(
             height: 50,
             width: 350,
@@ -128,8 +126,7 @@ class _Progress_FunctionState extends State<Progress_Function> {
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: () {
                   setState(() {
-                    if (progress < 100)
-                      progress = progress+5;
+                    if (progress < 100) progress = progress + 5;
                   });
                 },
                 child: Text(
@@ -137,26 +134,27 @@ class _Progress_FunctionState extends State<Progress_Function> {
                   style: TextStyle(fontSize: 20),
                 )),
           ),
-
-          SizedBox(height: 10,),
-
+          SizedBox(
+            height: 10,
+          ),
           SizedBox(
             height: 50,
             width: 350,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     primary: Colors.white,
+                    side: BorderSide(width: 1, color: Colors.grey),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                      borderRadius: BorderRadius.circular(10),
+                    )),
                 onPressed: () {
                   setState(() {
-                    if (progress > 0)
-                      progress = progress-5;
+                    if (progress > 0) progress = progress - 5;
                   });
                 },
                 child: Text(
                   'View all Invoices',
-                  style: TextStyle(fontSize: 20,color: Colors.black),
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                 )),
           ),
         ],
