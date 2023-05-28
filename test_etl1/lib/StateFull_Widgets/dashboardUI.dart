@@ -127,7 +127,7 @@ class Dashboard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 0,
+                      height: 30,
                     ),
                     Row(
                       children: [

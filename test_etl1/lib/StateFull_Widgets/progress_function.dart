@@ -31,7 +31,7 @@ class _Progress_FunctionState extends State<Progress_Function> {
                 radius: 50.0,
                 lineWidth: 12.0,
                 percent: progress/100,
-                progressColor: Colors.pink[300],
+                progressColor: Colors.greenAccent[400],
                 backgroundColor: Colors.grey,
               ),
               SizedBox(
@@ -50,7 +50,7 @@ class _Progress_FunctionState extends State<Progress_Function> {
                         width: 10,
                       ),
                       Text(
-                        '30%',
+                        '$progress%',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -74,7 +74,7 @@ class _Progress_FunctionState extends State<Progress_Function> {
                         width: 10,
                       ),
                       Text(
-                        '20%',
+                        '$progress%',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -98,7 +98,7 @@ class _Progress_FunctionState extends State<Progress_Function> {
                         width: 10,
                       ),
                       Text(
-                        '15%',
+                        '$progress%',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -128,7 +128,8 @@ class _Progress_FunctionState extends State<Progress_Function> {
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: () {
                   setState(() {
-                    progress = progress+5;
+                    if (progress < 100)
+                      progress = progress+5;
                   });
                 },
                 child: Text(
@@ -149,7 +150,8 @@ class _Progress_FunctionState extends State<Progress_Function> {
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: () {
                   setState(() {
-                    progress = progress-5;
+                    if (progress > 0)
+                      progress = progress-5;
                   });
                 },
                 child: Text(
