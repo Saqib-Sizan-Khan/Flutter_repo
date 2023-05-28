@@ -190,10 +190,10 @@ class DemoUI extends StatelessWidget {
         ],
       ),
 
-
-
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.transparent,
+        selectedItemColor: Colors.cyanAccent,
+        unselectedItemColor: Colors.grey[400],
         elevation: 25,
         type: BottomNavigationBarType.fixed,
         iconSize: 30,
