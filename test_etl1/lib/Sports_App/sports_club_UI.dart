@@ -111,7 +111,7 @@ class Sports_Club_UI extends StatelessWidget {
               children: [
                 SizedBox(width: 20,),
                 Text('Train', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),),
-                SizedBox(width: 270,),
+                SizedBox(width: 260,),
                 Text('Alles', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.teal),),
               ],
             )
@@ -123,12 +123,20 @@ class Sports_Club_UI extends StatelessWidget {
                 itemCount: 5,
                 itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(width: 20,),
-                    Text('✌', style: TextStyle(fontSize: 40, backgroundColor: Colors.grey[300]),),
+
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text('✌', style: TextStyle(fontSize: 35)),
+                    ),
+
                     SizedBox(width: 20,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,7 +146,7 @@ class Sports_Club_UI extends StatelessWidget {
                       ],
                     ),
 
-                    SizedBox(width: 60,),
+                    SizedBox(width: 70,),
 
                     CircleAvatar(
                       radius: 23,

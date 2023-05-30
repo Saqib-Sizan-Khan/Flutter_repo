@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_etl1/StateFull_Widgets/sports_club_UI.dart';
+import 'package:test_etl1/Sports_App/sports_club_UI.dart';
 
 class Sports_Level_UI extends StatelessWidget {
   const Sports_Level_UI({Key? key}) : super(key: key);
@@ -41,11 +41,14 @@ class Sports_Level_UI extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Center(
-                              child: Text(
-                            '💪',
-                            style: TextStyle(
-                                fontSize: 40, backgroundColor: Colors.white),
-                          )),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Text('💪', style: TextStyle(fontSize: 35)),
+                              ),),
                           SizedBox(
                             height: 40,
                           ),
@@ -74,7 +77,7 @@ class Sports_Level_UI extends StatelessWidget {
                       );
                     },
                     iconSize: 30,
-                    icon: Icon(Icons.arrow_forward_ios_sharp))),
+                    icon: Icon(Icons.arrow_forward_ios_sharp, color: Colors.white,))),
             SizedBox(
               height: 20,
             ),
