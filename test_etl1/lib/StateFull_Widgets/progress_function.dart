@@ -132,7 +132,8 @@ class _Progress_FunctionState extends State<Progress_Function> {
                 child: Text(
                   'Create Invoice',
                   style: TextStyle(fontSize: 20),
-                )),
+                )
+            ),
           ),
           SizedBox(
             height: 10,
