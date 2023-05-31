@@ -20,7 +20,7 @@ import 'package:test_etl1/UI_Design/my_stack.dart';
 import 'package:test_etl1/UI_Design/slider.dart';
 import 'package:test_etl1/UI_Design/messenger_stories_UI.dart';
 import 'package:test_etl1/UI_Design/text_field.dart';
-import 'package:test_etl1/UI_Design/wp_UI.dart';
+import 'package:test_etl1/WhatsApp_UI/wp_UI.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Sports_Bottom_Nav(),
+      home: WP_UI(),
     );
   }
 }
