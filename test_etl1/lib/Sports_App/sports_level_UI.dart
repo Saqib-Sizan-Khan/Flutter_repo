@@ -7,6 +7,9 @@ class Sports_Level_UI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var arLevel = ['Excellent', 'Good', 'Average', 'Below Average', 'Bad'];
+    var arEmoji = ['💪', '👌', '✌', '🤏', '👎'];
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -29,11 +32,10 @@ class Sports_Level_UI extends StatelessWidget {
               height: 320,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 5,
+                  itemCount: arLevel.length,
                   itemBuilder: (context, index) {
                     return Container(
                       width: 230,
-                      height: 300,
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                           color: Colors.grey[300],
@@ -48,13 +50,13 @@ class Sports_Level_UI extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10)),
-                                child: Text('💪', style: TextStyle(fontSize: 35)),
+                                child: Text(arEmoji[index], style: TextStyle(fontSize: 35)),
                               ),),
                           SizedBox(
                             height: 40,
                           ),
                           Text(
-                            'Average',
+                            arLevel[index],
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w700),
                           )
