@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_etl1/Sports_App/sports_bottom_nav.dart';
 import 'package:test_etl1/Sports_App/sports_club_UI.dart';
 
 class Sports_Level_UI extends StatelessWidget {
@@ -73,7 +74,7 @@ class Sports_Level_UI extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Sports_Club_UI()),
+                            builder: (context) => Sports_Bottom_Nav()),
                       );
                     },
                     iconSize: 30,

@@ -59,7 +59,6 @@ class Sports_Club_UI extends StatelessWidget {
                       width: 230,
                       margin: EdgeInsets.symmetric(horizontal: 15),
                       decoration: BoxDecoration(
-                          color: Colors.grey[300],
                           image: DecorationImage(
                               image: AssetImage(
                                   'assets/images/sports_background.jpg'),
@@ -71,7 +70,7 @@ class Sports_Club_UI extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Women's\nClub",
+                              "Men's\nClub",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 30,
@@ -118,7 +117,7 @@ class Sports_Club_UI extends StatelessWidget {
           ),
 
           Expanded(
-            flex: 4,
+            flex: 3,
             child: ListView.builder(
                 itemCount: 5,
                 itemBuilder: (context, index) {
@@ -127,9 +126,7 @@ class Sports_Club_UI extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Container(
-                      width: 50,
                       height: 50,
                       decoration: BoxDecoration(
                           color: Colors.grey[300],
@@ -160,6 +157,7 @@ class Sports_Club_UI extends StatelessWidget {
           )
         ],
       ),
+
     );
   }
 }
