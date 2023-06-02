@@ -29,7 +29,7 @@ class _Sports_Bottom_NavState extends State<Sports_Bottom_Nav> {
         selectedFontSize: 16,
         unselectedFontSize: 16,
         selectedItemColor: Colors.teal[700],
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[400],
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.sports_baseball), label: 'Clubs'),
           BottomNavigationBarItem(icon: Icon(Icons.sports_football_rounded), label: 'League'),
