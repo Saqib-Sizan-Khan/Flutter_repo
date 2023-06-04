@@ -10,6 +10,7 @@ import 'package:test_etl1/Sports_App/sports_club_UI.dart';
 import 'package:test_etl1/Sports_App/sports_level_UI.dart';
 import 'package:test_etl1/Task_Management_App/tma_home_page.dart';
 import 'package:test_etl1/Task_Management_App/tma_start_page.dart';
+import 'package:test_etl1/Task_Management_App/tma_task_page.dart';
 import 'package:test_etl1/UI_Design/demoUI2.dart';
 import 'package:test_etl1/UI_Design/demoUI.dart';
 import 'package:test_etl1/UI_Design/Progress_Indicator.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TMA_Home_Page(),
+      home: TMA_Task_Page(),
     );
   }
 }

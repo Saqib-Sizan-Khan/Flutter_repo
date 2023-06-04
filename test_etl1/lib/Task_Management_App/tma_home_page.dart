@@ -6,7 +6,7 @@ class TMA_Home_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Color(0xFFE5D6D1),
       body: Column(
         children: [
           Expanded(
