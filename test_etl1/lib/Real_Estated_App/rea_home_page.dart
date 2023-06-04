@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class REA_Home_Page extends StatelessWidget {
@@ -54,7 +56,7 @@ class REA_Home_Page extends StatelessWidget {
                   children: [
                     Text(
                       'City',
-                      style: TextStyle(fontSize: 25, color: Colors.grey),
+                      style: TextStyle(fontSize: 25, color: Colors.grey[700]),
                     ),
                     Text(
                       'San Francisco',
@@ -102,14 +104,87 @@ class REA_Home_Page extends StatelessWidget {
                   )
                 ],
               )),
-
-          
           Expanded(
-            flex: 6,
-            child: Container(
-              color: Colors.blue,
-            ),
-          ),
+              flex: 6,
+              child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Container(
+                            width: 380,
+                            height: 190,
+                            margin: EdgeInsets.only(top: 10),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/house_images/house1.jpeg'),
+                                    fit: BoxFit.cover),
+                                borderRadius: BorderRadius.circular(25)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 50,
+                                  height: 50,
+                                  margin: EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(12.0),
+                                    child: ImageIcon(AssetImage(
+                                        'assets/images/icons/like.png')),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        Container(
+                          width: 380,
+                          height: 80,
+                          margin: EdgeInsets.symmetric(vertical: 15),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text('\$200.000',
+                                      style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w700)),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    'Jenison, MI 49428, SF',
+                                    style: TextStyle(
+                                        color: Colors.grey[700], fontSize: 20),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 7,
+                              ),
+                              Row(
+                                children: [
+                                  Text('4 bedrooms/2 bathrooms/1,416ft',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700)),
+                                  Text(
+                                    '2',
+                                    style: TextStyle(fontFeatures: [
+                                      FontFeature.enable('sups')
+                                    ], fontSize: 20),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  })),
         ],
       ),
     );

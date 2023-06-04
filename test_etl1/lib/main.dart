@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_etl1/Finger_Tab_Battle/Game_UI.dart';
 import 'package:test_etl1/Real_Estated_App/rea_home_page.dart';
 import 'package:test_etl1/Sports_App/sports_league_UI.dart';
 import 'package:test_etl1/Sports_App/sports_bottom_nav.dart';
@@ -7,6 +8,7 @@ import 'package:test_etl1/StateFull_Widgets/count_UI.dart';
 import 'package:test_etl1/StateFull_Widgets/dashboardUI.dart';
 import 'package:test_etl1/Sports_App/sports_club_UI.dart';
 import 'package:test_etl1/Sports_App/sports_level_UI.dart';
+import 'package:test_etl1/Task_Management_App/start_page.dart';
 import 'package:test_etl1/UI_Design/demoUI2.dart';
 import 'package:test_etl1/UI_Design/demoUI.dart';
 import 'package:test_etl1/UI_Design/Progress_Indicator.dart';
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: REA_Home_Page(),
+      home: Start_Page(),
     );
   }
 }
