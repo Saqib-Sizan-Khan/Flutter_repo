@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Home_Page extends StatelessWidget {
-  const Home_Page({Key? key}) : super(key: key);
+class TMA_Home_Page extends StatelessWidget {
+  const TMA_Home_Page({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,11 +100,11 @@ class Home_Page extends StatelessWidget {
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
-                            width: 180,
+                            width: 170,
                           ),
                           Text('See all',
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.bold))
                         ],
@@ -119,7 +119,7 @@ class Home_Page extends StatelessWidget {
                             child: CircleAvatar(
                               radius: 30,
                               backgroundImage:
-                                  AssetImage('assets/images/24.jpg'),
+                                  AssetImage('assets/images/22.jpg'),
                             ),
                           ),
                           Padding(
@@ -164,46 +164,113 @@ class Home_Page extends StatelessWidget {
                   ),
                 ),
               )),
-
-
           Expanded(
               flex: 9,
               child: Container(
-                width: double.maxFinite,
-                height: double.maxFinite,
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))
-                ),
-
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Active projects',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          width: 160,
-                        ),
-                        Text('See all',
+                  width: double.maxFinite,
+                  height: double.maxFinite,
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30))),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Active projects',
                             style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold))
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            width: 170,
+                          ),
+                          Text('See all',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
 
-                  ],
-                )
-              )
-          )
+                      Container(
+                        height: 370,
+                        child: ListView.builder(
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                            child: Container(
+                              width: 370,
+                              height: 160,
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(width: 2, color: Colors.grey)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Numero 10',
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      SizedBox(
+                                        width: 210,
+                                      ),
+                                      Text(
+                                        '4h',
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      )
+                                    ],
+                                  ),
+                                  Text(
+                                    'Blog and social posts',
+                                    style: TextStyle(
+                                        fontSize: 26, fontWeight: FontWeight.w700),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    children: [
+                                      ImageIcon(
+                                        AssetImage(
+                                            'assets/images/icons/exclamation.png'),
+                                        size: 20,
+                                        color: Colors.black,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        'Deadline is today',
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w400),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                      )
+                    ],
+                  )))
         ],
       ),
     );
