@@ -199,7 +199,7 @@ class TMA_Home_Page extends StatelessWidget {
                       ),
 
                       Container(
-                        height: 370,
+                        height: 340,
                         child: ListView.builder(
                             itemCount: 5,
                             itemBuilder: (context, index) {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_etl1/Task_Management_App/tma_bottom_nav.dart';
+import 'package:test_etl1/Task_Management_App/tma_home_page.dart';
 
 class TMA_Start_Page extends StatelessWidget {
   const TMA_Start_Page({Key? key}) : super(key: key);
@@ -42,7 +44,7 @@ class TMA_Start_Page extends StatelessWidget {
                 height: 300,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/geomatry_img.jpg'),
+                        image: AssetImage('assets/images/geomatry_img.png'),
                         fit: BoxFit.cover)),
               ),
               SizedBox(
@@ -60,7 +62,9 @@ class TMA_Start_Page extends StatelessWidget {
                 width: double.maxFinite,
                 height: 70,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => TMA_Bottom_Nav()));
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF26272C),
                     ),

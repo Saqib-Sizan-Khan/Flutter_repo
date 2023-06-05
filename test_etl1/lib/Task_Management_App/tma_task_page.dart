@@ -21,11 +21,7 @@ class TMA_Task_Page extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Icon(
-                          Icons.highlight_remove_rounded,
-                          size: 70,
-                          color: Colors.grey[800],
-                        ),
+                        Back_Button(),
                         SizedBox(
                           width: 250,
                         ),
@@ -37,7 +33,7 @@ class TMA_Task_Page extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 35,
                     ),
                     Divider(
                       thickness: 5,
@@ -49,7 +45,7 @@ class TMA_Task_Page extends StatelessWidget {
                 ),
               )),
           Expanded(
-              flex: 5,
+              flex: 4,
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -187,7 +183,7 @@ class TMA_Task_Page extends StatelessWidget {
                                           style: TextStyle(fontSize: 18),
                                         )
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -229,6 +225,7 @@ class TMA_Task_Page extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              SizedBox(height: 30,),
                               Text(
                                 'Members connected',
                                 style: TextStyle(
@@ -284,3 +281,29 @@ class TMA_Task_Page extends StatelessWidget {
     );
   }
 }
+
+
+
+class Back_Button extends StatefulWidget {
+  const Back_Button({Key? key}) : super(key: key);
+
+  @override
+  State<Back_Button> createState() => _Back_ButtonState();
+}
+
+class _Back_ButtonState extends State<Back_Button> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Icon(
+        Icons.highlight_remove_rounded,
+        size: 70,
+        color: Colors.grey[800],
+      ),
+    );
+  }
+}
+
