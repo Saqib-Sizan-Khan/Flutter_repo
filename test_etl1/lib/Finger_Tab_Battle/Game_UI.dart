@@ -12,6 +12,8 @@ class _Game_UIState extends State<Game_UI> {
   bool _isBlue = false;
   int red_tap = 6;
   int blue_tap = 6;
+  bool _blueCon = true;
+  bool _redCon = true;
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +25,24 @@ class _Game_UIState extends State<Game_UI> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  if (red_tap < 11 && !_isBlue && !_isRed) {
+                  if (red_tap <= 11 && !_isBlue && !_isRed) {
                     red_tap += 1;
-                    blue_tap -= 1;
+                    blue_tap = blue_tap- 1;
                   }
-                  if (red_tap == 11) _isRed = true;
+                  if (red_tap == 12) {
+                    _isRed = true;
+                    _blueCon = false;
+                  }
                 });
               },
-              child: Container(
-                width: double.maxFinite,
-                height: double.maxFinite,
-                color: Colors.redAccent,
-                child: win_btn('Red Wins', _isRed, Colors.red),
+              child: Visibility(
+                visible: _redCon,
+                child: Container(
+                  width: double.maxFinite,
+                  height: double.maxFinite,
+                  color: Colors.redAccent,
+                  child: win_btn('Red Wins', _isRed, Colors.red),
+                ),
               ),
             ),
           ),
@@ -43,18 +51,24 @@ class _Game_UIState extends State<Game_UI> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  if (blue_tap < 11 && !_isBlue && !_isRed) {
+                  if (blue_tap <= 11 && !_isBlue && !_isRed) {
                     red_tap -= 1;
                     blue_tap += 1;
                   }
-                  if (blue_tap == 11) _isBlue = true;
+                  if (blue_tap == 12) {
+                    _isBlue = true;
+                    _redCon = false;
+                  }
                 });
               },
-              child: Container(
-                width: double.maxFinite,
-                height: double.maxFinite,
-                color: Colors.blueAccent,
-                child: win_btn('Blue Wins', _isBlue, Colors.blue),
+              child: Visibility(
+                visible: _blueCon,
+                child: Container(
+                  width: double.maxFinite,
+                  height: double.maxFinite,
+                  color: Colors.blueAccent,
+                  child: win_btn('Blue Wins', _isBlue, Colors.blue),
+                ),
               ),
             ),
           ),
@@ -81,6 +95,8 @@ class _Game_UIState extends State<Game_UI> {
                 blue_tap = 6;
                 _isRed = false;
                 _isBlue = false;
+                _blueCon = true;
+                _redCon = true;
               });
             },
             child: Text('$win_text\nPlay Again?',
