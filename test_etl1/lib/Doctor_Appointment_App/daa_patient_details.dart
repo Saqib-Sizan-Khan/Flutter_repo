@@ -161,7 +161,106 @@ class DAA_Patient_Details extends StatelessWidget {
               )),
 
 
-          Expanded(flex: 4, child: Container(color: Colors.purple)),
+          Expanded(
+              flex: 4,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+
+                    Row(
+                      children: [
+                        Text('Information    ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Color(0xFF37715B))),
+                        Text('Medicine    ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.grey)),
+                        Text('Diagnosis', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.grey))
+                      ],
+                    ),
+
+                    SizedBox(height: 10,),
+
+                    Container(
+                      width: double.maxFinite,
+                      height: 260,
+                      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(15)
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('General', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),),
+
+                          SizedBox(height: 20,),
+
+
+                          Table(
+                            border: TableBorder(horizontalInside: BorderSide(width: 1, color: Colors.grey.shade600)),
+                            children: [
+                              TableRow(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 12),
+                                    child: TableCell(child: Text('First name', style: TextStyle(fontSize: 14, color: Colors.grey.shade600),)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 12),
+                                    child: TableCell(child: Text('Toms', style: TextStyle(fontSize: 16), textAlign: TextAlign.end,)),
+                                  ),
+                                ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      child: TableCell(child: Text('Last name', style: TextStyle(fontSize: 14, color: Colors.grey.shade600),)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      child: TableCell(child: Text('Stuart', style: TextStyle(fontSize: 16), textAlign: TextAlign.end,)),
+                                    )
+                                  ]
+                              ),
+
+
+                              TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      child: TableCell(child: Text('Date of Birth', style: TextStyle(fontSize: 14, color: Colors.grey.shade600),)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      child: TableCell(child: Text('31 May 1997', style: TextStyle(fontSize: 16), textAlign: TextAlign.end,)),
+                                    )
+                                  ]
+                              ),
+
+                              TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 12),
+                                      child: TableCell(child: Text('Gender', style: TextStyle(fontSize: 14, color: Colors.grey.shade600),)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 12),
+                                      child: TableCell(child: Text('Male', style: TextStyle(fontSize: 16), textAlign: TextAlign.end,)),
+                                    )
+                                  ]
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+
+                  ],
+                ),
+              )
+          ),
+
+
           Expanded(flex: 3, child: Container(color: Colors.grey)),
         ],
       ),
