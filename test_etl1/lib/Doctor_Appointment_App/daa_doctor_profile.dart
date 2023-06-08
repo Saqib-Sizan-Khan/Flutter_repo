@@ -225,7 +225,7 @@ class DAA_Doctor_Profile extends StatelessWidget {
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[500],
         borderRadius: 30,
-        iconSize: 25,
+        iconSize: 30,
         items: [
           FloatingNavbarItem(icon: Icons.home_filled),
           FloatingNavbarItem(icon: Icons.wechat_sharp),

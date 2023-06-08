@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DAA_Doctor_Profile(),
+      home: DAA_Start_Page(),
     );
   }
 }
