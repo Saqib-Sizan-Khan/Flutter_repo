@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 
 class DAA_Doctor_Profile extends StatelessWidget {
   const DAA_Doctor_Profile({Key? key}) : super(key: key);
@@ -7,6 +8,20 @@ class DAA_Doctor_Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     var arWeeks = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue'];
     var arDate = [9, 10, 11, 12, 13, 14, 15];
+    var arNames = [
+      'Sarah Miller',
+      'Jill Robbins',
+      'Tom Stuart',
+      'Saqib Sizan',
+      'Aqib Jishan'
+    ];
+    var arImage = [
+      AssetImage('assets/images/21.jpg'),
+      AssetImage('assets/images/22.jpg'),
+      AssetImage('assets/images/24.jpg'),
+      AssetImage('assets/images/25.jpg'),
+      AssetImage('assets/images/26.jpg'),
+    ];
 
     return Scaffold(
       body: Container(
@@ -116,12 +131,84 @@ class DAA_Doctor_Profile extends StatelessWidget {
                         );
                       }),
                 ),
-
-                SizedBox(height: 40,),
+                SizedBox(
+                  height: 40,
+                ),
                 Text(
                   'Upcoming Sessions',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                 ),
+                SizedBox(
+                  height: 25,
+                ),
+                Container(
+                  height: 400,
+                  child: ListView.builder(
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: double.maxFinite,
+                          height: 170,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 25),
+                          margin: EdgeInsets.symmetric(vertical: 5),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CircleAvatar(
+                                radius: 28,
+                                backgroundImage: arImage[index],
+                              ),
+                              SizedBox(
+                                width: 25,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    arNames[index],
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey[700]),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    '25 year - Depression - Takes meds',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey[700]),
+                                  ),
+                                  SizedBox(
+                                    height: 50,
+                                  ),
+                                  Text(
+                                    '11 Feb 2023 09:00-09:00',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Checkbox(
+                                value: true,
+                                onChanged: null,
+                              )
+                            ],
+                          ),
+                        );
+                      }),
+                )
               ],
             ),
           ),
