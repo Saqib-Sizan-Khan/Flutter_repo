@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_etl1/Doctor_Appointment_App/daa_doctor_profile.dart';
 import 'package:test_etl1/Doctor_Appointment_App/daa_patient_details.dart';
 import 'package:test_etl1/Doctor_Appointment_App/daa_start_page.dart';
 import 'package:test_etl1/Finger_Tab_Battle/Game_UI.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DAA_Patient_Details(),
+      home: DAA_Doctor_Profile(),
     );
   }
 }
