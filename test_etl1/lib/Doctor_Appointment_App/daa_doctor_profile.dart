@@ -142,13 +142,13 @@ class DAA_Doctor_Profile extends StatelessWidget {
                   height: 25,
                 ),
                 Container(
-                  height: 400,
+                  height: 470,
                   child: ListView.builder(
                       itemCount: 5,
                       itemBuilder: (context, index) {
                         return Container(
                           width: double.maxFinite,
-                          height: 170,
+                          height: 160,
                           padding: EdgeInsets.symmetric(
                               horizontal: 15, vertical: 25),
                           margin: EdgeInsets.symmetric(vertical: 5),
@@ -186,7 +186,7 @@ class DAA_Doctor_Profile extends StatelessWidget {
                                         color: Colors.grey[700]),
                                   ),
                                   SizedBox(
-                                    height: 50,
+                                    height: 40,
                                   ),
                                   Text(
                                     '11 Feb 2023 09:00-09:00',
@@ -214,6 +214,26 @@ class DAA_Doctor_Profile extends StatelessWidget {
           ),
         ),
       ),
+
+      bottomNavigationBar: FloatingNavbar(
+        margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+        padding: EdgeInsets.all(10),
+        //onTap: (int val) => setState(() => _index = val),
+        currentIndex: 0,
+        backgroundColor: Color(0xFF37715B),
+        selectedBackgroundColor: Colors.transparent,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey[500],
+        borderRadius: 30,
+        iconSize: 25,
+        items: [
+          FloatingNavbarItem(icon: Icons.home_filled),
+          FloatingNavbarItem(icon: Icons.wechat_sharp),
+          FloatingNavbarItem(icon: Icons.calendar_month_outlined),
+          FloatingNavbarItem(icon: Icons.person),
+        ],
+      ),
+      extendBody: true,
     );
   }
 }
