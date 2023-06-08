@@ -142,7 +142,7 @@ class DAA_Doctor_Profile extends StatelessWidget {
                   height: 25,
                 ),
                 Container(
-                  height: 470,
+                  height: 472,
                   child: ListView.builder(
                       itemCount: 5,
                       itemBuilder: (context, index) {
@@ -200,9 +200,16 @@ class DAA_Doctor_Profile extends StatelessWidget {
                               SizedBox(
                                 width: 50,
                               ),
-                              Checkbox(
-                                value: true,
-                                onChanged: null,
+
+                              Transform.scale(
+                                scale: 1.3,
+                                child: Checkbox(
+                                  value: true,
+                                  onChanged: (value) {},
+                                  checkColor: Colors.white,
+                                  activeColor: Color(0xFF37715B),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                                ),
                               )
                             ],
                           ),
