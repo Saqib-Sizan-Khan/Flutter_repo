@@ -35,6 +35,11 @@
 ### - Finger Tab Battle Game
 [screen-capture.webm](https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/147167c4-4ef7-4a3e-bd97-af712026f830)
 
+### - Tasks Handaling App
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/18b645dd-8792-48d8-b3f2-a5d44b57e0b0" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/b094ded8-c5df-4038-9e5c-7368f7fa6fee" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/64078c64-cc49-423c-b561-d39879a46994" width="150" height="350">
+
 
 
 
