@@ -26,8 +26,9 @@ class _Game_LogicState extends State<Game_Logic> {
         : game_state == GameState.circle
             ? InkWell(
                 child: Icon(
-                  Icons.circle,
+                  Icons.circle_outlined,
                   size: 100,
+                  color: Colors.teal,
                 ),
                 onTap: () {
                   setState(() {
@@ -39,6 +40,7 @@ class _Game_LogicState extends State<Game_Logic> {
                 child: Icon(
                   Icons.close,
                   size: 100,
+                  color: Colors.redAccent,
                 ),
                 onTap: () {
                   setState(() {
