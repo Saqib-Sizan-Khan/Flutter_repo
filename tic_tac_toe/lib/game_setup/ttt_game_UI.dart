@@ -12,6 +12,8 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
   int _scoreX = 0;
   int _scoreO = 0;
   bool _turnO = true;
+  bool win = false;
+  String winner = '';
   int _fillBoxes = 0;
   List<String> _gridList = ['','','','','','','','',''];
 
@@ -94,9 +96,26 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
   Widget _playerTurn() {
     return Expanded(
       flex: 1,
-      child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Text('Turn of O', style: TextStyle(color: Colors.white, fontSize: 24),),
+      child: Column(
+        children: [
+
+          Visibility(
+            visible: !win,
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Text( _turnO ? 'Turn of O' : 'Turn of X',
+                style: TextStyle(color: Colors.white, fontSize: 24),),
+            ),
+          ),
+          Visibility(
+            visible: win,
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Text( winner == 'o' ? 'Winner is O' : 'Winner is X',
+                style: TextStyle(color: Colors.cyan, fontSize: 28, fontWeight: FontWeight.w600),),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -106,15 +125,27 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
       if (_turnO && _gridList[index] == '') {
         _gridList[index] = 'o';
         _fillBoxes += 1;
+        _turnO = !_turnO;
       }
       else if (!_turnO && _gridList[index] == '') {
         _gridList[index] = 'x';
         _fillBoxes += 1;
+        _turnO = !_turnO;
       }
 
-      _turnO = !_turnO;
-      print(_turnO);
+      winner = checkWinner();
     });
+  }
+
+  String checkWinner() {
+    if (_gridList[0] == _gridList[1] && _gridList[0] == _gridList[2] && _gridList[0] != '') {
+      win = true;
+      return _gridList[0];
+      //print('Winner is ${_gridList[0]}');
+    }
+    else {
+      return '';
+    }
   }
 }
 
