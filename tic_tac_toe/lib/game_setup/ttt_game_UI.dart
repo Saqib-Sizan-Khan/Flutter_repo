@@ -14,8 +14,20 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
   bool win = false;
   String winner = '';
   int _fillBoxes = 0;
-  bool gamefrezze = false;
+  bool _gamefrezze = false;
+  String _winBoxes = '';
   List<String> _gridList = ['', '', '', '', '', '', '', '', ''];
+  final List<String> _wingridList = [
+    '0',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +46,7 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
                   win = false;
                   winner = '';
                   _fillBoxes = 0;
-                  gamefrezze = false;
+                  _gamefrezze = false;
                   _gridList = ['', '', '', '', '', '', '', '', ''];
                 });
               },
@@ -51,7 +63,6 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
         backgroundColor: Colors.grey[900],
         toolbarHeight: 80,
       ),
-      backgroundColor: Colors.grey[900],
       body: Column(
         children: [_pointsTable(), _gameGrid(), _playerTurn()],
       ),
@@ -70,14 +81,20 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
                 children: [
                   Text(
                     'Player O',
-                    style: TextStyle(fontSize: 28, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.teal,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Text(
                     _scoreO.toString(),
-                    style: TextStyle(fontSize: 28, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.teal,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -88,14 +105,20 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
                 children: [
                   Text(
                     'Player X',
-                    style: TextStyle(fontSize: 28, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Text(
                     _scoreX.toString(),
-                    style: TextStyle(fontSize: 28, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               )
@@ -107,54 +130,62 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
   Widget _gameGrid() {
     return Expanded(
       flex: 2,
-      child: GridView.builder(
-          itemCount: 9,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, mainAxisSpacing: 10, crossAxisSpacing: 10),
-          itemBuilder: (BuildContext context, int index) {
-            return gamefrezze
-                ? Container(
-                    decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Colors.grey.shade600, width: 3),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: _gridList[index] == ''
-                        ? Container()
-                        : _gridList[index] == 'x'
-                            ? Icon(
-                                Icons.close,
-                                size: 50,
-                                color: Colors.redAccent,
-                              )
-                            : Icon(
-                                Icons.circle_outlined,
-                                size: 50,
-                                color: Colors.teal,
-                              ))
-                : InkWell(
-                    onTap: () {
-                      _pressed(index);
-                    },
-                    child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Colors.grey.shade600, width: 3),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: _gridList[index] == ''
-                            ? Container()
-                            : _gridList[index] == 'x'
-                                ? Icon(
-                                    Icons.close,
-                                    size: 50,
-                                    color: Colors.redAccent,
-                                  )
-                                : Icon(
-                                    Icons.circle_outlined,
-                                    size: 50,
-                                    color: Colors.teal,
-                                  )),
-                  );
-          }),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: GridView.builder(
+            itemCount: 9,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, mainAxisSpacing: 10, crossAxisSpacing: 10),
+            itemBuilder: (BuildContext context, int index) {
+              return _gamefrezze
+                  ? Container(
+                      decoration: BoxDecoration(
+                          color: _wingridList[index] == _winBoxes[0] ||
+                                  _wingridList[index] == _winBoxes[1] ||
+                                  _wingridList[index] == _winBoxes[2]
+                              ? Colors.limeAccent
+                              : Colors.transparent,
+                          border:
+                              Border.all(color: Colors.indigo, width: 5),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: _gridList[index] == ''
+                          ? Container()
+                          : _gridList[index] == 'x'
+                              ? Icon(
+                                  Icons.close,
+                                  size: 60,
+                                  color: Colors.redAccent,
+                                )
+                              : Icon(
+                                  Icons.circle_outlined,
+                                  size: 60,
+                                  color: Colors.teal,
+                                ))
+                  : InkWell(
+                      onTap: () {
+                        _pressed(index);
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.indigo, width: 5),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: _gridList[index] == ''
+                              ? Container()
+                              : _gridList[index] == 'x'
+                                  ? Icon(
+                                      Icons.close,
+                                      size: 60,
+                                      color: Colors.redAccent,
+                                    )
+                                  : Icon(
+                                      Icons.circle_outlined,
+                                      size: 60,
+                                      color: Colors.teal,
+                                    )),
+                    );
+            }),
+      ),
     );
   }
 
@@ -169,7 +200,10 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
               padding: const EdgeInsets.all(30.0),
               child: Text(
                 _turnO ? 'Turn of O' : 'Turn of X',
-                style: TextStyle(color: Colors.white, fontSize: 24),
+                style: TextStyle(
+                    color: _turnO ? Colors.teal : Colors.redAccent,
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700),
               ),
             ),
           ),
@@ -184,9 +218,9 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
                         ? 'Winner is O'
                         : 'Winner is X',
                 style: TextStyle(
-                    color: Colors.blue,
+                    color: Colors.indigo,
                     fontSize: 28,
-                    fontWeight: FontWeight.w600),
+                    fontWeight: FontWeight.w700),
               ),
             ),
           ),
@@ -210,10 +244,10 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
       winner = checkWinner();
       if (winner == 'o') {
         _scoreO += 1;
-        gamefrezze = true;
+        _gamefrezze = true;
       } else if (winner == 'x') {
         _scoreX += 1;
-        gamefrezze = true;
+        _gamefrezze = true;
       }
     });
   }
@@ -221,34 +255,42 @@ class _TTT_Game_UIState extends State<TTT_Game_UI> {
   String checkWinner() {
     if (checkGrid(0, 1, 2)) {
       win = true;
+      _winBoxes = '012';
       return _gridList[0];
     }
     if (checkGrid(3, 4, 5)) {
       win = true;
+      _winBoxes = '345';
       return _gridList[3];
     }
     if (checkGrid(6, 7, 8)) {
       win = true;
+      _winBoxes = '678';
       return _gridList[6];
     }
     if (checkGrid(0, 3, 6)) {
       win = true;
+      _winBoxes = '036';
       return _gridList[0];
     }
     if (checkGrid(1, 4, 7)) {
       win = true;
+      _winBoxes = '147';
       return _gridList[1];
     }
     if (checkGrid(2, 5, 8)) {
       win = true;
+      _winBoxes = '258';
       return _gridList[2];
     }
     if (checkGrid(0, 4, 8)) {
       win = true;
+      _winBoxes = '048';
       return _gridList[0];
     }
     if (checkGrid(2, 4, 6)) {
       win = true;
+      _winBoxes = '246';
       return _gridList[2];
     }
     if (_fillBoxes == 9) {
