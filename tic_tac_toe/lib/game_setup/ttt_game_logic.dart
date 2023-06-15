@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/game_setup/box_icon.dart';
-import 'game_states.dart';
-import 'box_icon.dart';
+import 'package:tic_tac_toe/game_setup/game_states.dart';
 
 class TTT_Game_Logic extends StatefulWidget {
   const TTT_Game_Logic({super.key});
@@ -11,25 +10,15 @@ class TTT_Game_Logic extends StatefulWidget {
 }
 
 class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
-  BoxState a = BoxState.empty;
-  BoxState b = BoxState.empty;
-  BoxState c = BoxState.empty;
-  BoxState d = BoxState.empty;
-  BoxState e = BoxState.empty;
-  BoxState f = BoxState.empty;
-  BoxState g = BoxState.empty;
-  BoxState h = BoxState.empty;
-  BoxState i = BoxState.empty;
-
-  bool crossTurn = true;
-  GameState gameState = GameState.gameNotfinished;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text('Tic Tac Toe'),
+          child: Text(
+            'Tic Tac Toe',
+            style: TextStyle(fontSize: 25),
+          ),
         ),
       ),
       body: Stack(
@@ -217,6 +206,43 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
           gameState != GameState.gameNotfinished
               ? Container(
                   color: Colors.purpleAccent.withOpacity(0.8),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          gameState == GameState.circlewin
+                              ? 'Circle Wins'
+                              : 'Cross Wins',
+                          style: TextStyle(
+                              fontSize: 40,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          width: 190,
+                          height: 80,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.deepPurple[700],
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(35))),
+                              onPressed: () {
+                                setState(() {
+                                  gameReset();
+                                });
+                              },
+                              child: Text(
+                                'Play Again?',
+                                style: TextStyle(fontSize: 25),
+                              )),
+                        )
+                      ],
+                    ),
+                  ),
                 )
               : Container()
         ],
@@ -265,5 +291,20 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
           ? gameState = GameState.circlewin
           : gameState = GameState.crosswin;
     }
+  }
+
+  void gameReset() {
+    a = BoxState.empty;
+    b = BoxState.empty;
+    c = BoxState.empty;
+    d = BoxState.empty;
+    e = BoxState.empty;
+    f = BoxState.empty;
+    g = BoxState.empty;
+    h = BoxState.empty;
+    i = BoxState.empty;
+
+    crossTurn = true;
+    gameState = GameState.gameNotfinished;
   }
 }
