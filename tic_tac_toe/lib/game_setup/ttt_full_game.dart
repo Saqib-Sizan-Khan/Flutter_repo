@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TTT_Game_UI extends StatefulWidget {
-  const TTT_Game_UI({super.key});
+class TTT_Full_Game extends StatefulWidget {
+  const TTT_Full_Game({super.key});
 
   @override
-  State<TTT_Game_UI> createState() => _TTT_Game_UIState();
+  State<TTT_Full_Game> createState() => _TTT_Full_GameState();
 }
 
-class _TTT_Game_UIState extends State<TTT_Game_UI> {
+class _TTT_Full_GameState extends State<TTT_Full_Game> {
   int _scoreX = 0;
   int _scoreO = 0;
   bool _turnO = true;
