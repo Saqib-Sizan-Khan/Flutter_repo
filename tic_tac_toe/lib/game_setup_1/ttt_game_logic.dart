@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_toe/game_setup/box_icon.dart';
-import 'package:tic_tac_toe/game_setup/game_states.dart';
+import 'package:tic_tac_toe/game_setup_1/box_icon.dart';
+import 'package:tic_tac_toe/game_setup_1/game_var.dart';
 
 class TTT_Game_Logic extends StatefulWidget {
   const TTT_Game_Logic({super.key});
@@ -55,6 +55,7 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               a = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
                             gameLogic();
                           }
                         });
@@ -72,6 +73,7 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               b = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
                             gameLogic();
                           }
                         });
@@ -89,6 +91,7 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               c = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
                             gameLogic();
                           }
                         });
@@ -106,6 +109,7 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               d = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
                             gameLogic();
                           }
                         });
@@ -123,6 +127,7 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               e = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
                             gameLogic();
                           }
                         });
@@ -140,6 +145,7 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               f = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
                             gameLogic();
                           }
                         });
@@ -157,6 +163,7 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               g = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
                             gameLogic();
                           }
                         });
@@ -174,6 +181,8 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               h = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
+                            print(boxfill);
                             gameLogic();
                           }
                         });
@@ -191,6 +200,8 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                               i = BoxState.circle;
                             }
                             crossTurn = !crossTurn;
+                            boxfill += 1;
+                            print(boxfill);
                             gameLogic();
                           }
                         });
@@ -211,9 +222,11 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          gameState == GameState.circlewin
-                              ? 'Circle Wins'
-                              : 'Cross Wins',
+                          gameState != GameState.matchdraw
+                              ? gameState == GameState.circlewin
+                                  ? 'Circle Wins'
+                                  : 'Cross Wins'
+                              : 'Match Draw',
                           style: TextStyle(
                               fontSize: 40,
                               color: Colors.white,
@@ -291,6 +304,7 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
           ? gameState = GameState.circlewin
           : gameState = GameState.crosswin;
     }
+    if (boxfill == 9) gameState = GameState.matchdraw;
   }
 
   void gameReset() {
@@ -306,5 +320,6 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
 
     crossTurn = true;
     gameState = GameState.gameNotfinished;
+    boxfill = 0;
   }
 }

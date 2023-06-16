@@ -11,6 +11,7 @@ BoxState i = BoxState.empty;
 
 bool crossTurn = true;
 GameState gameState = GameState.gameNotfinished;
+int boxfill = 0;
 
 enum BoxState {
   empty,
@@ -22,5 +23,5 @@ enum GameState {
   gameNotfinished,
   crosswin,
   circlewin,
-  //matchdraw
+  matchdraw
 }

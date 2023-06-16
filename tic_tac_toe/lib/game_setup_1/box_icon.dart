@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'game_states.dart';
+import 'game_var.dart';
 
 class BoxIcon extends StatelessWidget {
   final boxState;
