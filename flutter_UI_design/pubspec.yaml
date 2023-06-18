@@ -39,6 +39,7 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   percent_indicator: ^4.2.3
   floating_bottom_navigation_bar: ^1.5.2
+  flutter_screenutil: ^5.8.4
 
 dev_dependencies:
   flutter_test:
