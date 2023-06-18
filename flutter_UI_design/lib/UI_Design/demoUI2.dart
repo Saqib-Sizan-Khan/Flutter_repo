@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 
@@ -82,9 +83,11 @@ class DemoUI2 extends StatelessWidget {
       'Business Analysis Department'
     ];
 
+    ScreenUtil.init(context, designSize: const Size(412, 915));
+
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100,
+        toolbarHeight: 100.h,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         title: Padding(
@@ -92,22 +95,22 @@ class DemoUI2 extends StatelessWidget {
           child: Text(
             'Hello, Villie!',
             style: TextStyle(
-                fontSize: 35,
+                fontSize: 35.sp,
                 fontWeight: FontWeight.bold,
                 color: Color(0xff1e086b)),
           ),
         ),
         actions: [
           CircleAvatar(
-            radius: 27,
+            radius: 27.r,
             backgroundColor: Colors.black26,
             child: CircleAvatar(
-              radius: 23,
+              radius: 23.r,
               backgroundImage: AssetImage('assets/images/53.jpg'),
             ),
           ),
           SizedBox(
-            width: 30,
+            width: 30.w,
           )
         ],
       ),
@@ -120,7 +123,7 @@ class DemoUI2 extends StatelessWidget {
             child: Text(
               'Your progress',
               style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w900,
                   color: Color(0xff1e086b)),
             ),
@@ -128,53 +131,53 @@ class DemoUI2 extends StatelessWidget {
 
           //Progress List
           Container(
-            height: 250,
-            width: 500,
+            height: 250.h,
+            width: 500.w,
             padding: EdgeInsets.only(left: 20, top: 20),
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 220,
-                    width: 160,
+                    height: 220.h,
+                    width: 160.w,
                     padding: EdgeInsets.only(left: 10, top: 20),
                     margin: EdgeInsets.all(7),
                     decoration: BoxDecoration(
                         color: arColor[index],
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [BoxShadow(blurRadius: 7)]),
+                        borderRadius: BorderRadius.circular(20.r),
+                        boxShadow: [BoxShadow(blurRadius: 7.r)]),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CircularPercentIndicator(
-                          radius: 32.0,
-                          lineWidth: 5.0,
+                          radius: 32.r,
+                          lineWidth: 5.0.w,
                           percent: arProgress[index],
                           center: Text(
                             '${arProgress[index] * 100}%',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.bold),
                           ),
                           progressColor: Colors.white,
                           backgroundColor: Colors.transparent,
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 30.h,
                         ),
                         Text('${arProgressType[index]}',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16)),
+                                fontSize: 16.sp)),
                         SizedBox(
-                          height: 10,
+                          height: 5.h,
                         ),
                         Text(
                           '${arProgressResult[index]}',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white, fontSize: 16.sp),
                         ),
                       ],
                     ),
@@ -191,21 +194,21 @@ class DemoUI2 extends StatelessWidget {
                   'Wednesday, March 7',
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       color: Color(0xff1e086b)),
                 ),
               ),
               SizedBox(
-                width: 100,
+                width: 100.w,
               ),
               Padding(
                 padding: EdgeInsets.only(top: 27),
                 child: Container(
-                  height: 45,
-                  width: 45,
+                  height: 45.h,
+                  width: 45.w,
                   decoration: BoxDecoration(
                       color: Colors.black26,
-                      borderRadius: BorderRadius.circular(15)),
+                      borderRadius: BorderRadius.circular(15.r)),
                   child: Icon(
                     Icons.date_range,
                     color: Colors.indigo,
@@ -217,9 +220,9 @@ class DemoUI2 extends StatelessWidget {
 
           //Task List
           Container(
-            width: 400,
-            height: 393,
-            padding: EdgeInsets.only(top: 30),
+            width: 400.w,
+            height: 393.h,
+            padding: EdgeInsets.only(top: 30.w),
             child: ListView.builder(
                 itemCount: arColor2.length,
                 itemBuilder: (context, index) {
@@ -236,14 +239,14 @@ class DemoUI2 extends StatelessWidget {
                               fontWeight: FontWeight.w800),
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 20.w,
                         ),
                         Container(
-                          width: 290,
-                          height: 130,
+                          width: 270.w,
+                          height: 130.h,
                           decoration: BoxDecoration(
                               color: arColor2[index],
-                              borderRadius: BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15.r)),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 12, left: 15),
                             child: Column(
@@ -252,19 +255,19 @@ class DemoUI2 extends StatelessWidget {
                                 Text(
                                   '${arTaskName[index]}',
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.w900,
                                       color: arColorText[index]),
                                 ),
                                 Text(
                                   '${arTaskDept[index]}',
                                   style: TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.w700,
                                       color: arColorText[index]),
                                 ),
                                 SizedBox(
-                                  height: 30,
+                                  height: 30.h,
                                 ),
                                 Row(
                                   children: [
@@ -272,17 +275,17 @@ class DemoUI2 extends StatelessWidget {
                                       Align(
                                         widthFactor: 0.5,
                                         child: CircleAvatar(
-                                          radius: 18,
+                                          radius: 18.r,
                                           backgroundImage: arAvatarImage[i],
                                         ),
                                       ),
                                     SizedBox(
-                                      width: 50,
+                                      width: 50.w,
                                     ),
                                     Text(
                                       '${arTaskDuration[index]}',
                                       style: TextStyle(
-                                          fontSize: 13,
+                                          fontSize: 13.sp,
                                           fontWeight: FontWeight.w700,
                                           color: arColorText[index]),
                                     )
@@ -307,8 +310,8 @@ class DemoUI2 extends StatelessWidget {
         selectedBackgroundColor: Colors.transparent,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[600],
-        borderRadius: 30,
-        iconSize: 25,
+        borderRadius: 30.r,
+        iconSize: 25.sp,
         items: [
           FloatingNavbarItem(icon: Icons.grid_view_outlined),
           FloatingNavbarItem(icon: Icons.date_range),
@@ -317,6 +320,7 @@ class DemoUI2 extends StatelessWidget {
           FloatingNavbarItem(icon: Icons.settings),
         ],
       ),
+      extendBody: true,
     );
   }
 }
