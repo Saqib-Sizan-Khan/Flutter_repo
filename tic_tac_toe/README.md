@@ -1,16 +1,3 @@
-# tic_tac_toe
+# Tic Tac Toe
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[screen-capture.webm](https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/a9a4ce6a-9c83-4ca7-bf37-d1aac894baac)
