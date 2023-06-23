@@ -5,12 +5,12 @@ import 'package:http/http.dart' as http;
 
 Future<List<PhotoModel>> fetchPhoto() async {
   final response =
-  await http.get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
+      await http.get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
 
   if (response.statusCode == 200) {
     final List<dynamic> jsonResponse = json.decode(response.body);
     List<PhotoModel> photos =
-    jsonResponse.map((data) => PhotoModel.fromJson(data)).toList();
+        jsonResponse.map((data) => PhotoModel.fromJson(data)).toList();
     return photos;
   } else {
     throw Exception('Failed to fetch Data');
@@ -24,7 +24,6 @@ class Photo_UI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Photos Info')),
-
       body: FutureBuilder<List<PhotoModel>>(
         future: fetchPhoto(),
         builder: (context, snapshot) {
@@ -35,34 +34,41 @@ class Photo_UI extends StatelessWidget {
           } else {
             List<PhotoModel> photos = snapshot.data ?? [];
 
-            return ListView.builder(
-              itemCount: photos.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            return GridView.builder(
+                itemCount: photos.length,
+                padding: EdgeInsets.all(8),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 0.6,
+                  mainAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  return Column(
                     children: [
                       Container(
-                        height: 220,
-                        width: 380,
+                        height: 200,
+                        width: 200,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(photos[index].url), fit: BoxFit.cover
-                            ),
-                            borderRadius: BorderRadius.circular(20)
-                        ),
+                                image: NetworkImage(photos[index].url),
+                                fit: BoxFit.cover),
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(20)),
                       ),
-                      SizedBox(height: 10,),
-
-                      Text(photos[index].title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
-                      Text('ID: ${photos[index].id}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Color(0xFFCD9B04)),)
-
+                      Text('ID: ${photos[index].id}',
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFFCD9B04))),
+                      Text(
+                        photos[index].title,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w500),
+                      ),
                     ],
-                  ),
-                );
-              },
-            );
+                  );
+                });
           }
         },
       ),
