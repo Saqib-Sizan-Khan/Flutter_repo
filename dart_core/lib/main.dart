@@ -1,3 +1,4 @@
+import 'package:dart_core/API_Calling/app_UI/user_details_app.dart';
 import 'package:flutter/material.dart';
 import 'Local_JSON_Data/user_interface.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: JSON_UI(),
+      home: User_UI(),
     );
   }
 }
