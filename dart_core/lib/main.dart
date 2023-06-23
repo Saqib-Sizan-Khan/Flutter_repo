@@ -1,3 +1,4 @@
+import 'package:dart_core/API_Calling/app_UI/photos_app.dart';
 import 'package:dart_core/API_Calling/app_UI/products_info_app.dart';
 import 'package:dart_core/API_Calling/app_UI/user_details_app.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Product_UI(),
+      home: Photo_UI(),
     );
   }
 }
