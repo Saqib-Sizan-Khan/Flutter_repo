@@ -6,8 +6,6 @@ class LoginUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text('Account Login'), leading: Icon(Icons.account_balance)),
       body: Column(
         children: [
           SizedBox(
@@ -29,13 +27,7 @@ class LoginUI extends StatelessWidget {
                   hintStyle: Theme.of(context).textTheme.headline5,
                   prefixIcon: Icon(
                     Icons.person_add,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide:
-                          BorderSide(width: 3, color: Colors.lightBlue)),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
+                  )),
             ),
           ),
           Padding(
@@ -51,13 +43,7 @@ class LoginUI extends StatelessWidget {
                   ),
                   suffixIcon: Icon(
                     Icons.remove_red_eye,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide:
-                          BorderSide(width: 3, color: Colors.lightBlue)),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
+                  )),
             ),
           ),
           SizedBox(

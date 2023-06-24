@@ -20,7 +20,7 @@ import 'package:test_etl1/UI_Design/demoUI.dart';
 import 'package:test_etl1/UI_Design/Progress_Indicator.dart';
 import 'package:test_etl1/UI_Design/invoice_sendUI.dart';
 import 'package:test_etl1/UI_Design/messenger_chats_UI.dart';
-import 'package:test_etl1/UI_Design/login_UI.dart';
+import 'package:test_etl1/login_UI/login_UI.dart';
 import 'package:test_etl1/UI_Design/gridview.dart';
 import 'package:test_etl1/UI_Design/homepage.dart';
 import 'package:test_etl1/UI_Design/homepage2.dart';
@@ -30,8 +30,6 @@ import 'package:test_etl1/UI_Design/my_stack.dart';
 import 'package:test_etl1/UI_Design/slider.dart';
 import 'package:test_etl1/UI_Design/messenger_stories_UI.dart';
 import 'package:test_etl1/UI_Design/text_field.dart';
-import 'package:test_etl1/WhatsApp_UI/wp_UI.dart';
-import 'package:test_etl1/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,14 +42,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         designSize: Size(412, 915),
-        minTextAdapt: true,
         builder: (context, child) {
           return MaterialApp(
-            theme: MyAppTheme.lightTheme,
-            darkTheme: MyAppTheme.darkTheme,
-            themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
-            home: LoginUI(),
+            home: DemoUI()
           );
         });
   }
