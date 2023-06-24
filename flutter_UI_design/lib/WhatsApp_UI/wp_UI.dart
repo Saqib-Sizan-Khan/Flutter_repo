@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test_etl1/WhatsApp_UI/calls_page.dart';
 import 'package:test_etl1/WhatsApp_UI/chats_page.dart';
 import 'package:test_etl1/WhatsApp_UI/commnity_page.dart';
-import 'package:test_etl1/WhatsApp_UI/contents.dart';
 import 'package:test_etl1/WhatsApp_UI/status_page.dart';
 
 class WP_UI extends StatelessWidget {

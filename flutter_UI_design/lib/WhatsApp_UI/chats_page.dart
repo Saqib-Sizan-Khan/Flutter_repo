@@ -45,7 +45,6 @@ class Chats_Page extends StatelessWidget {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: Colors.teal,
         child: Icon(Icons.message),
       ),
     );

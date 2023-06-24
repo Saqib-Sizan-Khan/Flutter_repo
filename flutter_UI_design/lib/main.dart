@@ -31,6 +31,7 @@ import 'package:test_etl1/UI_Design/slider.dart';
 import 'package:test_etl1/UI_Design/messenger_stories_UI.dart';
 import 'package:test_etl1/UI_Design/text_field.dart';
 import 'package:test_etl1/WhatsApp_UI/wp_UI.dart';
+import 'package:test_etl1/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,17 +40,18 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         designSize: Size(412, 915),
         minTextAdapt: true,
-        splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
+            theme: MyAppTheme.lightTheme,
+            darkTheme: MyAppTheme.darkTheme,
+            themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
-            home: DemoUI2(),
+            home: LoginUI(),
           );
         });
   }
