@@ -7,9 +7,15 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isDark = false;
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -19,11 +25,28 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             theme: MyAppTheme.lightTheme,
             darkTheme: MyAppTheme.darkTheme,
-            themeMode: ThemeMode.dark,
+            themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
             debugShowCheckedModeBanner: false,
             home: Scaffold(
               appBar: AppBar(
-                  title: Text('Account Login'), leading: Icon(Icons.account_balance)),
+                toolbarHeight: 70,
+                title: Text('Account Login'),
+                leading: Icon(Icons.account_balance),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isDark ? isDark = false : isDark = true;
+                          });
+                        },
+                        icon: isDark
+                            ? Icon(Icons.dark_mode_outlined)
+                            : Icon(Icons.light_mode_outlined)),
+                  )
+                ],
+              ),
               body: LoginUI(),
             ),
           );
