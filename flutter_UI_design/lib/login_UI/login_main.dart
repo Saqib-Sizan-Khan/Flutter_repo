@@ -20,7 +20,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         designSize: Size(412, 915),
-        minTextAdapt: true,
         builder: (context, child) {
           return MaterialApp(
             theme: MyAppTheme.lightTheme,
@@ -38,12 +37,12 @@ class _MyAppState extends State<MyApp> {
                     child: IconButton(
                         onPressed: () {
                           setState(() {
-                            isDark ? isDark = false : isDark = true;
+                            isDark = !isDark;
                           });
                         },
                         icon: isDark
-                            ? Icon(Icons.dark_mode_outlined)
-                            : Icon(Icons.light_mode_outlined)),
+                            ? Icon(Icons.light_mode_outlined)
+                            : Icon(Icons.dark_mode_outlined)),
                   )
                 ],
               ),
