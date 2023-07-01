@@ -33,17 +33,17 @@ class _MyAppState extends State<MyApp> {
                 leading: Icon(Icons.account_balance),
                 actions: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isDark = !isDark;
-                          });
-                        },
-                        icon: isDark
-                            ? Icon(Icons.light_mode_outlined)
-                            : Icon(Icons.dark_mode_outlined)),
-                  )
+                      padding: const EdgeInsets.only(right: 12),
+                      child: isDark
+                          ? Icon(Icons.dark_mode_outlined)
+                          : Icon(Icons.light_mode_outlined)),
+                  Switch(
+                      value: isDark,
+                      onChanged: (value) {
+                        setState(() {
+                          isDark = !isDark;
+                        });
+                      })
                 ],
               ),
               body: LoginUI(),
