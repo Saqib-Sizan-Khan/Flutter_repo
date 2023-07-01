@@ -9,7 +9,8 @@
 <img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/89f35648-3365-4714-bf42-087cc676fb23" width="150" height="350">
 
 ### - Log In UI:
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/64afc157-7f37-4f3d-8405-4c97f0ed903b" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/8bdfb024-9579-4696-b470-0f5cb319199a" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/b9eb3450-bb34-4359-9a14-d6027d6e4791" width="150" height="350">
 
 ### - WhatsApp UI:
 <img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/e06c471d-7fb7-4f1e-9d73-4cdb94150267" width="150" height="350">
