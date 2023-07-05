@@ -31,11 +31,11 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   children: [
                     Text(
                       result.toString(),
-                      style: TextStyle(fontSize: 80, color: Colors.cyanAccent),
+                      style: TextStyle(fontSize: 80, color: Colors.indigoAccent),
                     ),
                     TextField(
                       controller: calculation,
-                      style: TextStyle(fontSize: 40, color: Colors.cyanAccent),
+                      style: TextStyle(fontSize: 40, color: Colors.indigoAccent),
                     )
                   ],
                 ),
@@ -120,18 +120,22 @@ class _CalculatorUIState extends State<CalculatorUI> {
           ),
           onPressed: () {
             setState(() {
-              cal += num.toString();
-              calculation.text = cal;
-              var res = cal.split('+');
-              result = 0;
-              for (var i = count; i < res.length; i++) {
-                result += int.parse(res[i]);
-              }
-              count += 1;
+              calculate(num);
             });
           },
           child: Text(num.toString(),
               style: TextStyle(fontSize: 40, color: Colors.indigo))),
     );
+  }
+
+  void calculate(var num) {
+    cal += num.toString();
+    calculation.text = cal;
+    var res = cal.split(num.toString());
+    result = 0;
+    for (var i = count; i < res.length; i++) {
+      result += int.parse(res[i]);
+    }
+    count += 1;
   }
 }
