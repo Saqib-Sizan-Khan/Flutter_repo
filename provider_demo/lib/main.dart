@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider_demo/calculator/calculator.dart';
 import 'package:provider_demo/counter/counter.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo.shade900),
         useMaterial3: true,
       ),
-      home: Counter()
+      home: CalculatorUI()
     );
   }
 }
