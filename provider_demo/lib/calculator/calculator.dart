@@ -11,7 +11,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
   var calculation = TextEditingController();
   String cal = '';
   int result = 0;
-  int count = 0;
+  String digit = '';
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     children: [
                       Number_Button(0),
                       Number_Button('AC'),
-                      Operator_Button('CE'),
+                      Operator_Button('DE'),
                       Operator_Button('=')
                     ],
                   ),
@@ -128,14 +128,35 @@ class _CalculatorUIState extends State<CalculatorUI> {
     );
   }
 
+  // void calculate (var num) {
+  //   cal += num.toString();
+  //   calculation.text = cal;
+  //   print(cal);
+  //   for (var i = 0; i<cal.length; i++) {
+  //     digit += cal[i];
+  //     if (cal[i] == '+') {
+  //
+  //     }
+  //   }
+  // }
+
   void calculate(var num) {
     cal += num.toString();
     calculation.text = cal;
     var res = cal.split(num.toString());
-    result = 0;
-    for (var i = count; i < res.length; i++) {
-      result += int.parse(res[i]);
+    res.removeAt(res.length-1);
+    if (res.length > 1) {
+      if (num.toString() == '+') {
+        result = int.parse(res[0]) + int.parse(res[1]);
+        res.clear();
+        res.add(result.toString());
+        print(res);
+      }
     }
-    count += 1;
+    // result = 0;
+    // for (var i = count; i < res.length; i++) {
+    //   result += int.parse(res[i]);
+    // }
+    // count += 1;
   }
 }
