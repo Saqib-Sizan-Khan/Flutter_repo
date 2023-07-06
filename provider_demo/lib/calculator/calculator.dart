@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class CalculatorUI extends StatefulWidget {
   const CalculatorUI({super.key});
@@ -9,15 +10,17 @@ class CalculatorUI extends StatefulWidget {
 
 class _CalculatorUIState extends State<CalculatorUI> {
   var calculation = TextEditingController();
-  String cal = '';
-  int result = 0;
-  String digit = '';
+  var cal = '';
+  var result = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculator'),
+        title: Text(
+          'Calculator',
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Column(
@@ -31,11 +34,13 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   children: [
                     Text(
                       result.toString(),
-                      style: TextStyle(fontSize: 80, color: Colors.indigoAccent),
+                      style:
+                          TextStyle(fontSize: 80, color: Colors.indigoAccent),
                     ),
                     TextField(
                       controller: calculation,
-                      style: TextStyle(fontSize: 40, color: Colors.indigoAccent),
+                      style:
+                          TextStyle(fontSize: 40, color: Colors.indigoAccent),
                     )
                   ],
                 ),
@@ -73,9 +78,10 @@ class _CalculatorUIState extends State<CalculatorUI> {
                       Number_Button(0),
                       Number_Button('AC'),
                       Operator_Button('DE'),
-                      Operator_Button('=')
+                      Operator_Button('/')
                     ],
                   ),
+                  Operator_Button('=')
                 ],
               )),
         ],
@@ -97,7 +103,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
               if (num.toString() == 'AC') {
                 calculation.text = '';
                 cal = '';
-                result = 0;
+                result = '';
               } else {
                 cal += num.toString();
                 calculation.text = cal;
@@ -128,53 +134,26 @@ class _CalculatorUIState extends State<CalculatorUI> {
     );
   }
 
-  // void calculate (var num) {
-  //   cal += num.toString();
-  //   calculation.text = cal;
-  //   print(cal);
-  //   for (var i = 0; i<cal.length; i++) {
-  //     digit += cal[i];
-  //     if (cal[i] == '+') {
-  //
-  //     }
-  //   }
-  // }
-
   void calculate(var num) {
-    cal += num.toString();
-    calculation.text = cal;
-    var res = cal.split(num.toString());
-    res.removeAt(res.length-1);
-    if (res.length > 1) {
-      if (num.toString() == '+') {
-        result = int.parse(res[0]) + int.parse(res[1]);
-        res.clear();
-        res.add(result.toString());
-        cal = result.toString() + num;
-      }
-      if (num.toString() == '-') {
-        result = int.parse(res[0]) - int.parse(res[1]);
-        res.clear();
-        res.add(result.toString());
-        cal = result.toString() + num;
-      }
-      if (num.toString() == 'x') {
-        result = int.parse(res[0]) * int.parse(res[1]);
-        res.clear();
-        res.add(result.toString());
-        cal = result.toString() + num;
-      }
-      if (num.toString() == '=') {
-        result = int.parse(res[0]) + int.parse(res[1]);
-        res.clear();
-        res.add(result.toString());
-        cal = result.toString() + num;
-      }
+    if (num == '+' || num == '-' || num == '/' || num == 'x') {
+      cal += num.toString();
+      calculation.text = cal;
     }
-    // result = 0;
-    // for (var i = count; i < res.length; i++) {
-    //   result += int.parse(res[i]);
-    // }
-    // count += 1;
+    if (num == '=') {
+      String finaluserinput = cal.replaceAll('x', '*');
+      Parser p = Parser();
+      Expression exp = p.parse(finaluserinput);
+      ContextModel cm = ContextModel();
+      double eval = exp.evaluate(EvaluationType.REAL, cm);
+      result = eval.toString();
+      cal = eval.toString();
+      calculation.text = eval.toString();
+    }
+    if (num == 'DE') {
+      List c = cal.split('');
+      c.removeLast();
+      cal = c.join();
+      calculation.text = cal;
+    }
   }
 }
