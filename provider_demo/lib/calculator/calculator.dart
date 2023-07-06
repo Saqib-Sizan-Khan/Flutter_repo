@@ -150,7 +150,25 @@ class _CalculatorUIState extends State<CalculatorUI> {
         result = int.parse(res[0]) + int.parse(res[1]);
         res.clear();
         res.add(result.toString());
-        print(res);
+        cal = result.toString() + num;
+      }
+      if (num.toString() == '-') {
+        result = int.parse(res[0]) - int.parse(res[1]);
+        res.clear();
+        res.add(result.toString());
+        cal = result.toString() + num;
+      }
+      if (num.toString() == 'x') {
+        result = int.parse(res[0]) * int.parse(res[1]);
+        res.clear();
+        res.add(result.toString());
+        cal = result.toString() + num;
+      }
+      if (num.toString() == '=') {
+        result = int.parse(res[0]) + int.parse(res[1]);
+        res.clear();
+        res.add(result.toString());
+        cal = result.toString() + num;
       }
     }
     // result = 0;
