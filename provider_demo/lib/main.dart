@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo.shade900),
         useMaterial3: true,
       ),
-      home: CalculatorUI()
+      home: Calculator()
     );
   }
 }
