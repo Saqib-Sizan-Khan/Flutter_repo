@@ -41,4 +41,24 @@ class CalculatorProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  dynamic findValue(int index) {
+    if (index == 0) return 7;
+    if (index == 1) return 8;
+    if (index == 2) return 9;
+    if (index == 3) return '+';
+    if (index == 4) return 4;
+    if (index == 5) return 5;
+    if (index == 6) return 6;
+    if (index == 7) return '-';
+    if (index == 8) return 1;
+    if (index == 9) return 2;
+    if (index == 10) return 3;
+    if (index == 11) return 'x';
+    if (index == 12) return 0;
+    if (index == 13) return 'AC';
+    if (index == 14) return 'DEL';
+    if (index == 15) return '/';
+    if (index == 16) return '=';
+  }
 }

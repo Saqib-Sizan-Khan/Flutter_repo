@@ -20,8 +20,9 @@ class CalculatorUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Calculator',
           style: TextStyle(
               fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
@@ -33,13 +34,13 @@ class CalculatorUI extends StatelessWidget {
           Expanded(
               flex: 1,
               child: Container(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Consumer<CalculatorProvider>(
                       builder: (context, value, child) => Text(
-                        '${value.result}',
+                        value.result,
                         style: const TextStyle(
                             fontSize: 80, color: Colors.indigoAccent),
                       ),
@@ -55,314 +56,58 @@ class CalculatorUI extends StatelessWidget {
               )),
           Expanded(
               flex: 2,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: GridView.builder(
+                    itemCount: 17,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 15,
+                            childAspectRatio: 1.2),
+                    itemBuilder: (context, index) {
+                      var num = Provider.of<CalculatorProvider>(context, listen: false).findValue(index);
+                      return TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: (num == 'DEL' ||
+                                    num == '+' ||
+                                    num == '-' ||
+                                    num == 'x' ||
+                                    num == '/' ||
+                                    num == '=')
+                                ? Colors.cyanAccent
+                                : Colors.indigo,
+                          ),
+                          onPressed: () {
+                            if (num == 'DEL' ||
+                                num == '+' ||
+                                num == '-' ||
+                                num == 'x' ||
+                                num == '/' ||
+                                num == '=') {
                               Provider.of<CalculatorProvider>(context,
                                       listen: false)
-                                  .number_pressed(7);
-                            },
-                            child: Text('7',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
+                                  .calculate(num);
+                            } else {
                               Provider.of<CalculatorProvider>(context,
                                       listen: false)
-                                  .number_pressed(8);
-                            },
-                            child: Text('8',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(9);
-                            },
-                            child: Text('9',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.cyanAccent,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .calculate('+');
-                            },
-                            child: Text('+',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.indigo))),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(4);
-                            },
-                            child: Text('4',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(5);
-                            },
-                            child: Text('5',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(6);
-                            },
-                            child: Text('6',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.cyanAccent,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .calculate('-');
-                            },
-                            child: Text('-',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.indigo))),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(1);
-                            },
-                            child: Text('1',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(2);
-                            },
-                            child: Text('2',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(3);
-                            },
-                            child: Text('3',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.cyanAccent,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .calculate('x');
-                            },
-                            child: Text('x',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.indigo))),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(0);
-                            },
-                            child: Text('0',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed('AC');
-                            },
-                            child: Text('AC',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.white))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.cyanAccent,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .calculate('DEL');
-                            },
-                            child: Text('DEL',
-                                style: TextStyle(
-                                    fontSize: 30, color: Colors.indigo))),
-                      ),
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.all(10),
-                        child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.cyanAccent,
-                            ),
-                            onPressed: () {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .calculate('/');
-                            },
-                            child: Text('/',
-                                style: TextStyle(
-                                    fontSize: 40, color: Colors.indigo))),
-                      )
-                    ],
-                  ),
-                  Container(
-                    width: 80,
-                    height: 80,
-                    margin: EdgeInsets.all(10),
-                    child: TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.cyanAccent,
-                        ),
-                        onPressed: () {
-                          Provider.of<CalculatorProvider>(context,
-                                  listen: false)
-                              .calculate('=');
-                        },
-                        child: Text('=',
-                            style:
-                                TextStyle(fontSize: 40, color: Colors.indigo))),
-                  )
-                ],
+                                  .number_pressed(num);
+                            }
+                          },
+                          child: Text(num.toString(),
+                              style: TextStyle(
+                                fontSize: num == 'DEL' ? 30 : 40,
+                                color: (num == 'DEL' ||
+                                        num == '+' ||
+                                        num == '-' ||
+                                        num == 'x' ||
+                                        num == '/' ||
+                                        num == '=')
+                                    ? Colors.indigo
+                                    : Colors.white,
+                              )));
+                    }),
               )),
         ],
       ),
