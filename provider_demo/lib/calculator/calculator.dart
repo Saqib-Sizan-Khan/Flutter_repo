@@ -68,44 +68,22 @@ class CalculatorUI extends StatelessWidget {
                             childAspectRatio: 1.2),
                     itemBuilder: (context, index) {
                       var num = Provider.of<CalculatorProvider>(context, listen: false).findValue(index);
+                      bool isOperator = Provider.of<CalculatorProvider>(context, listen: false).isOperator(num);
                       return TextButton(
                           style: TextButton.styleFrom(
-                            backgroundColor: (num == 'DEL' ||
-                                    num == '+' ||
-                                    num == '-' ||
-                                    num == 'x' ||
-                                    num == '/' ||
-                                    num == '=')
-                                ? Colors.cyanAccent
-                                : Colors.indigo,
+                            backgroundColor: isOperator ? Colors.cyanAccent : Colors.indigo,
                           ),
                           onPressed: () {
-                            if (num == 'DEL' ||
-                                num == '+' ||
-                                num == '-' ||
-                                num == 'x' ||
-                                num == '/' ||
-                                num == '=') {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .calculate(num);
+                            if (isOperator) {
+                              Provider.of<CalculatorProvider>(context, listen: false).calculate(num);
                             } else {
-                              Provider.of<CalculatorProvider>(context,
-                                      listen: false)
-                                  .number_pressed(num);
+                              Provider.of<CalculatorProvider>(context, listen: false).number_pressed(num);
                             }
                           },
                           child: Text(num.toString(),
                               style: TextStyle(
                                 fontSize: num == 'DEL' ? 30 : 40,
-                                color: (num == 'DEL' ||
-                                        num == '+' ||
-                                        num == '-' ||
-                                        num == 'x' ||
-                                        num == '/' ||
-                                        num == '=')
-                                    ? Colors.indigo
-                                    : Colors.white,
+                                color: isOperator ? Colors.indigo : Colors.white,
                               )));
                     }),
               )),

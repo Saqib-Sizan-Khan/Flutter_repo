@@ -61,4 +61,17 @@ class CalculatorProvider with ChangeNotifier {
     if (index == 15) return '/';
     if (index == 16) return '=';
   }
+
+  bool isOperator(var num) {
+    if (num == 'DEL' ||
+        num == '+' ||
+        num == '-' ||
+        num == 'x' ||
+        num == '/' ||
+        num == '=') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
