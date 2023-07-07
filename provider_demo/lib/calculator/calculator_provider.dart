@@ -5,6 +5,7 @@ class CalculatorProvider with ChangeNotifier {
   var calculation = TextEditingController();
   var cal = '';
   var result = '';
+  double fontsize = 40;
 
   void number_pressed(var num) {
     if (num.toString() == 'AC') {
@@ -15,6 +16,8 @@ class CalculatorProvider with ChangeNotifier {
       cal += num.toString();
       calculation.text = cal;
     }
+
+    cal.length >= 25 ? fontsize = 30 : fontsize = 40;
     notifyListeners();
   }
 
@@ -39,6 +42,8 @@ class CalculatorProvider with ChangeNotifier {
       cal = c.join();
       calculation.text = cal;
     }
+
+    cal.length >= 25 ? fontsize = 30 : fontsize = 40;
     notifyListeners();
   }
 

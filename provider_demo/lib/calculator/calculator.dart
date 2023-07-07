@@ -22,17 +22,18 @@ class CalculatorUI extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           'Calculator',
           style: TextStyle(
-              fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Theme.of(context).colorScheme.inverseSurface,
       ),
       body: Column(
         children: [
           Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
                 padding: const EdgeInsets.all(15),
                 child: Column(
@@ -48,14 +49,17 @@ class CalculatorUI extends StatelessWidget {
                     Consumer<CalculatorProvider>(
                         builder: (context, value, child) => TextField(
                               controller: value.calculation,
-                              style: const TextStyle(
-                                  fontSize: 40, color: Colors.indigoAccent),
+                              minLines: 1,
+                              maxLines: 3,
+                              readOnly: true,
+                              style: TextStyle(
+                                  fontSize: value.fontsize, color: Colors.indigoAccent),
                             ))
                   ],
                 ),
               )),
           Expanded(
-              flex: 2,
+              flex: 3,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: GridView.builder(
@@ -72,6 +76,8 @@ class CalculatorUI extends StatelessWidget {
                       return TextButton(
                           style: TextButton.styleFrom(
                             backgroundColor: isOperator ? Colors.cyanAccent : Colors.indigo,
+                            elevation: 50,
+                            shadowColor: Colors.black
                           ),
                           onPressed: () {
                             if (isOperator) {
