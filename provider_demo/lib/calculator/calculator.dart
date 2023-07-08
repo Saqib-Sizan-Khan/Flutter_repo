@@ -63,7 +63,7 @@ class CalculatorUI extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: GridView.builder(
-                    itemCount: 17,
+                    itemCount: 18,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,

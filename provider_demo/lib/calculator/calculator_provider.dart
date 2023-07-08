@@ -32,9 +32,17 @@ class CalculatorProvider with ChangeNotifier {
       Expression exp = p.parse(finaluserinput);
       ContextModel cm = ContextModel();
       double eval = exp.evaluate(EvaluationType.REAL, cm);
-      result = eval.toString();
-      cal = eval.toString();
-      calculation.text = eval.toString();
+
+      if (eval.toString().length <= 8) {
+        result = eval.toString();
+        cal = eval.toString();
+        calculation.text = eval.toString();
+      } else {
+        String substr = eval.toString().substring(0, 8);
+        result = substr;
+        cal = substr;
+        calculation.text = substr;
+      }
     }
     if (num == 'DEL') {
       List c = cal.split('');
@@ -62,9 +70,10 @@ class CalculatorProvider with ChangeNotifier {
     if (index == 11) return 'x';
     if (index == 12) return 0;
     if (index == 13) return 'AC';
-    if (index == 14) return 'DEL';
+    if (index == 14) return '.';
     if (index == 15) return '/';
-    if (index == 16) return '=';
+    if (index == 16) return 'DEL';
+    if (index == 17) return '=';
   }
 
   bool isOperator(var num) {
