@@ -1,8 +1,22 @@
 ## Flutter UI developments projects:
 
+### - Sports App UI
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/7d3d8f71-ab22-4ed8-85a1-ad72107d2ff0" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/57d7c97d-2756-4754-affc-2ce445607197" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/a4a81184-9ee3-43e4-9f46-3752c0a70293" width="150" height="350">
+
+### - Tasks Handaling App
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/18b645dd-8792-48d8-b3f2-a5d44b57e0b0" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/b094ded8-c5df-4038-9e5c-7368f7fa6fee" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/64078c64-cc49-423c-b561-d39879a46994" width="150" height="350">
+
+### - Doctor's Appiontment App
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/16950f7e-142d-4cf5-b5d8-758f21ee4e42" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/470605fe-6914-432b-a8cb-3ecd715b2805" width="150" height="350">
+<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/7c52c370-09a2-47ba-a719-99abe78d4400" width="150" height="350">
+
 ### - Task Management UI: 
 <img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/65bb0034-909c-439b-ba1d-2fc88669d1d9" width="150" height="350">
-
 <img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/0d7ed4dd-e198-494d-84d5-29c05dbe6bf5" width="150" height="350">
 
 ### - Event Handle UI:
@@ -25,18 +39,3 @@
 ### - Client Management UI
 <img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/03029a4c-c517-4667-a145-09ea513f3f4e" width="150" height="350">
 <img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/a6d3e424-9a80-4fa0-bc29-01e98abf66d3" width="150" height="350">
-
-### - Sports App UI
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/7d3d8f71-ab22-4ed8-85a1-ad72107d2ff0" width="150" height="350">
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/57d7c97d-2756-4754-affc-2ce445607197" width="150" height="350">
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/a4a81184-9ee3-43e4-9f46-3752c0a70293" width="150" height="350">
-
-### - Tasks Handaling App
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/18b645dd-8792-48d8-b3f2-a5d44b57e0b0" width="150" height="350">
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/b094ded8-c5df-4038-9e5c-7368f7fa6fee" width="150" height="350">
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/64078c64-cc49-423c-b561-d39879a46994" width="150" height="350">
-
-### - Doctor's Appiontment App
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/16950f7e-142d-4cf5-b5d8-758f21ee4e42" width="150" height="350">
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/470605fe-6914-432b-a8cb-3ecd715b2805" width="150" height="350">
-<img src="https://github.com/Saqib-Sizan-Khan/Flutter_repo/assets/77047241/7c52c370-09a2-47ba-a719-99abe78d4400" width="150" height="350">
