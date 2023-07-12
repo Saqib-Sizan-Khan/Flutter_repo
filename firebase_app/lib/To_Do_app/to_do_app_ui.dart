@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class To_Do_App extends StatelessWidget {
+class To_Do_App extends StatefulWidget {
   const To_Do_App({super.key});
+
+  @override
+  State<To_Do_App> createState() => _To_Do_AppState();
+}
+
+class _To_Do_AppState extends State<To_Do_App> {
+  ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,68 +29,69 @@ class To_Do_App extends StatelessWidget {
           SizedBox(width: 20)
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              style: const TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500),
-              decoration: InputDecoration(
-                fillColor: Colors.black12,
-                filled: true,
-                prefix: const SizedBox(width: 10),
-                suffixIcon: const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Colors.indigoAccent,
-                    child: Icon(Icons.add, color: Colors.white),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
+                style: const TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500),
+                decoration: InputDecoration(
+                  fillColor: Colors.black12,
+                  filled: true,
+                  prefix: const SizedBox(width: 10),
+                  suffixIcon: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: CircleAvatar(
+                      radius: 20,
+                      backgroundColor: Colors.indigoAccent,
+                      child: Icon(Icons.add, color: Colors.white),
+                    ),
                   ),
-                ),
-                hintText: 'Add Item',
-                hintStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white54),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(40),
-                  borderSide: const BorderSide(color: Colors.cyanAccent),
+                  hintText: 'Add Item',
+                  hintStyle: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white54),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(40),
+                    borderSide: const BorderSide(color: Colors.cyanAccent),
+                  ),
                 ),
               ),
             ),
-          ),
-          Divider(
-            height: 20,
-            color: Colors.grey[700],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 32),
-            child: Text(
-              'TO DO',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white54),
+            Divider(
+              height: 20,
+              color: Colors.grey[700],
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 300,
-            child: ListView.builder(
-                itemCount: 4,
+            const SizedBox(
+              height: 10,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 32),
+              child: Text(
+                'TO DO',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white54),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 10,
                 itemBuilder: (context, index) => Container(
                       height: 80,
                       width: 400,
@@ -118,27 +126,26 @@ class To_Do_App extends StatelessWidget {
                         ],
                       ),
                     )),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 32),
-            child: Text(
-              'COMPLETED',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white54),
+            SizedBox(
+              height: 20,
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 300,
-            child: ListView.builder(
-                itemCount: 2,
+            const Padding(
+              padding: EdgeInsets.only(left: 32),
+              child: Text(
+                'COMPLETED',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white54),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 10,
                 itemBuilder: (context, index) => Container(
                       height: 80,
                       width: 400,
@@ -179,9 +186,9 @@ class To_Do_App extends StatelessWidget {
                                   fontSize: 16, color: Colors.indigoAccent)),
                         ],
                       ),
-                    )),
-          )
-        ],
+                    ))
+          ],
+        ),
       ),
     );
   }
