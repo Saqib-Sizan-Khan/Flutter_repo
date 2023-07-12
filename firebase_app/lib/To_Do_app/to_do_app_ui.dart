@@ -77,27 +77,109 @@ class To_Do_App extends StatelessWidget {
                   color: Colors.white54),
             ),
           ),
-
+          const SizedBox(
+            height: 10,
+          ),
           Container(
-            height: 80,
-            width: 400,
-            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            decoration: BoxDecoration(
-              color: Colors.white12,
-              borderRadius: BorderRadius.circular(15)
+            height: 300,
+            child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) => Container(
+                      height: 80,
+                      width: 400,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 5),
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      decoration: BoxDecoration(
+                          color: Colors.white24,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 16,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text('Pick up mail',
+                              style: TextStyle(
+                                  fontSize: 22, color: Colors.white70)),
+                          SizedBox(width: 60),
+                          Icon(
+                            Icons.calendar_month_outlined,
+                            size: 22,
+                            color: Colors.blueAccent,
+                          ),
+                          SizedBox(width: 10),
+                          Text('Due Today',
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.blueAccent)),
+                        ],
+                      ),
+                    )),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 32),
+            child: Text(
+              'COMPLETED',
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white54),
             ),
-            child: Row(
-              children: [
-                CircleAvatar(backgroundColor: Colors.white, radius: 16,),
-                SizedBox(width: 20,),
-                Text('Pick up mail', style: TextStyle(fontSize: 22, color: Colors.white70)),
-                SizedBox(width: 60),
-                Icon(Icons.calendar_month_outlined, size: 22, color: Colors.indigoAccent,),
-                SizedBox(width: 10),
-                Text('Due Today', style: TextStyle(fontSize: 16, color: Colors.indigoAccent)),
-              ],
-            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 300,
+            child: ListView.builder(
+                itemCount: 2,
+                itemBuilder: (context, index) => Container(
+                      height: 80,
+                      width: 400,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 5),
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      decoration: BoxDecoration(
+                          color: Colors.white10,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.greenAccent[100],
+                            radius: 16,
+                            child: Icon(
+                              Icons.check,
+                              color: Colors.teal,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text('Pick up mail',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  color: Colors.white24,
+                                  decoration: TextDecoration.lineThrough,
+                                  decorationColor: Colors.white24)),
+                          SizedBox(width: 60),
+                          Icon(
+                            Icons.calendar_month_outlined,
+                            size: 22,
+                            color: Colors.indigoAccent,
+                          ),
+                          SizedBox(width: 10),
+                          Text('Due Today',
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.indigoAccent)),
+                        ],
+                      ),
+                    )),
           )
         ],
       ),
