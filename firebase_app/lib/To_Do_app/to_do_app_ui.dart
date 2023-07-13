@@ -1,14 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class To_Do_App extends StatefulWidget {
-  const To_Do_App({super.key});
+class To_Do_App extends StatelessWidget {
+  To_Do_App({super.key});
 
-  @override
-  State<To_Do_App> createState() => _To_Do_AppState();
-}
+  TextEditingController todoController = TextEditingController();
 
-class _To_Do_AppState extends State<To_Do_App> {
-  ScrollController scrollController = ScrollController();
+  Stream<dynamic> showData() {
+    return FirebaseFirestore.instance.collection("TodoList").snapshots();
+  }
+
+  Future<void> updateTodo(String id, bool done) async {
+    var todo = await FirebaseFirestore.instance.collection('TodoList').doc(id);
+
+    done ? todo.update({'done' : false}) : todo.update({'done' : true});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +42,7 @@ class _To_Do_AppState extends State<To_Do_App> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextField(
+                controller: todoController,
                 style: const TextStyle(
                     fontSize: 22,
                     color: Colors.white,
@@ -44,12 +51,22 @@ class _To_Do_AppState extends State<To_Do_App> {
                   fillColor: Colors.black12,
                   filled: true,
                   prefix: const SizedBox(width: 10),
-                  suffixIcon: const Padding(
-                    padding: EdgeInsets.all(16.0),
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: CircleAvatar(
                       radius: 20,
                       backgroundColor: Colors.indigoAccent,
-                      child: Icon(Icons.add, color: Colors.white),
+                      child: IconButton(
+                          onPressed: () {
+                            FirebaseFirestore.instance
+                                .collection('TodoList')
+                                .add({
+                              'done': false,
+                              'title': todoController.text
+                            });
+                            todoController.clear();
+                          },
+                          icon: Icon(Icons.add, color: Colors.white)),
                     ),
                   ),
                   hintText: 'Add Item',
@@ -88,44 +105,70 @@ class _To_Do_AppState extends State<To_Do_App> {
             const SizedBox(
               height: 10,
             ),
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, index) => Container(
-                      height: 80,
-                      width: 400,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      decoration: BoxDecoration(
-                          color: Colors.white24,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 16,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text('Pick up mail',
-                              style: TextStyle(
-                                  fontSize: 22, color: Colors.white70)),
-                          SizedBox(width: 60),
-                          Icon(
-                            Icons.calendar_month_outlined,
-                            size: 22,
-                            color: Colors.blueAccent,
-                          ),
-                          SizedBox(width: 10),
-                          Text('Due Today',
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.blueAccent)),
-                        ],
-                      ),
-                    )),
+
+
+
+
+            StreamBuilder(
+                stream: showData(),
+                builder: (context, snapshot) => ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.size ?? 0,
+                    itemBuilder: (context, index) =>
+                        snapshot.data.docs[index]['done'] == false
+                            ? Container(
+                                height: 80,
+                                width: 400,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            bool done = snapshot.data.docs[index]['done'];
+                                            var id  = snapshot.data.docs[index].id;
+                                            updateTodo(id, done);
+                                          },
+                                          child: CircleAvatar(
+                                            backgroundColor: Colors.white,
+                                            radius: 12,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text(snapshot.data.docs[index]['title'],
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.white70)),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.calendar_month_outlined,
+                                          color: Colors.blueAccent,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text('Due Today',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.blueAccent)),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            : Container())),
             SizedBox(
               height: 20,
             ),
@@ -142,10 +185,17 @@ class _To_Do_AppState extends State<To_Do_App> {
             const SizedBox(
               height: 10,
             ),
+
+
+
+
+
+
+
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 10,
+                itemCount: 0,
                 itemBuilder: (context, index) => Container(
                       height: 80,
                       width: 400,
