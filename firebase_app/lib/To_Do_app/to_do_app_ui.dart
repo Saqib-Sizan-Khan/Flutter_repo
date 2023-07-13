@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class To_Do_App extends StatelessWidget {
   To_Do_App({super.key});
@@ -11,7 +12,7 @@ class To_Do_App extends StatelessWidget {
   }
 
   Future<void> updateTodo(String id, bool done) async {
-    var todo = await FirebaseFirestore.instance.collection('TodoList').doc(id);
+    var todo = FirebaseFirestore.instance.collection('TodoList').doc(id);
 
     done ? todo.update({'done': false}) : todo.update({'done': true});
   }
@@ -19,6 +20,8 @@ class To_Do_App extends StatelessWidget {
   Future<void> removeTodo(String id) async {
     await FirebaseFirestore.instance.collection('TodoList').doc(id).delete();
   }
+
+  var currentDate = DateFormat.yMMMEd().format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +62,19 @@ class To_Do_App extends StatelessWidget {
                       radius: 20,
                       backgroundColor: Colors.indigoAccent,
                       child: IconButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2023),
+                                lastDate: DateTime(2024));
+
                             FirebaseFirestore.instance
                                 .collection('TodoList')
                                 .add({
                               'done': false,
-                              'title': todoController.text
+                              'title': todoController.text,
+                              'due': pickedDate
                             });
                             todoController.clear();
                           },
@@ -123,7 +133,8 @@ class To_Do_App extends StatelessWidget {
                                 width: 400,
                                 margin: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 5),
-                                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
                                 decoration: BoxDecoration(
                                     color: Colors.white24,
                                     borderRadius: BorderRadius.circular(15)),
@@ -155,13 +166,22 @@ class To_Do_App extends StatelessWidget {
                                     ),
                                     Row(
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.calendar_month_outlined,
                                           color: Colors.blueAccent,
                                         ),
-                                        SizedBox(width: 10),
-                                        Text('Due Today',
-                                            style: TextStyle(
+                                        const SizedBox(width: 10),
+                                        Text(
+                                            DateFormat.yMMMEd().format(snapshot
+                                                        .data.docs[index]['due']
+                                                        .toDate()) ==
+                                                    currentDate
+                                                ? 'Due Today'
+                                                : DateFormat.yMMMEd().format(
+                                                    snapshot
+                                                        .data.docs[index]['due']
+                                                        .toDate()),
+                                            style: const TextStyle(
                                                 fontSize: 16,
                                                 color: Colors.blueAccent)),
                                       ],
@@ -200,7 +220,8 @@ class To_Do_App extends StatelessWidget {
                                 width: 400,
                                 margin: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 5),
-                                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
                                 decoration: BoxDecoration(
                                     color: Colors.white10,
                                     borderRadius: BorderRadius.circular(15)),
