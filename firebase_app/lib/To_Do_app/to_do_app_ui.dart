@@ -13,24 +13,26 @@ class To_Do_App extends StatelessWidget {
   Future<void> updateTodo(String id, bool done) async {
     var todo = await FirebaseFirestore.instance.collection('TodoList').doc(id);
 
-    done ? todo.update({'done' : false}) : todo.update({'done' : true});
+    done ? todo.update({'done': false}) : todo.update({'done': true});
+  }
+
+  Future<void> removeTodo(String id) async {
+    await FirebaseFirestore.instance.collection('TodoList').doc(id).delete();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF31315C),
+      backgroundColor: const Color(0xFF31315C),
       appBar: AppBar(
-        backgroundColor: Color(0xFF31315C),
-        iconTheme: IconThemeData(color: Colors.white),
-        toolbarTextStyle: TextStyle(
+        backgroundColor: const Color(0xFF31315C),
+        iconTheme: const IconThemeData(color: Colors.white),
+        toolbarTextStyle: const TextStyle(
             color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500),
-        title: Icon(Icons.menu, size: 30),
-        actions: [
+        title: const Icon(Icons.menu, size: 30),
+        actions: const [
           Icon(Icons.dark_mode_outlined, size: 30),
-          SizedBox(
-            width: 10,
-          ),
+          SizedBox(width: 10),
           Text('To Do App'),
           SizedBox(width: 20)
         ],
@@ -66,7 +68,7 @@ class To_Do_App extends StatelessWidget {
                             });
                             todoController.clear();
                           },
-                          icon: Icon(Icons.add, color: Colors.white)),
+                          icon: const Icon(Icons.add, color: Colors.white)),
                     ),
                   ),
                   hintText: 'Add Item',
@@ -105,24 +107,23 @@ class To_Do_App extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-
-
-
-
             StreamBuilder(
                 stream: showData(),
-                builder: (context, snapshot) => ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.size ?? 0,
-                    itemBuilder: (context, index) =>
-                        snapshot.data.docs[index]['done'] == false
+                builder: (context, snapshot) => snapshot.connectionState ==
+                        ConnectionState.waiting
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.size ?? 0,
+                        itemBuilder: (context, index) => !snapshot
+                                .data.docs[index]['done']
                             ? Container(
                                 height: 80,
                                 width: 400,
                                 margin: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 5),
-                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                padding: const EdgeInsets.symmetric(horizontal: 15),
                                 decoration: BoxDecoration(
                                     color: Colors.white24,
                                     borderRadius: BorderRadius.circular(15)),
@@ -134,20 +135,20 @@ class To_Do_App extends StatelessWidget {
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            bool done = snapshot.data.docs[index]['done'];
-                                            var id  = snapshot.data.docs[index].id;
+                                            bool done = snapshot
+                                                .data.docs[index]['done'];
+                                            String id =
+                                                snapshot.data.docs[index].id;
                                             updateTodo(id, done);
                                           },
-                                          child: CircleAvatar(
+                                          child: const CircleAvatar(
                                             backgroundColor: Colors.white,
-                                            radius: 12,
+                                            radius: 14,
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 15,
-                                        ),
+                                        const SizedBox(width: 15),
                                         Text(snapshot.data.docs[index]['title'],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 18,
                                                 color: Colors.white70)),
                                       ],
@@ -169,9 +170,7 @@ class To_Do_App extends StatelessWidget {
                                 ),
                               )
                             : Container())),
-            SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.only(left: 32),
               child: Text(
@@ -185,58 +184,70 @@ class To_Do_App extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-
-
-
-
-
-
-
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 0,
-                itemBuilder: (context, index) => Container(
-                      height: 80,
-                      width: 400,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      decoration: BoxDecoration(
-                          color: Colors.white10,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.greenAccent[100],
-                            radius: 16,
-                            child: Icon(
-                              Icons.check,
-                              color: Colors.teal,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text('Pick up mail',
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.white24,
-                                  decoration: TextDecoration.lineThrough,
-                                  decorationColor: Colors.white24)),
-                          SizedBox(width: 60),
-                          Icon(
-                            Icons.calendar_month_outlined,
-                            size: 22,
-                            color: Colors.indigoAccent,
-                          ),
-                          SizedBox(width: 10),
-                          Text('Due Today',
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.indigoAccent)),
-                        ],
-                      ),
-                    ))
+            StreamBuilder(
+                stream: showData(),
+                builder: (context, snapshot) => snapshot.connectionState ==
+                        ConnectionState.waiting
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.size ?? 0,
+                        itemBuilder: (context, index) => snapshot
+                                .data.docs[index]['done']
+                            ? Container(
+                                height: 80,
+                                width: 400,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                decoration: BoxDecoration(
+                                    color: Colors.white10,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            bool done = snapshot
+                                                .data.docs[index]['done'];
+                                            String id =
+                                                snapshot.data.docs[index].id;
+                                            updateTodo(id, done);
+                                          },
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                Colors.greenAccent[100],
+                                            radius: 14,
+                                            child: const Icon(
+                                              Icons.check,
+                                              color: Colors.teal,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 15),
+                                        Text(snapshot.data.docs[index]['title'],
+                                            style: const TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.white24,
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                                decorationColor:
+                                                    Colors.white24)),
+                                      ],
+                                    ),
+                                    IconButton(
+                                        onPressed: () => removeTodo(
+                                            snapshot.data.docs[index].id),
+                                        icon: const Icon(Icons.delete,
+                                            color: Colors.red, size: 32))
+                                  ],
+                                ),
+                              )
+                            : Container()))
           ],
         ),
       ),
