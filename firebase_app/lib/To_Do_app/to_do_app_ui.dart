@@ -7,6 +7,7 @@ class To_Do_App extends StatelessWidget {
   To_Do_App({super.key});
 
   TextEditingController todoController = TextEditingController();
+  TextEditingController taskdesController = TextEditingController();
 
   Stream<dynamic> showData() {
     return FirebaseFirestore.instance.collection("TodoList").snapshots();
@@ -32,10 +33,10 @@ class To_Do_App extends StatelessWidget {
         backgroundColor: const Color(0xFF31315C),
         iconTheme: const IconThemeData(color: Colors.white),
         toolbarTextStyle: const TextStyle(
-            color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500),
-        title: const Icon(Icons.menu, size: 30),
+            color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500),
+        title: const Icon(Icons.menu, size: 25),
         actions: const [
-          Icon(Icons.dark_mode_outlined, size: 30),
+          Icon(Icons.dark_mode_outlined, size: 25),
           SizedBox(width: 10),
           Text('To Do App'),
           SizedBox(width: 20)
@@ -46,7 +47,7 @@ class To_Do_App extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(10.0),
               child: TextField(
                 controller: todoController,
                 style: const TextStyle(
@@ -64,6 +65,30 @@ class To_Do_App extends StatelessWidget {
                       backgroundColor: Colors.indigoAccent,
                       child: IconButton(
                           onPressed: () async {
+                            await showDialog(context: context,
+                                builder: (context) => AlertDialog(
+                                  backgroundColor: Colors.blue[100],
+                                  title: const Text('Task Description'),
+                                  content: TextField(
+                                    decoration: const InputDecoration(
+                                      hintText: 'Add Description',
+                                    ),
+                                    controller: taskdesController,
+                                  ),
+                                  actions: [
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text('Submit', style: TextStyle(fontSize: 18, color: Colors.indigo),)),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          taskdesController.clear();
+                                        },
+                                        child: const Text('Clear', style: TextStyle(fontSize: 18, color: Colors.redAccent),))
+                                  ],
+                                ));
+
                             DateTime? pickedDate = await showDatePicker(
                                 context: context,
                                 initialDate: DateTime.now(),
@@ -75,9 +100,11 @@ class To_Do_App extends StatelessWidget {
                                 .add({
                               'done': false,
                               'title': todoController.text,
+                              'subtitle' : taskdesController.text,
                               'due': pickedDate
                             });
                             todoController.clear();
+                            taskdesController.clear();
                           },
                           icon: const Icon(Icons.add, color: Colors.white)),
                     ),
@@ -133,7 +160,7 @@ class To_Do_App extends StatelessWidget {
                                   title: Text(
                                       snapshot.data.docs[index]['title'],
                                       style: const TextStyle(
-                                          fontSize: 20, color: Colors.white70)),
+                                          fontSize: 16, color: Colors.white70)),
                                   leading: InkWell(
                                     onTap: () {
                                       bool done =
@@ -143,7 +170,7 @@ class To_Do_App extends StatelessWidget {
                                     },
                                     child: const CircleAvatar(
                                       backgroundColor: Colors.white,
-                                      radius: 14,
+                                      radius: 12,
                                     ),
                                   ),
                                   trailing: Text(
@@ -156,7 +183,7 @@ class To_Do_App extends StatelessWidget {
                                               .data.docs[index]['due']
                                               .toDate()),
                                       style: const TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 14,
                                           color: Colors.blueAccent)),
                                   children: [
                                     Task_Box(
@@ -212,7 +239,7 @@ class To_Do_App extends StatelessWidget {
                                       child: CircleAvatar(
                                         backgroundColor:
                                             Colors.greenAccent[100],
-                                        radius: 14,
+                                        radius: 12,
                                         child: const Icon(
                                           Icons.check,
                                           color: Colors.teal,
@@ -222,7 +249,7 @@ class To_Do_App extends StatelessWidget {
                                     title: Text(
                                         snapshot.data.docs[index]['title'],
                                         style: const TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             color: Colors.white24,
                                             decoration:
                                                 TextDecoration.lineThrough,
@@ -231,7 +258,7 @@ class To_Do_App extends StatelessWidget {
                                         onPressed: () => removeTodo(
                                             snapshot.data.docs[index].id),
                                         icon: const Icon(Icons.delete,
-                                            color: Colors.red, size: 32))),
+                                            color: Colors.red, size: 28))),
                               )
                             : Container()))
           ],
