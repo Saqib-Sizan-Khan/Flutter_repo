@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_app/To_Do_app/task_box.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -81,7 +82,7 @@ class To_Do_App extends StatelessWidget {
                           icon: const Icon(Icons.add, color: Colors.white)),
                     ),
                   ),
-                  hintText: 'Add Item',
+                  hintText: 'Add Task',
                   hintStyle: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -126,17 +127,11 @@ class To_Do_App extends StatelessWidget {
                       itemCount: snapshot.data!.size ?? 0,
                       itemBuilder: (context, index) {
                         return !snapshot.data.docs[index]['done']
-                            ? Container(
-                          height: 80,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 5),
-                          padding:
-                          const EdgeInsets.symmetric(vertical: 15),
-                          decoration: BoxDecoration(
-                              color: Colors.white24,
-                              borderRadius: BorderRadius.circular(15)),
-                              child: ExpansionTile(
-                                  title: Text(snapshot.data.docs[index]['title'],
+                            ? Task_Box(
+                                child: ExpansionTile(
+                                  tilePadding: const EdgeInsets.all(15),
+                                  title: Text(
+                                      snapshot.data.docs[index]['title'],
                                       style: const TextStyle(
                                           fontSize: 20, color: Colors.white70)),
                                   leading: InkWell(
@@ -164,98 +159,21 @@ class To_Do_App extends StatelessWidget {
                                           fontSize: 16,
                                           color: Colors.blueAccent)),
                                   children: [
-                                    ListTile(
+                                    Task_Box(
+                                        child: ListTile(
                                       title: Text(
                                           snapshot.data.docs[index]['subtitle'],
                                           style: const TextStyle(
                                               fontSize: 18,
                                               color: Colors.white70)),
-                                    )
+                                    ))
                                   ],
                                 ),
-                            )
+                              )
                             : Container();
                       },
-                      separatorBuilder: (context, index) => const SizedBox()
-                    ),
+                      separatorBuilder: (context, index) => Container()),
             ),
-
-            // StreamBuilder(
-            //     stream: showData(),
-            //     builder: (context, snapshot) => snapshot.connectionState ==
-            //             ConnectionState.waiting
-            //         ? const Center(child: CircularProgressIndicator())
-            //         : ListView.builder(
-            //             physics: const NeverScrollableScrollPhysics(),
-            //             shrinkWrap: true,
-            //             itemCount: snapshot.data!.size ?? 0,
-            //             itemBuilder: (context, index) => !snapshot
-            //                     .data.docs[index]['done']
-            //                 ? Container(
-            //                     height: 80,
-            //                     width: 400,
-            //                     margin: const EdgeInsets.symmetric(
-            //                         horizontal: 15, vertical: 5),
-            //                     padding:
-            //                         const EdgeInsets.symmetric(horizontal: 15),
-            //                     decoration: BoxDecoration(
-            //                         color: Colors.white24,
-            //                         borderRadius: BorderRadius.circular(15)),
-            //                     child: Row(
-            //                       mainAxisAlignment:
-            //                           MainAxisAlignment.spaceBetween,
-            //                       children: [
-            //                         Row(
-            //                           children: [
-            //                             InkWell(
-            //                               onTap: () {
-            //                                 bool done = snapshot
-            //                                     .data.docs[index]['done'];
-            //                                 String id =
-            //                                     snapshot.data.docs[index].id;
-            //                                 updateTodo(id, done);
-            //                               },
-            //                               child: const CircleAvatar(
-            //                                 backgroundColor: Colors.white,
-            //                                 radius: 14,
-            //                               ),
-            //                             ),
-            //                             const SizedBox(width: 15),
-            //                             Text(snapshot.data.docs[index]['title'],
-            //                                 style: const TextStyle(
-            //                                     fontSize: 18,
-            //                                     color: Colors.white70)),
-            //                           ],
-            //                         ),
-            //                         Row(
-            //                           children: [
-            //                             const Icon(
-            //                               Icons.calendar_month_outlined,
-            //                               color: Colors.blueAccent,
-            //                             ),
-            //                             const SizedBox(width: 10),
-            //                             Text(
-            //                                 DateFormat.yMMMEd().format(snapshot
-            //                                             .data.docs[index]['due']
-            //                                             .toDate()) ==
-            //                                         currentDate
-            //                                     ? 'Due Today'
-            //                                     : DateFormat.yMMMEd().format(
-            //                                         snapshot
-            //                                             .data.docs[index]['due']
-            //                                             .toDate()),
-            //                                 style: const TextStyle(
-            //                                     fontSize: 16,
-            //                                     color: Colors.blueAccent)),
-            //                           ],
-            //                         )
-            //                       ],
-            //                     ),
-            //                   )
-            //                 : Container())),
-
-
-
             const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.only(left: 32),
@@ -267,9 +185,7 @@ class To_Do_App extends StatelessWidget {
                     color: Colors.white54),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
             StreamBuilder(
                 stream: showData(),
                 builder: (context, snapshot) => snapshot.connectionState ==
@@ -281,58 +197,41 @@ class To_Do_App extends StatelessWidget {
                         itemCount: snapshot.data!.size ?? 0,
                         itemBuilder: (context, index) => snapshot
                                 .data.docs[index]['done']
-                            ? Container(
-                                height: 80,
-                                width: 400,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 5),
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                decoration: BoxDecoration(
-                                    color: Colors.white10,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            bool done = snapshot
-                                                .data.docs[index]['done'];
-                                            String id =
-                                                snapshot.data.docs[index].id;
-                                            updateTodo(id, done);
-                                          },
-                                          child: CircleAvatar(
-                                            backgroundColor:
-                                                Colors.greenAccent[100],
-                                            radius: 14,
-                                            child: const Icon(
-                                              Icons.check,
-                                              color: Colors.teal,
-                                            ),
-                                          ),
+                            ? Task_Box(
+                                color: Colors.white12,
+                                child: ListTile(
+                                    contentPadding: const EdgeInsets.all(15),
+                                    leading: InkWell(
+                                      onTap: () {
+                                        bool done =
+                                            snapshot.data.docs[index]['done'];
+                                        String id =
+                                            snapshot.data.docs[index].id;
+                                        updateTodo(id, done);
+                                      },
+                                      child: CircleAvatar(
+                                        backgroundColor:
+                                            Colors.greenAccent[100],
+                                        radius: 14,
+                                        child: const Icon(
+                                          Icons.check,
+                                          color: Colors.teal,
                                         ),
-                                        const SizedBox(width: 15),
-                                        Text(snapshot.data.docs[index]['title'],
-                                            style: const TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.white24,
-                                                decoration:
-                                                    TextDecoration.lineThrough,
-                                                decorationColor:
-                                                    Colors.white24)),
-                                      ],
+                                      ),
                                     ),
-                                    IconButton(
+                                    title: Text(
+                                        snapshot.data.docs[index]['title'],
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white24,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            decorationColor: Colors.white24)),
+                                    trailing: IconButton(
                                         onPressed: () => removeTodo(
                                             snapshot.data.docs[index].id),
                                         icon: const Icon(Icons.delete,
-                                            color: Colors.red, size: 32))
-                                  ],
-                                ),
+                                            color: Colors.red, size: 32))),
                               )
                             : Container()))
           ],
