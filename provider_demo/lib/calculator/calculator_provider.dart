@@ -5,7 +5,7 @@ class CalculatorProvider with ChangeNotifier {
   var calculation = TextEditingController();
   var cal = '';
   var result = '';
-  double fontsize = 40;
+  double fontsize = 30;
 
   void number_pressed(var num) {
     if (num.toString() == 'AC') {
@@ -17,7 +17,7 @@ class CalculatorProvider with ChangeNotifier {
       calculation.text = cal;
     }
 
-    cal.length >= 25 ? fontsize = 30 : fontsize = 40;
+    cal.length >= 25 ? fontsize = 20 : fontsize = 30;
     notifyListeners();
   }
 
@@ -51,7 +51,7 @@ class CalculatorProvider with ChangeNotifier {
       calculation.text = cal;
     }
 
-    cal.length >= 25 ? fontsize = 30 : fontsize = 40;
+    cal.length >= 25 ? fontsize = 20 : fontsize = 30;
     notifyListeners();
   }
 
@@ -69,8 +69,8 @@ class CalculatorProvider with ChangeNotifier {
     if (index == 10) return 3;
     if (index == 11) return 'x';
     if (index == 12) return 0;
-    if (index == 13) return 'AC';
-    if (index == 14) return '.';
+    if (index == 13) return '.';
+    if (index == 14) return 'AC';
     if (index == 15) return '/';
     if (index == 16) return 'DEL';
     if (index == 17) return '=';

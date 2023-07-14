@@ -33,11 +33,11 @@ class _TTT_Full_GameState extends State<TTT_Full_Game> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-            child: Text(
+        centerTitle: true,
+        title: const Text(
           'Tic Tac Toe',
           style: TextStyle(fontSize: 24),
-        )),
+        ),
         actions: [
           InkWell(
               onTap: () {
@@ -61,7 +61,7 @@ class _TTT_Full_GameState extends State<TTT_Full_Game> {
         ],
         elevation: 0,
         backgroundColor: Colors.grey[900],
-        toolbarHeight: 80,
+        toolbarHeight: 60,
       ),
       body: Column(
         children: [_pointsTable(), _gameGrid(), _playerTurn()],
@@ -129,7 +129,7 @@ class _TTT_Full_GameState extends State<TTT_Full_Game> {
 
   Widget _gameGrid() {
     return Expanded(
-      flex: 2,
+      flex: 3,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: GridView.builder(

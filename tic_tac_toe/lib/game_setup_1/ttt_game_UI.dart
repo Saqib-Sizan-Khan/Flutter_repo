@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/game_setup_1/box_icon.dart';
 import 'package:tic_tac_toe/game_setup_1/game_var.dart';
 
-class TTT_Game_Logic extends StatefulWidget {
-  const TTT_Game_Logic({super.key});
+class TTT_Game_UI extends StatefulWidget {
+  const TTT_Game_UI({super.key});
 
   @override
-  State<TTT_Game_Logic> createState() => _TTT_Game_LogicState();
+  State<TTT_Game_UI> createState() => _TTT_Game_UIState();
 }
 
-class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
+class _TTT_Game_UIState extends State<TTT_Game_UI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -201,7 +201,6 @@ class _TTT_Game_LogicState extends State<TTT_Game_Logic> {
                             }
                             crossTurn = !crossTurn;
                             boxfill += 1;
-                            print(boxfill);
                             gameLogic();
                           }
                         });

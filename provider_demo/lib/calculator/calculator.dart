@@ -33,7 +33,7 @@ class CalculatorUI extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              flex: 2,
+              flex: 1,
               child: Container(
                 padding: const EdgeInsets.all(15),
                 child: Column(
@@ -43,14 +43,14 @@ class CalculatorUI extends StatelessWidget {
                       builder: (context, value, child) => Text(
                         value.result,
                         style: const TextStyle(
-                            fontSize: 80, color: Colors.indigoAccent),
+                            fontSize: 50, color: Colors.indigoAccent),
                       ),
                     ),
                     Consumer<CalculatorProvider>(
                         builder: (context, value, child) => TextField(
                               controller: value.calculation,
                               minLines: 1,
-                              maxLines: 3,
+                              maxLines: 2,
                               readOnly: true,
                               style: TextStyle(
                                   fontSize: value.fontsize, color: Colors.indigoAccent),
@@ -59,7 +59,7 @@ class CalculatorUI extends StatelessWidget {
                 ),
               )),
           Expanded(
-              flex: 3,
+              flex: 2,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: GridView.builder(
@@ -69,7 +69,7 @@ class CalculatorUI extends StatelessWidget {
                             crossAxisCount: 4,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 15,
-                            childAspectRatio: 1.2),
+                            childAspectRatio: 1.3),
                     itemBuilder: (context, index) {
                       var num = Provider.of<CalculatorProvider>(context, listen: false).findValue(index);
                       bool isOperator = Provider.of<CalculatorProvider>(context, listen: false).isOperator(num);
@@ -88,7 +88,7 @@ class CalculatorUI extends StatelessWidget {
                           },
                           child: Text(num.toString(),
                               style: TextStyle(
-                                fontSize: num == 'DEL' ? 30 : 40,
+                                fontSize: num == 'DEL' ? 22 : 28,
                                 color: isOperator ? Colors.indigo : Colors.white,
                               )));
                     }),
