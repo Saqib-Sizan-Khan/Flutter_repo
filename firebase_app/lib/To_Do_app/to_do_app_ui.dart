@@ -114,82 +114,148 @@ class To_Do_App extends StatelessWidget {
                     color: Colors.white54),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
             StreamBuilder(
-                stream: showData(),
-                builder: (context, snapshot) => snapshot.connectionState ==
-                        ConnectionState.waiting
-                    ? const Center(child: CircularProgressIndicator())
-                    : ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.size ?? 0,
-                        itemBuilder: (context, index) => !snapshot
-                                .data.docs[index]['done']
+              stream: showData(),
+              builder: (context, snapshot) => snapshot.connectionState ==
+                      ConnectionState.waiting
+                  ? const Center(child: CircularProgressIndicator())
+                  : ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.size ?? 0,
+                      itemBuilder: (context, index) {
+                        return !snapshot.data.docs[index]['done']
                             ? Container(
-                                height: 80,
-                                width: 400,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 5),
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                decoration: BoxDecoration(
-                                    color: Colors.white24,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            bool done = snapshot
-                                                .data.docs[index]['done'];
-                                            String id =
-                                                snapshot.data.docs[index].id;
-                                            updateTodo(id, done);
-                                          },
-                                          child: const CircleAvatar(
-                                            backgroundColor: Colors.white,
-                                            radius: 14,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 15),
-                                        Text(snapshot.data.docs[index]['title'],
-                                            style: const TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.white70)),
-                                      ],
+                          height: 80,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 5),
+                          padding:
+                          const EdgeInsets.symmetric(vertical: 15),
+                          decoration: BoxDecoration(
+                              color: Colors.white24,
+                              borderRadius: BorderRadius.circular(15)),
+                              child: ExpansionTile(
+                                  title: Text(snapshot.data.docs[index]['title'],
+                                      style: const TextStyle(
+                                          fontSize: 20, color: Colors.white70)),
+                                  leading: InkWell(
+                                    onTap: () {
+                                      bool done =
+                                          snapshot.data.docs[index]['done'];
+                                      String id = snapshot.data.docs[index].id;
+                                      updateTodo(id, done);
+                                    },
+                                    child: const CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      radius: 14,
                                     ),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.calendar_month_outlined,
-                                          color: Colors.blueAccent,
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Text(
-                                            DateFormat.yMMMEd().format(snapshot
-                                                        .data.docs[index]['due']
-                                                        .toDate()) ==
-                                                    currentDate
-                                                ? 'Due Today'
-                                                : DateFormat.yMMMEd().format(
-                                                    snapshot
-                                                        .data.docs[index]['due']
-                                                        .toDate()),
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.blueAccent)),
-                                      ],
+                                  ),
+                                  trailing: Text(
+                                      DateFormat.yMMMEd().format(snapshot
+                                                  .data.docs[index]['due']
+                                                  .toDate()) ==
+                                              currentDate
+                                          ? 'Due Today'
+                                          : DateFormat.yMMMEd().format(snapshot
+                                              .data.docs[index]['due']
+                                              .toDate()),
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.blueAccent)),
+                                  children: [
+                                    ListTile(
+                                      title: Text(
+                                          snapshot.data.docs[index]['subtitle'],
+                                          style: const TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white70)),
                                     )
                                   ],
                                 ),
-                              )
-                            : Container())),
+                            )
+                            : Container();
+                      },
+                      separatorBuilder: (context, index) => const SizedBox()
+                    ),
+            ),
+
+            // StreamBuilder(
+            //     stream: showData(),
+            //     builder: (context, snapshot) => snapshot.connectionState ==
+            //             ConnectionState.waiting
+            //         ? const Center(child: CircularProgressIndicator())
+            //         : ListView.builder(
+            //             physics: const NeverScrollableScrollPhysics(),
+            //             shrinkWrap: true,
+            //             itemCount: snapshot.data!.size ?? 0,
+            //             itemBuilder: (context, index) => !snapshot
+            //                     .data.docs[index]['done']
+            //                 ? Container(
+            //                     height: 80,
+            //                     width: 400,
+            //                     margin: const EdgeInsets.symmetric(
+            //                         horizontal: 15, vertical: 5),
+            //                     padding:
+            //                         const EdgeInsets.symmetric(horizontal: 15),
+            //                     decoration: BoxDecoration(
+            //                         color: Colors.white24,
+            //                         borderRadius: BorderRadius.circular(15)),
+            //                     child: Row(
+            //                       mainAxisAlignment:
+            //                           MainAxisAlignment.spaceBetween,
+            //                       children: [
+            //                         Row(
+            //                           children: [
+            //                             InkWell(
+            //                               onTap: () {
+            //                                 bool done = snapshot
+            //                                     .data.docs[index]['done'];
+            //                                 String id =
+            //                                     snapshot.data.docs[index].id;
+            //                                 updateTodo(id, done);
+            //                               },
+            //                               child: const CircleAvatar(
+            //                                 backgroundColor: Colors.white,
+            //                                 radius: 14,
+            //                               ),
+            //                             ),
+            //                             const SizedBox(width: 15),
+            //                             Text(snapshot.data.docs[index]['title'],
+            //                                 style: const TextStyle(
+            //                                     fontSize: 18,
+            //                                     color: Colors.white70)),
+            //                           ],
+            //                         ),
+            //                         Row(
+            //                           children: [
+            //                             const Icon(
+            //                               Icons.calendar_month_outlined,
+            //                               color: Colors.blueAccent,
+            //                             ),
+            //                             const SizedBox(width: 10),
+            //                             Text(
+            //                                 DateFormat.yMMMEd().format(snapshot
+            //                                             .data.docs[index]['due']
+            //                                             .toDate()) ==
+            //                                         currentDate
+            //                                     ? 'Due Today'
+            //                                     : DateFormat.yMMMEd().format(
+            //                                         snapshot
+            //                                             .data.docs[index]['due']
+            //                                             .toDate()),
+            //                                 style: const TextStyle(
+            //                                     fontSize: 16,
+            //                                     color: Colors.blueAccent)),
+            //                           ],
+            //                         )
+            //                       ],
+            //                     ),
+            //                   )
+            //                 : Container())),
+
+
+
             const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.only(left: 32),
