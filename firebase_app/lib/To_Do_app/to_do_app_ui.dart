@@ -7,7 +7,7 @@ class To_Do_App extends StatelessWidget {
   To_Do_App({super.key});
 
   TextEditingController todoController = TextEditingController();
-  TextEditingController taskdesController = TextEditingController();
+  TextEditingController taskDesController = TextEditingController();
 
   Stream<dynamic> showData() {
     return FirebaseFirestore.instance.collection("TodoList").snapshots();
@@ -24,6 +24,7 @@ class To_Do_App extends StatelessWidget {
   }
 
   var currentDate = DateFormat.yMMMEd().format(DateTime.now());
+  DateTime? pickedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +76,20 @@ class To_Do_App extends StatelessWidget {
                                           decoration: const InputDecoration(
                                             hintText: 'Add Description',
                                           ),
-                                          controller: taskdesController,
+                                          controller: taskDesController,
                                         ),
                                         actions: [
                                           ElevatedButton(
-                                              onPressed: () {
+                                              onPressed: () async {
+                                                pickedDate =
+                                                    await showDatePicker(
+                                                        context: context,
+                                                        initialDate:
+                                                            DateTime.now(),
+                                                        firstDate:
+                                                            DateTime(2023),
+                                                        lastDate:
+                                                            DateTime(2024));
                                                 Navigator.of(context).pop();
                                               },
                                               child: const Text(
@@ -90,10 +100,10 @@ class To_Do_App extends StatelessWidget {
                                               )),
                                           ElevatedButton(
                                               onPressed: () {
-                                                taskdesController.clear();
+                                                Navigator.of(context).pop();
                                               },
                                               child: const Text(
-                                                'Clear',
+                                                'Cancel',
                                                 style: TextStyle(
                                                     fontSize: 18,
                                                     color: Colors.redAccent),
@@ -101,22 +111,19 @@ class To_Do_App extends StatelessWidget {
                                         ],
                                       ));
 
-                              DateTime? pickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(2023),
-                                  lastDate: DateTime(2024));
+                              if (pickedDate != null) {
+                                FirebaseFirestore.instance
+                                    .collection('TodoList')
+                                    .add({
+                                  'done': false,
+                                  'title': todoController.text,
+                                  'subtitle': taskDesController.text,
+                                  'due': pickedDate
+                                });
+                              }
 
-                              FirebaseFirestore.instance
-                                  .collection('TodoList')
-                                  .add({
-                                'done': false,
-                                'title': todoController.text,
-                                'subtitle': taskdesController.text,
-                                'due': pickedDate
-                              });
                               todoController.clear();
-                              taskdesController.clear();
+                              taskDesController.clear();
                             } else {
                               var snackBar = const SnackBar(
                                 content: Text(
