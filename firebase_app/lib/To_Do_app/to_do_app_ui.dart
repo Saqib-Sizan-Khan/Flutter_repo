@@ -65,46 +65,71 @@ class To_Do_App extends StatelessWidget {
                       backgroundColor: Colors.indigoAccent,
                       child: IconButton(
                           onPressed: () async {
-                            await showDialog(context: context,
-                                builder: (context) => AlertDialog(
-                                  backgroundColor: Colors.blue[100],
-                                  title: const Text('Task Description'),
-                                  content: TextField(
-                                    decoration: const InputDecoration(
-                                      hintText: 'Add Description',
-                                    ),
-                                    controller: taskdesController,
-                                  ),
-                                  actions: [
-                                    ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: const Text('Submit', style: TextStyle(fontSize: 18, color: Colors.indigo),)),
-                                    ElevatedButton(
-                                        onPressed: () {
-                                          taskdesController.clear();
-                                        },
-                                        child: const Text('Clear', style: TextStyle(fontSize: 18, color: Colors.redAccent),))
-                                  ],
-                                ));
+                            if (todoController.text != '') {
+                              await showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        backgroundColor: Colors.blue[100],
+                                        title: const Text('Task Description'),
+                                        content: TextField(
+                                          decoration: const InputDecoration(
+                                            hintText: 'Add Description',
+                                          ),
+                                          controller: taskdesController,
+                                        ),
+                                        actions: [
+                                          ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text(
+                                                'Submit',
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.indigo),
+                                              )),
+                                          ElevatedButton(
+                                              onPressed: () {
+                                                taskdesController.clear();
+                                              },
+                                              child: const Text(
+                                                'Clear',
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.redAccent),
+                                              ))
+                                        ],
+                                      ));
 
-                            DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2023),
-                                lastDate: DateTime(2024));
+                              DateTime? pickedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(2023),
+                                  lastDate: DateTime(2024));
 
-                            FirebaseFirestore.instance
-                                .collection('TodoList')
-                                .add({
-                              'done': false,
-                              'title': todoController.text,
-                              'subtitle' : taskdesController.text,
-                              'due': pickedDate
-                            });
-                            todoController.clear();
-                            taskdesController.clear();
+                              FirebaseFirestore.instance
+                                  .collection('TodoList')
+                                  .add({
+                                'done': false,
+                                'title': todoController.text,
+                                'subtitle': taskdesController.text,
+                                'due': pickedDate
+                              });
+                              todoController.clear();
+                              taskdesController.clear();
+                            } else {
+                              var snackBar = const SnackBar(
+                                content: Text(
+                                  'Please add a Task Name',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                padding: EdgeInsets.all(24),
+                                backgroundColor: Colors.indigoAccent,
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            }
                           },
                           icon: const Icon(Icons.add, color: Colors.white)),
                     ),
