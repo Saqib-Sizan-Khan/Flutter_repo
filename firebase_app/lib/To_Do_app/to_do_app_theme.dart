@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.dark;
 
-  bool get isDarkModel => themeMode == ThemeMode.dark;
+  static ThemeMode themeMode = ThemeMode.dark;
+
+  void toggleTheme () {
+    if (themeMode == ThemeMode.dark) {
+      themeMode = ThemeMode.light;
+    }
+    else {
+      themeMode = ThemeMode.dark;
+    }
+    notifyListeners();
+  }
 }
 
 class ToDoAppTheme {
@@ -35,7 +44,10 @@ class ToDoAppTheme {
               fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
           titleSmall: TextStyle(fontSize: 16, color: Colors.white70),
           titleMedium: TextStyle(fontSize: 18, color: Colors.white70),
-          bodySmall: TextStyle(fontSize: 14, color: Colors.blueAccent, fontWeight: FontWeight.bold),
+          bodySmall: TextStyle(
+              fontSize: 14,
+              color: Colors.blueAccent,
+              fontWeight: FontWeight.bold),
           labelMedium: TextStyle(
               color: Colors.black54, fontSize: 22, fontWeight: FontWeight.w500),
           labelSmall: TextStyle(
@@ -74,7 +86,10 @@ class ToDoAppTheme {
             fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white54),
         titleSmall: TextStyle(fontSize: 16, color: Colors.white70),
         titleMedium: TextStyle(fontSize: 18, color: Colors.white70),
-        bodySmall: TextStyle(fontSize: 14, color: Colors.blueAccent, fontWeight: FontWeight.bold),
+        bodySmall: TextStyle(
+            fontSize: 14,
+            color: Colors.blueAccent,
+            fontWeight: FontWeight.bold),
         labelMedium: TextStyle(
             color: Colors.white54, fontSize: 22, fontWeight: FontWeight.w500),
         labelSmall: TextStyle(

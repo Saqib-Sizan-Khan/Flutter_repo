@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/To_Do_app/task_box.dart';
+import 'package:firebase_app/To_Do_app/to_do_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class To_Do_App extends StatelessWidget {
   To_Do_App({super.key});
@@ -29,17 +31,6 @@ class To_Do_App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: Theme.of(context).iconTheme,
-        toolbarTextStyle: Theme.of(context).textTheme.headlineMedium,
-        title: const Icon(Icons.menu, size: 25),
-        actions: const [
-          Icon(Icons.dark_mode_outlined, size: 25),
-          SizedBox(width: 10),
-          Text('To Do App'),
-          SizedBox(width: 20)
-        ],
-      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
