@@ -29,12 +29,9 @@ class To_Do_App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF31315C),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF31315C),
-        iconTheme: const IconThemeData(color: Colors.white),
-        toolbarTextStyle: const TextStyle(
-            color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500),
+        iconTheme: Theme.of(context).iconTheme,
+        toolbarTextStyle: Theme.of(context).textTheme.headlineMedium,
         title: const Icon(Icons.menu, size: 25),
         actions: const [
           Icon(Icons.dark_mode_outlined, size: 25),
@@ -51,12 +48,9 @@ class To_Do_App extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: TextField(
                 controller: todoController,
-                style: const TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500),
+                style: Theme.of(context).textTheme.headlineMedium,
                 decoration: InputDecoration(
-                  fillColor: Colors.black12,
+                  fillColor: Theme.of(context).inputDecorationTheme.fillColor,
                   filled: true,
                   prefix: const SizedBox(width: 10),
                   suffixIcon: Padding(
@@ -124,6 +118,7 @@ class To_Do_App extends StatelessWidget {
 
                               todoController.clear();
                               taskDesController.clear();
+                              pickedDate = null;
                             } else {
                               var snackBar = const SnackBar(
                                 content: Text(
@@ -142,18 +137,9 @@ class To_Do_App extends StatelessWidget {
                     ),
                   ),
                   hintText: 'Add Task',
-                  hintStyle: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white54),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
-                    borderSide: const BorderSide(color: Colors.cyanAccent),
-                  ),
+                  hintStyle: Theme.of(context).textTheme.labelMedium,
+                  enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
+                  focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder
                 ),
               ),
             ),
@@ -164,14 +150,11 @@ class To_Do_App extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 32),
+            Padding(
+              padding: const EdgeInsets.only(left: 32),
               child: Text(
                 'TO DO',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white54),
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
             const SizedBox(height: 10),
@@ -191,8 +174,7 @@ class To_Do_App extends StatelessWidget {
                                   tilePadding: const EdgeInsets.all(15),
                                   title: Text(
                                       snapshot.data.docs[index]['title'],
-                                      style: const TextStyle(
-                                          fontSize: 16, color: Colors.white70)),
+                                      style: Theme.of(context).textTheme.titleSmall),
                                   leading: InkWell(
                                     onTap: () {
                                       bool done =
@@ -214,17 +196,13 @@ class To_Do_App extends StatelessWidget {
                                           : DateFormat.yMMMEd().format(snapshot
                                               .data.docs[index]['due']
                                               .toDate()),
-                                      style: const TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.blueAccent)),
+                                      style: Theme.of(context).textTheme.bodySmall),
                                   children: [
                                     Task_Box(
                                         child: ListTile(
                                       title: Text(
                                           snapshot.data.docs[index]['subtitle'],
-                                          style: const TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.white70)),
+                                          style: Theme.of(context).textTheme.titleMedium),
                                     ))
                                   ],
                                 ),
@@ -234,14 +212,11 @@ class To_Do_App extends StatelessWidget {
                       separatorBuilder: (context, index) => Container()),
             ),
             const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.only(left: 32),
+            Padding(
+              padding: const EdgeInsets.only(left: 32),
               child: Text(
                 'COMPLETED',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white54),
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
             const SizedBox(height: 10),
@@ -257,7 +232,6 @@ class To_Do_App extends StatelessWidget {
                         itemBuilder: (context, index) => snapshot
                                 .data.docs[index]['done']
                             ? Task_Box(
-                                color: Colors.white12,
                                 child: ListTile(
                                     contentPadding: const EdgeInsets.all(15),
                                     leading: InkWell(
@@ -280,12 +254,7 @@ class To_Do_App extends StatelessWidget {
                                     ),
                                     title: Text(
                                         snapshot.data.docs[index]['title'],
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white24,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                            decorationColor: Colors.white24)),
+                                        style: Theme.of(context).textTheme.labelSmall),
                                     trailing: IconButton(
                                         onPressed: () => removeTodo(
                                             snapshot.data.docs[index].id),

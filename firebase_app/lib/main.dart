@@ -1,5 +1,6 @@
 import 'package:firebase_app/Student_Info/information.dart';
 import 'package:firebase_app/Student_Info/user_update.dart';
+import 'package:firebase_app/To_Do_app/to_do_app_theme.dart';
 import 'package:firebase_app/To_Do_app/to_do_app_ui.dart';
 import 'package:firebase_app/login_app/userInfo.dart';
 import 'package:firebase_app/Student_Info/user_signup.dart';
@@ -22,7 +23,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(colorSchemeSeed: Colors.indigo, useMaterial3: true),
+        theme: ToDoAppTheme.lightTheme,
+        darkTheme: ToDoAppTheme.darkTheme,
+        themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
         home: To_Do_App());
   }
