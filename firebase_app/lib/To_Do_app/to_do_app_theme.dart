@@ -37,7 +37,7 @@ class ToDoAppTheme {
         iconTheme: IconThemeData(color: Colors.indigo.shade900),
         backgroundColor: const Color(0xFFB6BAF6),
       ),
-      dialogBackgroundColor: Colors.indigo[500],
+      dialogBackgroundColor: Colors.blue[300],
       primaryColor: Colors.deepPurple,
       textTheme: const TextTheme(
           headlineSmall: TextStyle(
@@ -79,7 +79,7 @@ class ToDoAppTheme {
       iconTheme: IconThemeData(color: Colors.white),
       backgroundColor: Color(0xFF31315C),
     ),
-    dialogBackgroundColor: Colors.blue[100],
+    dialogBackgroundColor: Colors.indigo[400],
     primaryColor: Colors.white24,
     textTheme: const TextTheme(
         headlineSmall: TextStyle(

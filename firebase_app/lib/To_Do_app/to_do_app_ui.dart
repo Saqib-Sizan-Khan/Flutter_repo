@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/To_Do_app/task_box.dart';
-import 'package:firebase_app/To_Do_app/to_do_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class To_Do_App extends StatelessWidget {
   To_Do_App({super.key});
@@ -55,8 +53,8 @@ class To_Do_App extends StatelessWidget {
                               await showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                        backgroundColor: Colors.blue[100],
-                                        title: const Text('Task Description'),
+                                        backgroundColor: Theme.of(context).dialogBackgroundColor,
+                                        title: Text('Task Description', style: Theme.of(context).textTheme.titleLarge,),
                                         content: TextField(
                                           decoration: const InputDecoration(
                                             hintText: 'Add Description',
@@ -111,14 +109,14 @@ class To_Do_App extends StatelessWidget {
                               taskDesController.clear();
                               pickedDate = null;
                             } else {
-                              var snackBar = const SnackBar(
+                              var snackBar = SnackBar(
                                 content: Text(
                                   'Please add a Task Name',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20),
+                                  style: Theme.of(context).textTheme.headlineMedium,
                                 ),
-                                padding: EdgeInsets.all(24),
-                                backgroundColor: Colors.indigoAccent,
+                                padding: const EdgeInsets.all(24),
+                                backgroundColor: Theme.of(context).dialogBackgroundColor,
                               );
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
