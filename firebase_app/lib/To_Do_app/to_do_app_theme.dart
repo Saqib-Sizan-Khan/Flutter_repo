@@ -46,7 +46,7 @@ class ToDoAppTheme {
           titleMedium: TextStyle(fontSize: 18, color: Colors.white70),
           bodySmall: TextStyle(
               fontSize: 14,
-              color: Colors.blueAccent,
+              color: Colors.cyanAccent,
               fontWeight: FontWeight.bold),
           labelMedium: TextStyle(
               color: Colors.black54, fontSize: 22, fontWeight: FontWeight.w500),
@@ -88,7 +88,7 @@ class ToDoAppTheme {
         titleMedium: TextStyle(fontSize: 18, color: Colors.white70),
         bodySmall: TextStyle(
             fontSize: 14,
-            color: Colors.blueAccent,
+            color: Colors.cyanAccent,
             fontWeight: FontWeight.bold),
         labelMedium: TextStyle(
             color: Colors.white54, fontSize: 22, fontWeight: FontWeight.w500),

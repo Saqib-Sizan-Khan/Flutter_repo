@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_app/To_Do_app/task_box.dart';
+import 'package:firebase_app/To_Do_app/custom_widgets.dart';
+import 'package:firebase_app/To_Do_app/data_operation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,20 +11,6 @@ class ToDoApp extends StatelessWidget {
   TextEditingController taskDesController = TextEditingController();
   var currentDate = DateFormat.yMMMEd().format(DateTime.now());
   DateTime? pickedDate;
-
-  Stream<dynamic> showData() {
-    return FirebaseFirestore.instance.collection("TodoList").orderBy('due',).snapshots();
-  }
-
-  Future<void> updateTodo(String id, bool done) async {
-    var todo = FirebaseFirestore.instance.collection('TodoList').doc(id);
-
-    done ? todo.update({'done': false}) : todo.update({'done': true});
-  }
-
-  Future<void> removeTodo(String id) async {
-    await FirebaseFirestore.instance.collection('TodoList').doc(id).delete();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,14 +87,10 @@ class ToDoApp extends StatelessWidget {
                                         ));
 
                                 if (pickedDate != null) {
-                                  FirebaseFirestore.instance
-                                      .collection('TodoList')
-                                      .add({
-                                    'done': false,
-                                    'title': todoController.text,
-                                    'subtitle': taskDesController.text,
-                                    'due': pickedDate
-                                  });
+                                  DataOps.addTodos(
+                                      pickedDate!,
+                                      todoController.text,
+                                      taskDesController.text);
                                 }
 
                                 todoController.clear();
@@ -149,7 +132,7 @@ class ToDoApp extends StatelessWidget {
             const ListHeading(headingText: 'TO DO'),
             const SizedBox(height: 10),
             StreamBuilder(
-              stream: showData(),
+              stream: DataOps.showTodos(),
               builder: (context, snapshot) => snapshot.connectionState ==
                       ConnectionState.waiting
                   ? const Center(child: CircularProgressIndicator())
@@ -172,7 +155,7 @@ class ToDoApp extends StatelessWidget {
                                       bool done =
                                           snapshot.data.docs[index]['done'];
                                       String id = snapshot.data.docs[index].id;
-                                      updateTodo(id, done);
+                                      DataOps.updateTodo(id, done);
                                     },
                                     child: const CircleAvatar(
                                       backgroundColor: Colors.white,
@@ -210,7 +193,7 @@ class ToDoApp extends StatelessWidget {
             const ListHeading(headingText: 'COMPLETED'),
             const SizedBox(height: 10),
             StreamBuilder(
-                stream: showData(),
+                stream: DataOps.showTodos(),
                 builder: (context, snapshot) => snapshot.connectionState ==
                         ConnectionState.waiting
                     ? const Center(child: CircularProgressIndicator())
@@ -229,7 +212,7 @@ class ToDoApp extends StatelessWidget {
                                             snapshot.data.docs[index]['done'];
                                         String id =
                                             snapshot.data.docs[index].id;
-                                        updateTodo(id, done);
+                                        DataOps.updateTodo(id, done);
                                       },
                                       child: CircleAvatar(
                                         backgroundColor:
@@ -247,7 +230,7 @@ class ToDoApp extends StatelessWidget {
                                             .textTheme
                                             .labelSmall),
                                     trailing: IconButton(
-                                        onPressed: () => removeTodo(
+                                        onPressed: () => DataOps.removeTodo(
                                             snapshot.data.docs[index].id),
                                         icon: const Icon(Icons.delete,
                                             color: Colors.red, size: 28))),
