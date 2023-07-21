@@ -1,16 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/To_Do_app/custom_widgets.dart';
 import 'package:firebase_app/To_Do_app/data_operation.dart';
+import 'package:firebase_app/To_Do_app/to_do_app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class ToDoApp extends StatelessWidget {
-  ToDoApp({super.key});
-
-  TextEditingController todoController = TextEditingController();
-  TextEditingController taskDesController = TextEditingController();
-  var currentDate = DateFormat.yMMMEd().format(DateTime.now());
-  DateTime? pickedDate;
+  const ToDoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +16,8 @@ class ToDoApp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                controller: todoController,
-                style: Theme.of(context).textTheme.headlineMedium,
+                controller: DataOps.todoController,
+                style: ts(context).headlineMedium,
                 decoration: InputDecoration(
                     fillColor: Theme.of(context).inputDecorationTheme.fillColor,
                     filled: true,
@@ -35,36 +29,26 @@ class ToDoApp extends StatelessWidget {
                         backgroundColor: Colors.indigoAccent,
                         child: IconButton(
                             onPressed: () async {
-                              if (todoController.text != '') {
+                              if (DataOps.todoController.text != '') {
                                 await showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
                                           backgroundColor: Theme.of(context)
                                               .dialogBackgroundColor,
-                                          title: Text(
-                                            'Task Description',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleLarge,
-                                          ),
+                                          title: Text('Task Description',
+                                              style: ts(context).titleLarge),
                                           content: TextField(
                                             decoration: const InputDecoration(
                                               hintText: 'Add Description',
                                             ),
-                                            controller: taskDesController,
+                                            controller:
+                                                DataOps.taskDesController,
                                           ),
                                           actions: [
                                             ElevatedButton(
                                                 onPressed: () async {
-                                                  pickedDate =
-                                                      await showDatePicker(
-                                                          context: context,
-                                                          initialDate:
-                                                              DateTime.now(),
-                                                          firstDate:
-                                                              DateTime(2023),
-                                                          lastDate:
-                                                              DateTime(2024));
+                                                  await DataOps.todoDatePicker(
+                                                      context);
                                                   Navigator.of(context).pop();
                                                 },
                                                 child: const Text(
@@ -86,156 +70,82 @@ class ToDoApp extends StatelessWidget {
                                           ],
                                         ));
 
-                                if (pickedDate != null) {
-                                  DataOps.addTodos(
-                                      pickedDate!,
-                                      todoController.text,
-                                      taskDesController.text);
+                                if (DataOps.pickedDate != null) {
+                                  DataOps.addTodos();
                                 }
-
-                                todoController.clear();
-                                taskDesController.clear();
-                                pickedDate = null;
+                                DataOps.fieldClear();
                               } else {
-                                var snackBar = SnackBar(
-                                  content: Text(
-                                    'Please add a Task Name',
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineMedium,
-                                  ),
-                                  padding: const EdgeInsets.all(24),
-                                  backgroundColor:
-                                      Theme.of(context).dialogBackgroundColor,
-                                );
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackBar);
+                                DataOps.todoSnackBar(context);
                               }
                             },
                             icon: const Icon(Icons.add, color: Colors.white)),
                       ),
                     ),
                     hintText: 'Add Task',
-                    hintStyle: Theme.of(context).textTheme.labelMedium,
+                    hintStyle: ts(context).labelMedium,
                     enabledBorder:
                         Theme.of(context).inputDecorationTheme.enabledBorder,
                     focusedBorder:
                         Theme.of(context).inputDecorationTheme.focusedBorder),
               ),
             ),
-            Divider(
-              height: 20,
-              color: Colors.grey[700],
-            ),
+            Divider(height: 20, color: Colors.grey[700]),
             const SizedBox(height: 10),
             const ListHeading(headingText: 'TO DO'),
             const SizedBox(height: 10),
             StreamBuilder(
               stream: DataOps.showTodos(),
-              builder: (context, snapshot) => snapshot.connectionState ==
-                      ConnectionState.waiting
-                  ? const Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.size ?? 0,
-                      itemBuilder: (context, index) {
-                        return !snapshot.data.docs[index]['done']
-                            ? TaskBox(
-                                child: ExpansionTile(
-                                  tilePadding: const EdgeInsets.all(15),
-                                  title: Text(
-                                      snapshot.data.docs[index]['title'],
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall),
-                                  leading: InkWell(
-                                    onTap: () {
-                                      bool done =
-                                          snapshot.data.docs[index]['done'];
-                                      String id = snapshot.data.docs[index].id;
-                                      DataOps.updateTodo(id, done);
-                                    },
-                                    child: const CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 12,
-                                    ),
-                                  ),
-                                  trailing: Text(
-                                      DateFormat.yMMMEd().format(snapshot
-                                                  .data.docs[index]['due']
-                                                  .toDate()) ==
-                                              currentDate
-                                          ? 'Due Today'
-                                          : DateFormat.yMMMEd().format(snapshot
-                                              .data.docs[index]['due']
-                                              .toDate()),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall),
-                                  children: [
-                                    TaskBox(
-                                        child: ListTile(
-                                      title: SelectableText(
-                                          snapshot.data.docs[index]['subtitle'],
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium),
-                                    ))
-                                  ],
-                                ),
-                              )
-                            : Container();
-                      }),
+              builder: (context, snapshot) =>
+                  snapshot.connectionState == ConnectionState.waiting
+                      ? const Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.size ?? 0,
+                          itemBuilder: (context, index) {
+                            var taskDone = snapshot.data.docs[index]['done'];
+                            var taskName = snapshot.data.docs[index]['title'];
+                            var taskDes = snapshot.data.docs[index]['subtitle'];
+                            var taskDue =
+                                snapshot.data.docs[index]['due'].toDate();
+                            var taskID = snapshot.data.docs[index].id;
+                            return !taskDone
+                                ? TaskBox(
+                                    child: TodoList(
+                                        taskDone: taskDone,
+                                        taskName: taskName,
+                                        taskDes: taskDes,
+                                        taskDue: taskDue,
+                                        taskID: taskID),
+                                  )
+                                : Container();
+                          }),
             ),
             const SizedBox(height: 20),
             const ListHeading(headingText: 'COMPLETED'),
             const SizedBox(height: 10),
             StreamBuilder(
                 stream: DataOps.showTodos(),
-                builder: (context, snapshot) => snapshot.connectionState ==
-                        ConnectionState.waiting
-                    ? const Center(child: CircularProgressIndicator())
-                    : ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.size ?? 0,
-                        itemBuilder: (context, index) => snapshot
-                                .data.docs[index]['done']
-                            ? TaskBox(
-                                child: ListTile(
-                                    contentPadding: const EdgeInsets.all(15),
-                                    leading: InkWell(
-                                      onTap: () {
-                                        bool done =
-                                            snapshot.data.docs[index]['done'];
-                                        String id =
-                                            snapshot.data.docs[index].id;
-                                        DataOps.updateTodo(id, done);
-                                      },
-                                      child: CircleAvatar(
-                                        backgroundColor:
-                                            Colors.greenAccent[100],
-                                        radius: 12,
-                                        child: const Icon(
-                                          Icons.check,
-                                          color: Colors.teal,
-                                        ),
-                                      ),
-                                    ),
-                                    title: Text(
-                                        snapshot.data.docs[index]['title'],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall),
-                                    trailing: IconButton(
-                                        onPressed: () => DataOps.removeTodo(
-                                            snapshot.data.docs[index].id),
-                                        icon: const Icon(Icons.delete,
-                                            color: Colors.red, size: 28))),
-                              )
-                            : Container()))
+                builder: (context, snapshot) =>
+                    snapshot.connectionState == ConnectionState.waiting
+                        ? const Center(child: CircularProgressIndicator())
+                        : ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.size ?? 0,
+                            itemBuilder: (context, index) {
+                              var taskDone = snapshot.data.docs[index]['done'];
+                              var taskName = snapshot.data.docs[index]['title'];
+                              var taskID = snapshot.data.docs[index].id;
+                              return taskDone
+                                  ? TaskBox(
+                                      child: CompletedList(
+                                          taskDone: taskDone,
+                                          taskName: taskName,
+                                          taskID: taskID),
+                                    )
+                                  : Container();
+                            }))
           ],
         ),
       ),

@@ -1,20 +1,5 @@
 import 'package:flutter/material.dart';
 
-class ThemeProvider extends ChangeNotifier {
-
-  static ThemeMode themeMode = ThemeMode.dark;
-
-  void toggleTheme () {
-    if (themeMode == ThemeMode.dark) {
-      themeMode = ThemeMode.light;
-    }
-    else {
-      themeMode = ThemeMode.dark;
-    }
-    notifyListeners();
-  }
-}
-
 class ToDoAppTheme {
   static ThemeData lightTheme = ThemeData(
       useMaterial3: true,
@@ -100,4 +85,8 @@ class ToDoAppTheme {
         headlineMedium: TextStyle(
             color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500)),
   );
+}
+
+TextTheme ts(context) {
+  return Theme.of(context).textTheme;
 }
