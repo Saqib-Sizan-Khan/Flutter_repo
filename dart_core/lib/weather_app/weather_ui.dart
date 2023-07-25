@@ -1,9 +1,13 @@
 import 'dart:ui';
 
+import 'package:dart_core/weather_app/weather_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class WeatherUI extends StatelessWidget {
-  const WeatherUI({super.key});
+class WeatherUIHome extends StatelessWidget {
+  WeatherUIHome({super.key});
+
+  WeatherController controller = Get.put(WeatherController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +25,16 @@ class WeatherUI extends StatelessWidget {
                     Wrap(
                       verticalDirection: VerticalDirection.up,
                       children: [
-                        Image.asset('assets/images/location_logo.png',
-                            scale: 1.5),
+                        InkWell(
+                          child: Image.asset('assets/images/location_logo.png',
+                              scale: 1.5),
+                          onTap: () {
+                            controller.getLocationWeather();
+                          },
+                        ),
                         SizedBox(width: 20),
                         Text(
-                          'Dhaka',
+                          controller.location_name,
                           style: TextStyle(fontSize: 20, color: Colors.white),
                         ),
                         SizedBox(width: 20),
@@ -45,7 +54,7 @@ class WeatherUI extends StatelessWidget {
               height: double.maxFinite,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/images/img.png'),
+                      image: NetworkImage(controller.icon),
                       fit: BoxFit.contain)),
             ),
           ),
@@ -62,11 +71,11 @@ class WeatherUI extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('Today, 12 September',
-                      style: TextStyle(fontSize: 18, color: Colors.white)),
-                  Text('34°',
-                      style: TextStyle(fontSize: 98, color: Colors.white)),
-                  Text('Sunny',
+                  Text('Today, ${controller.weatherTime}',
+                      style: TextStyle(fontSize: 24, color: Colors.white)),
+                  Text('${controller.temparture}℃',
+                      style: TextStyle(fontSize: 70, color: Colors.white)),
+                  Text(controller.condition,
                       style: TextStyle(fontSize: 28, color: Colors.white)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
