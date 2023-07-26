@@ -8,11 +8,13 @@ import 'package:intl/intl.dart';
 class WeatherController extends GetxController {
 
   //Position? position;
-  String location_name = '';
-  String temparture = '';
+  String locationName = '';
+  String temperature = '';
   String condition = '';
   String icon = '';
   String weatherTime = '';
+  String wind = '';
+  String humidity = '';
 
   @override
   void onInit() {
@@ -62,10 +64,15 @@ class WeatherController extends GetxController {
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      location_name = jsonResponse['location']['name'];
-      temparture = jsonResponse['current']['temp_c'].toString();
+
+
+
+      locationName = jsonResponse['location']['name'];
+      temperature = jsonResponse['current']['temp_c'].toString();
       condition = jsonResponse['current']['condition']['text'];
       icon = jsonResponse['current']['condition']['icon'];
+      wind = jsonResponse['current']['wind_kph'].toString();
+      humidity = jsonResponse['current']['humidity'].toString();
 
       DateTime wt = DateTime.parse(jsonResponse['current']['last_updated']);
       weatherTime = DateFormat('d MMMM').format(wt);
