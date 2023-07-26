@@ -3,18 +3,11 @@ import 'package:dart_core/weather_app/weather_model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 
 class WeatherController extends GetxController {
 
   //Position? position;
-  String locationName = '';
-  String temperature = '';
-  String condition = '';
-  String icon = '';
-  String weatherTime = '';
-  String wind = '';
-  String humidity = '';
+  dynamic weather;
 
   @override
   void onInit() {
@@ -63,19 +56,8 @@ class WeatherController extends GetxController {
     final response = await http.get(Uri.parse('http://api.weatherapi.com/v1/current.json?key=$apiKey&q=Dhaka&aqi=no'));
 
     if (response.statusCode == 200) {
-      final jsonResponse = json.decode(response.body);
-
-
-
-      locationName = jsonResponse['location']['name'];
-      temperature = jsonResponse['current']['temp_c'].toString();
-      condition = jsonResponse['current']['condition']['text'];
-      icon = jsonResponse['current']['condition']['icon'];
-      wind = jsonResponse['current']['wind_kph'].toString();
-      humidity = jsonResponse['current']['humidity'].toString();
-
-      DateTime wt = DateTime.parse(jsonResponse['current']['last_updated']);
-      weatherTime = DateFormat('d MMMM').format(wt);
+      final jsonResponse = jsonDecode(response.body);
+      weather = WeatherModel().extractData(jsonResponse);
     }
     else {
       throw Exception('Weather not found');

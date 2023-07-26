@@ -27,7 +27,7 @@ class WeatherUIHome extends StatelessWidget {
                             scale: 1.5),
                         const SizedBox(width: 20),
                         Text(
-                          controller.locationName,
+                          controller.weather?['locationName'] ?? '',
                           style: const TextStyle(fontSize: 20, color: Colors.white),
                         ),
                         const SizedBox(width: 20),
@@ -47,7 +47,7 @@ class WeatherUIHome extends StatelessWidget {
               height: double.maxFinite,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(controller.icon),
+                      image: NetworkImage(controller.weather?['icon'] ?? ''),
                       fit: BoxFit.contain)),
             ),
           ),
@@ -64,11 +64,11 @@ class WeatherUIHome extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('Today, ${controller.weatherTime}',
+                  Text('Today, ${controller.weather?['weatherTime'] ?? ''}',
                       style: const TextStyle(fontSize: 24, color: Colors.white)),
-                  Text('${controller.temperature}℃',
+                  Text('${controller.weather?['temperature'] ?? ''}℃',
                       style: const TextStyle(fontSize: 70, color: Colors.white)),
-                  Text(controller.condition,
+                  Text(controller.weather?['condition'] ?? '',
                       style: const TextStyle(fontSize: 28, color: Colors.white)),
 
                   SizedBox(
@@ -108,9 +108,9 @@ class WeatherUIHome extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${controller.wind} km/h', style: const TextStyle(fontSize: 20, color: Colors.white)),
+                            Text('${controller.weather?['wind'] ?? ''} km/h', style: const TextStyle(fontSize: 20, color: Colors.white)),
                             const SizedBox(height: 20),
-                            Text('${controller.humidity}%', style: const TextStyle(fontSize: 20, color: Colors.white))
+                            Text('${controller.weather?['humidity'] ?? ''}%', style: const TextStyle(fontSize: 20, color: Colors.white))
                           ],
                         ),
 
