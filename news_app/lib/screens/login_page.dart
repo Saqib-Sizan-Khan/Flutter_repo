@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:news_app/widgets/texts.dart';
 import '../widgets/buttons.dart';
 import '../widgets/textfield.dart';
-import '../widgets/texts.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,36 +12,30 @@ class SignUpPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Center(
                 child:
                     Image.asset('assets/images/dhakaLive_logo.png', scale: 2)),
           ),
           Expanded(
-              flex: 5,
+              flex: 4,
               child: Column(
                 children: [
-                  NewsAppTextField(
-                      title: 'Your Name',
-                      hint: 'Saqib Sizan',
-                      textInputType: TextInputType.name),
                   NewsAppTextField(
                       title: 'Phone Number',
                       hint: '+88 (017) 00000000',
                       textInputType: TextInputType.phone),
                   NewsAppTextField(title: 'Password', hint: '', obscure: true),
                   SizedBox(height: 20),
-                  SimpleButton(title: 'Sign Up'),
+                  SimpleButton(title: 'Login'),
                   SizedBox(height: 20),
-                  Text('OR',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
-                  SizedBox(height: 20),
-                  GoogleButton(),
-                  SizedBox(height: 8),
-                  FacebookButton(),
-                  SizedBox(height: 127),
-                  ClickableText(normText: 'Already Have Account? ', clickText: 'Login')
+                  ClickableText(
+                      normText: 'Forgot Password? ',
+                      clickText: 'Set New Password'),
+                  SizedBox(height: 140),
+                  ClickableText(
+                      normText: "Don't have a Account? ",
+                      clickText: 'Create New Account'),
                 ],
               )),
         ],

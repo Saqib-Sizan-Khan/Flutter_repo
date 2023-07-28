@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SimpleButton extends StatelessWidget {
-  const SimpleButton({super.key});
+  SimpleButton({super.key, required this.title});
+
+  String title;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class SimpleButton extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         child: Center(
           child: Text(
-            'Sign Up',
+            title,
             style: TextStyle(
                 color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400),
           ),

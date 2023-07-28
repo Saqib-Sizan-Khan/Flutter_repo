@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/login_page.dart';
+import 'package:news_app/screens/settings_page.dart';
 import 'package:news_app/screens/signup_page.dart';
 
 void main() {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: SignUpPage(),
+      home: SettingsPage(),
     );
   }
 }
