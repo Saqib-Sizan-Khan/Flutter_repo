@@ -3,7 +3,7 @@ import 'package:news_app/widgets/images.dart';
 
 class NewsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const NewsAppBar(
-      {super.key, this.preferredSize = const Size.fromHeight(94.0)});
+      {super.key, this.preferredSize = const Size.fromHeight(80.0)});
 
   @override
   final Size preferredSize;
@@ -15,11 +15,11 @@ class NewsAppBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: 94,
       title: Padding(
           padding: const EdgeInsets.only(left: 10),
-          child: Photo(name: 'dhakaLive_logo_dark.png', scale: 2)),
+          child: Logo(name: 'dhakaLive_logo_dark.png', scale: 2)),
       actions: [
         Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: Photo(name: 'bell_logo.png', scale: 0.8))
+            child: Logo(name: 'bell_logo.png', scale: 0.8))
       ],
     );
   }

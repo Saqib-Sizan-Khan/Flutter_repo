@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Photo extends StatelessWidget {
-  Photo({super.key, required this.name, this.scale = 2.5});
+class Logo extends StatelessWidget {
+  Logo({super.key, required this.name, this.scale = 2.5});
 
   String name;
   double scale;
@@ -10,4 +10,9 @@ class Photo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset('assets/images/$name', scale: scale);
   }
+}
+
+DecorationImage wallPaper(String imgName) {
+  return DecorationImage(
+      image: AssetImage('assets/images/$imgName'), fit: BoxFit.cover);
 }

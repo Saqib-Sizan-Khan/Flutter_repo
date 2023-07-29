@@ -35,7 +35,7 @@ class SettingsPage extends StatelessWidget {
                           child: CircleAvatar(
                               radius: 9,
                               child:
-                                  Photo(name: 'camera_logo.png', scale: 1.8)),
+                                  Logo(name: 'camera_logo.png', scale: 1.8)),
                         )
                       ],
                     ),
@@ -72,7 +72,7 @@ class SettingsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8))),
                   child: Row(
                     children: [
-                      Photo(name: 'edit_logo.png'),
+                      Logo(name: 'edit_logo.png'),
                       SizedBox(width: 8),
                       Text('Edit',
                           style: TextStyle(
@@ -100,7 +100,7 @@ class SettingsPage extends StatelessWidget {
                           fontWeight: FontWeight.w300,
                           color: Color(0xFF494949)),
                     ),
-                    Photo(name: 'arrow_right_logo.png', scale: 1.5)
+                    Logo(name: 'arrow_right_logo.png', scale: 1.5)
                   ],
                 ),
               );
@@ -120,15 +120,15 @@ class SettingsPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 32),
             child: Row(
               children: [
-                Photo(name: 'facebook_logo.png', scale: 3),
+                Logo(name: 'facebook_logo.png', scale: 3),
                 SizedBox(width: 10),
-                Photo(name: 'telegram_logo.png', scale: 1.5),
+                Logo(name: 'telegram_logo.png', scale: 1.5),
                 SizedBox(width: 10),
-                Photo(name: 'twitter_logo.png', scale: 1.5),
+                Logo(name: 'twitter_logo.png', scale: 1.5),
                 SizedBox(width: 10),
-                Photo(name: 'linkedin_logo.png', scale: 1.5),
+                Logo(name: 'linkedin_logo.png', scale: 1.5),
                 SizedBox(width: 10),
-                Photo(name: 'instagram_logo.png', scale: 1.5),
+                Logo(name: 'instagram_logo.png', scale: 1.5),
               ],
             ),
           )
