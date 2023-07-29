@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NewsTags extends StatelessWidget {
-  NewsTags({super.key, required this.tagName});
+  NewsTags({super.key, required this.tagName, this.textColor = 0xFF494949});
 
   String tagName;
+  dynamic textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +15,15 @@ class NewsTags extends StatelessWidget {
       decoration: ShapeDecoration(
           color: tagName == 'Breaking News'
               ? Color(0x19F1582C)
-              : Color(0x19494949),
+              : textColor == 0xFFFFFFFF
+                  ? Colors.white.withOpacity(0.1)
+                  : Color(0x19494949),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
       child: Text(tagName,
           style: TextStyle(
               fontSize: 9,
-              color: tagName == 'Breaking News'
-                  ? Color(0xFFF1582C)
-                  : Color(0xFF494949),
+              color: Color(textColor),
               fontWeight: FontWeight.w400)),
     );
   }

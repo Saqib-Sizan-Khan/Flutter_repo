@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/widgets/containers.dart';
+import 'package:news_app/widgets/images.dart';
 import 'package:news_app/widgets/list_view.dart';
 import 'package:news_app/widgets/news_app_bar.dart';
+import 'package:news_app/widgets/tags.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -29,10 +31,12 @@ class HomePage extends StatelessWidget {
             OrdinaryNewsCon(
               image: 'edu.png',
               newsTag: 'Education',
-              headline: 'If you want to study in China, it is good to know the answers to the 10 questions',
+              headline:
+                  'If you want to study in China, it is good to know the answers to the 10 questions',
               subHeadline:
-              'China is now a favorite destination for many students for higher education. About studying in China.',
+                  'China is now a favorite destination for many students for higher education. About studying in China.',
             ),
+            SpotlightNewsListView()
           ],
         ),
       ),

@@ -20,9 +20,9 @@ class BreakingNewsCon extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  NewsTags(tagName: 'Breaking News'),
+                  NewsTags(tagName: 'Breaking News', textColor: 0xFFF1582C),
                   SizedBox(width: 5),
-                  NewsTags(tagName: 'National')
+                  NewsTags(tagName: 'National'),
                 ],
               ),
               SizedBox(height: 5),
