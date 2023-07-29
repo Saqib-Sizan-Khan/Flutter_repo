@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/widgets/news_app_bar.dart';
 import 'package:news_app/widgets/buttons.dart';
+import 'package:news_app/widgets/images.dart';
 import '../variables/variables.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -8,20 +10,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF494949),
-        toolbarHeight: 94,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Image.asset('assets/images/dhakaLive_logo_dark.png', scale: 2),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Image.asset('assets/images/bell_logo.png', scale: 0.8),
-          )
-        ],
-      ),
+      appBar: NewsAppBar(),
       body: Column(
         children: [
           Row(
@@ -44,10 +33,9 @@ class SettingsPage extends StatelessWidget {
                           bottom: 1,
                           right: 1,
                           child: CircleAvatar(
-                            radius: 9,
-                            child: Image.asset('assets/images/camera_logo.png',
-                                scale: 1.8),
-                          ),
+                              radius: 9,
+                              child:
+                                  Photo(name: 'camera_logo.png', scale: 1.8)),
                         )
                       ],
                     ),
@@ -84,7 +72,7 @@ class SettingsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8))),
                   child: Row(
                     children: [
-                      Image.asset('assets/images/edit_logo.png'),
+                      Photo(name: 'edit_logo.png'),
                       SizedBox(width: 8),
                       Text('Edit',
                           style: TextStyle(
@@ -112,8 +100,7 @@ class SettingsPage extends StatelessWidget {
                           fontWeight: FontWeight.w300,
                           color: Color(0xFF494949)),
                     ),
-                    Image.asset('assets/images/arrow_right_logo.png',
-                        scale: 1.5)
+                    Photo(name: 'arrow_right_logo.png', scale: 1.5)
                   ],
                 ),
               );
@@ -128,7 +115,23 @@ class SettingsPage extends StatelessWidget {
           SimpleButton(
               title: 'Logout',
               image: 'assets/images/logoout_logo.png',
-              scale: 1.5)
+              scale: 1.5),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 32),
+            child: Row(
+              children: [
+                Photo(name: 'facebook_logo.png', scale: 3),
+                SizedBox(width: 10),
+                Photo(name: 'telegram_logo.png', scale: 1.5),
+                SizedBox(width: 10),
+                Photo(name: 'twitter_logo.png', scale: 1.5),
+                SizedBox(width: 10),
+                Photo(name: 'linkedin_logo.png', scale: 1.5),
+                SizedBox(width: 10),
+                Photo(name: 'instagram_logo.png', scale: 1.5),
+              ],
+            ),
+          )
         ],
       ),
     );

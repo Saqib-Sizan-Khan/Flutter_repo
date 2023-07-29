@@ -7,3 +7,16 @@ var settingsOptions = [
   'Contact',
   'About Us'
 ];
+
+var categoryList = [
+  'National',
+  'International',
+  'Trade',
+  'Sports',
+  'Information and Technology',
+  'Education',
+  'Life Style',
+  'Video',
+  'Entertainment',
+  'Health'
+];
