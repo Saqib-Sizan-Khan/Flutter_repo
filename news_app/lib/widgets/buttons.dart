@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SimpleButton extends StatelessWidget {
-  SimpleButton({super.key, required this.title});
+  SimpleButton(
+      {super.key, required this.title, this.image = '', this.scale = 0.1});
 
   String title;
+  String image;
+  double scale;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +19,30 @@ class SimpleButton extends StatelessWidget {
             color: Color(0xFFF1582C),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-        child: Center(
-          child: Text(
-            title,
-            style: TextStyle(
-                color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400),
-          ),
-        ),
+        child: image == ''
+            ? Center(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400),
+                ),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(image, scale: scale),
+                  SizedBox(width: 5),
+                  Text(
+                    title,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
       ),
     );
   }
