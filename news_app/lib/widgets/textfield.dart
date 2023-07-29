@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/widgets/images.dart';
 
-class NewsAppTextField extends StatelessWidget {
-  NewsAppTextField(
+class AuthTextField extends StatelessWidget {
+  AuthTextField(
       {super.key,
       required this.title,
       required this.hint,
@@ -44,6 +45,37 @@ class NewsAppTextField extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SearchTextField extends StatelessWidget {
+  SearchTextField(
+      {super.key, required this.hint, this.textInputType = TextInputType.text});
+
+  String hint;
+  TextInputType textInputType;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      style: TextStyle(fontSize: 13, color: Colors.black),
+      keyboardType: textInputType,
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          hintText: hint,
+          hintStyle: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w300,
+              color: Color(0xFF494949)),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 3, color: Colors.blue),
+          ),
+          suffixIcon: Logo(name: 'search_logo.png', scale: 1.5)),
     );
   }
 }

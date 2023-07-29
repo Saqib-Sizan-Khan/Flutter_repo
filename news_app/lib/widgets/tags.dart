@@ -8,7 +8,7 @@ class NewsTags extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: (tagName.length as double)*7,
+      width: MediaQuery.of(context).size.width * tagName.length * 0.021,
       height: 17,
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       decoration: ShapeDecoration(
