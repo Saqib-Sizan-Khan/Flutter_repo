@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/category_page.dart';
 import 'package:news_app/screens/category_page2.dart';
+import 'package:news_app/screens/homepage.dart';
 import 'package:news_app/screens/login_page.dart';
 import 'package:news_app/screens/search_page.dart';
 import 'package:news_app/screens/settings_page.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: SearchPage(),
+      home: HomePage(),
     );
   }
 }

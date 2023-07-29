@@ -16,3 +16,8 @@ DecorationImage wallPaper(String imgName) {
   return DecorationImage(
       image: AssetImage('assets/images/$imgName'), fit: BoxFit.cover);
 }
+
+DecorationImage NetWallPaper(String imgName) {
+  return DecorationImage(
+      image: NetworkImage(imgName), fit: BoxFit.cover);
+}

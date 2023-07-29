@@ -10,6 +10,7 @@ class NewsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
         shrinkWrap: true,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         itemBuilder: (context, index) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,

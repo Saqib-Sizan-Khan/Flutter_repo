@@ -14,10 +14,7 @@ class SearchPage extends StatelessWidget {
         toolbarHeight: 94,
         title: SearchTextField(hint: 'Sports'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
-        child: NewsListView(),
-      ),
+      body: NewsListView(),
     );
   }
 }
