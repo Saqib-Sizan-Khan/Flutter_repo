@@ -53,7 +53,7 @@ class OrdinaryNewsCon extends StatelessWidget {
       required this.image,
       required this.newsTag,
       required this.headline,
-      required this.subHeadline});
+      this.subHeadline = ''});
 
   String image;
   String newsTag;
@@ -64,37 +64,85 @@ class OrdinaryNewsCon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 160,
+              decoration: ShapeDecoration(
+                  image: wallPaper(image),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5))),
+            ),
+            SizedBox(height: 10),
+            NewsTags(tagName: newsTag),
+            SizedBox(height: 5),
+            Text(headline,
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+            SizedBox(height: 3),
+            Text(subHeadline,
+                style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
+                textAlign: TextAlign.justify),
+            SizedBox(height: 3),
+            Text('40 minutes ago',
+                style: TextStyle(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w300,
+                    color: Color(0xFF494949))),
+            Divider(color: Colors.black.withOpacity(0.1)),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class SmallNewsCon extends StatelessWidget {
+  SmallNewsCon(
+      {super.key,
+      required this.image,
+      required this.tag,
+      required this.headline});
+
+  String image;
+  String tag;
+  String headline;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 130,
+          height: 90,
+          decoration: ShapeDecoration(
+              image: wallPaper(image),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5))),
+        ),
+        SizedBox(width: 10),
+        Container(
+          width: 215,
+          height: 100,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 160,
-                decoration: ShapeDecoration(
-                    image: wallPaper(image),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5))),
-              ),
-              SizedBox(height: 10),
-              NewsTags(tagName: newsTag),
+              NewsTags(tagName: tag),
               SizedBox(height: 5),
-              Text(headline,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
-              SizedBox(height: 3),
-              Text(subHeadline,
-                  style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
-                  textAlign: TextAlign.justify),
-              SizedBox(height: 3),
-              Text('40 minutes ago',
+              Text(
+                headline,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+              ),
+              SizedBox(height: 5),
+              Text('10 minutes ago',
                   style: TextStyle(
                       fontSize: 9,
                       fontWeight: FontWeight.w300,
                       color: Color(0xFF494949))),
-              Divider(color: Colors.black.withOpacity(0.1)),
             ],
           ),
-        ),
+        )
       ],
     );
   }
