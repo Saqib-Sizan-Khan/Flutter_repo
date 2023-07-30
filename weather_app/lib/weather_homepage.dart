@@ -21,39 +21,43 @@ class WeatherUIHome extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Wrap(
-                      verticalDirection: VerticalDirection.up,
                       children: [
                         Image.asset('assets/images/location_logo.png',
-                            scale: 1.5),
-                        const SizedBox(width: 20),
-                        Text(
-                          controller.weather?['locationName'] ?? '',
-                          style: const TextStyle(fontSize: 20, color: Colors.white),
-                        ),
-                        const SizedBox(width: 20),
-                        Image.asset('assets/images/down_arrow_logo.png',
-                            scale: 1.3),
+                            scale: 1.2),
+                        const SizedBox(width: 10),
+                        Obx(() => DropdownButton(
+                            onChanged: (String? newCity) {
+                              controller.citySelect(newCity!);
+                            },
+                            value: controller.selectedCity.value,
+                            style: const TextStyle(
+                                fontSize: 24, color: Colors.white),
+                            dropdownColor: Colors.indigo,
+                            items: controller.cityList.map((String city) {
+                              return DropdownMenuItem(
+                                  value: city, child: Text(city));
+                            }).toList())),
                       ],
                     ),
                     Image.asset('assets/images/notification_logo.png',
-                        scale: 1.5),
+                        scale: 1.3),
                   ],
                 ),
               )),
           Expanded(
             flex: 2,
-            child: Container(
+            child: Obx(() => Container(
               width: 200,
               height: double.maxFinite,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(controller.weather?['icon'] ?? ''),
+                      image: NetworkImage('${controller.icon}'),
                       fit: BoxFit.contain)),
-            ),
+            ))
           ),
           Expanded(
             flex: 4,
-            child: Container(
+            child: Obx(() => Container(
               width: 350,
               margin: const EdgeInsets.only(bottom: 150),
               padding: const EdgeInsets.all(8),
@@ -64,13 +68,15 @@ class WeatherUIHome extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('Today, ${controller.weather?['weatherTime'] ?? ''}',
-                      style: const TextStyle(fontSize: 24, color: Colors.white)),
-                  Text('${controller.weather?['temperature'] ?? ''}℃',
-                      style: const TextStyle(fontSize: 70, color: Colors.white)),
-                  Text(controller.weather?['condition'] ?? '',
-                      style: const TextStyle(fontSize: 28, color: Colors.white)),
-
+                  Text('Today, ${controller.weatherTime}',
+                      style:
+                      const TextStyle(fontSize: 24, color: Colors.white)),
+                  Text('${controller.temperature}℃',
+                      style:
+                      const TextStyle(fontSize: 70, color: Colors.white)),
+                  Text('${controller.condition}',
+                      style:
+                      const TextStyle(fontSize: 28, color: Colors.white)),
                   SizedBox(
                       width: 200,
                       height: 80,
@@ -78,48 +84,55 @@ class WeatherUIHome extends StatelessWidget {
                         children: [
                           const Column(
                             children: [
-                              Icon(Icons.air_outlined, color: Colors.white, size: 30),
+                              Icon(Icons.air_outlined,
+                                  color: Colors.white, size: 30),
                               SizedBox(height: 10),
-                              Icon(Icons.water_drop, color: Colors.white, size: 30),
+                              Icon(Icons.water_drop,
+                                  color: Colors.white, size: 30),
                             ],
                           ),
-
                           const SizedBox(width: 5),
-
                           const Column(
                             children: [
-                              Text('Wind', style: TextStyle(fontSize: 20, color: Colors.white)),
+                              Text('Wind',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white)),
                               SizedBox(height: 20),
-                              Text('Hum', style: TextStyle(fontSize: 20, color: Colors.white)),
-                            ],
-                          ),
-
-                          const SizedBox(width: 10),
-
-                          const Column(
-                            children: [
-                              Text('|', style: TextStyle(fontSize: 20, color: Colors.white)),
-                              SizedBox(height: 20),
-                              Text('|', style: TextStyle(fontSize: 20, color: Colors.white)),
+                              Text('Hum',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white)),
                             ],
                           ),
                           const SizedBox(width: 10),
-
+                          const Column(
+                            children: [
+                              Text('|',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white)),
+                              SizedBox(height: 20),
+                              Text('|',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white)),
+                            ],
+                          ),
+                          const SizedBox(width: 10),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('${controller.weather?['wind'] ?? ''} km/h', style: const TextStyle(fontSize: 20, color: Colors.white)),
+                              Text('${controller.wind} km/h',
+                                  style: const TextStyle(
+                                      fontSize: 20, color: Colors.white)),
                               const SizedBox(height: 20),
-                              Text('${controller.weather?['humidity'] ?? ''}%', style: const TextStyle(fontSize: 20, color: Colors.white))
+                              Text('${controller.humidity}%',
+                                  style: const TextStyle(
+                                      fontSize: 20, color: Colors.white))
                             ],
                           ),
-
                         ],
-                      )
-                  ),
+                      )),
                 ],
               ),
-            ),
+            )),
           )
         ],
       ),

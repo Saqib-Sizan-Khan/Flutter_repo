@@ -3,18 +3,61 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/weather_model.dart';
+import 'package:intl/intl.dart';
 
 class WeatherController extends GetxController {
-
   //Position? position;
-  dynamic weather;
+  RxString selectedCity = 'Dhaka'.obs;
+  RxString locationName = ''.obs;
+  RxString temperature = ''.obs;
+  RxString condition = ''.obs;
+  RxString icon = ''.obs;
+  RxString wind = ''.obs;
+  RxString humidity = ''.obs;
+  RxString weatherTime = ''.obs;
+
+  var cityList = [
+    'Sylhet',
+    'Dhaka',
+    'Khulna',
+    'Chittagong',
+    'Rajshahi',
+    'Barishal'
+  ];
 
   @override
   void onInit() {
     //getCurrentLocation();
     //getCurrentPosition();
-    getLocationWeather();
+    getLocationWeather(selectedCity.value);
     super.onInit();
+  }
+
+  void citySelect(String newCity) {
+    selectedCity.value = newCity;
+    getLocationWeather(selectedCity.value);
+  }
+
+  getLocationWeather(String city) async {
+    String apiKey = '4e735fb780e747dd83c45255232707';
+    final response = await http.get(Uri.parse(
+        'http://api.weatherapi.com/v1/current.json?key=$apiKey&q=$city&aqi=no'));
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+
+      DateTime wt = DateTime.parse(json['current']['last_updated']);
+
+      locationName.value = json['location']['name'];
+      temperature.value = json['current']['temp_c'].toString();
+      condition.value = json['current']['condition']['text'];
+      icon.value = json['current']['condition']['icon'];
+      wind.value = json['current']['wind_kph'].toString();
+      humidity.value = json['current']['humidity'].toString();
+      weatherTime.value = DateFormat('d MMMM').format(wt);
+    } else {
+      throw Exception('Weather not found');
+    }
   }
 
   // getCurrentLocation() async {
@@ -50,17 +93,4 @@ class WeatherController extends GetxController {
   //   position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.lowest);
   //   print(position);
   // }
-
-  getLocationWeather() async {
-    String apiKey = '569196186da344bb85e91236232507';
-    final response = await http.get(Uri.parse('http://api.weatherapi.com/v1/current.json?key=$apiKey&q=London&aqi=no'));
-
-    if (response.statusCode == 200) {
-      final jsonResponse = jsonDecode(response.body);
-      weather = WeatherModel().extractData(jsonResponse);
-    }
-    else {
-      throw Exception('Weather not found');
-    }
-  }
 }

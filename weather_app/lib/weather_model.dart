@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 class WeatherModel {
   final Map<String, dynamic> data = <String, dynamic>{};
 
-  extractData(dynamic json) {
+  extractData(var json) {
 
     DateTime wt = DateTime.parse(json['current']['last_updated']);
 
