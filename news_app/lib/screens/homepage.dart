@@ -44,6 +44,7 @@ class HomePage extends StatelessWidget {
             ),
             SpotlightNewsListView(),
             NewsListView2(),
+            VideoListView()
           ],
         ),
       ),
