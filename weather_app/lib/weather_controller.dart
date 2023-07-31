@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:weather_app/forecast_model.dart';
 import 'package:weather_app/weather_model.dart';
 import 'package:intl/intl.dart';
 
@@ -16,6 +17,8 @@ class WeatherController extends GetxController {
   RxString humidity = ''.obs;
   RxString weatherTime = ''.obs;
 
+  MyForecastModel? weatherForecast;
+
   var cityList = [
     'Sylhet',
     'Dhaka',
@@ -29,7 +32,8 @@ class WeatherController extends GetxController {
   void onInit() {
     //getCurrentLocation();
     //getCurrentPosition();
-    getLocationWeather(selectedCity.value);
+    //getLocationWeather(selectedCity.value);
+    getForecastWeather();
     super.onInit();
   }
 
@@ -58,6 +62,31 @@ class WeatherController extends GetxController {
     } else {
       throw Exception('Weather not found');
     }
+  }
+
+  getForecastWeather() async {
+    String apiKey = '4e735fb780e747dd83c45255232707';
+    final resonse = await http.get(Uri.parse(
+        'http://api.weatherapi.com/v1/forecast.json?key=4e735fb780e747dd83c45255232707&q=Dhaka&days=10&aqi=no&alerts=no'));
+
+    if (resonse.statusCode == 200) {
+      final json = jsonDecode(resonse.body);
+      weatherForecast = MyForecastModel.fromJson(json);
+
+      DateTime ft = DateTime.parse(weatherForecast?.forecast?.forecastday?[0].date ?? '');
+      String forecatDate = DateFormat('MMMM d').format(ft);
+      print(weatherForecast?.forecast?.forecastday?.length);
+    }
+  }
+
+  String dateFormatter (String dateTime) {
+
+    if (dateTime != '') {
+      DateTime ft = DateTime.parse(dateTime);
+      String forecastDate = DateFormat('MMMM d').format(ft);
+      return forecastDate;
+    }
+    return '';
   }
 
   // getCurrentLocation() async {

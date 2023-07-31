@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:weather_app/weather_controller.dart';
 
-class WeatherUI2 extends StatelessWidget {
-  const WeatherUI2({super.key});
+class WeatherForecast extends StatelessWidget {
+  WeatherForecast({super.key});
+
+  WeatherController controller = Get.put(WeatherController());
 
   @override
   Widget build(BuildContext context) {
+
+    var forecast = controller.weatherForecast?.forecast;
     return Scaffold(
       backgroundColor: Color(0xFF4A98FA),
       appBar: AppBar(
@@ -51,12 +57,12 @@ class WeatherUI2 extends StatelessWidget {
                     itemCount: 10,
                     itemBuilder: (context, index) => Container(
                       margin: EdgeInsets.symmetric(horizontal: 5),
-                      width: 100,
+                      width: 110,
                       decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(20)),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text('22°C',
                               style: TextStyle(
@@ -69,9 +75,8 @@ class WeatherUI2 extends StatelessWidget {
                       ),
                     )),
               ),
-              Padding(
-                padding:
-                const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 24, horizontal: 8),
                 child: Text(
                   'Next Forecast',
                   style: TextStyle(
@@ -88,18 +93,18 @@ class WeatherUI2 extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Sep, 13',
+                        Text(controller.dateFormatter(forecast?.forecastday?[index].date ?? ''),
                             style: TextStyle(
                                 fontSize: 22, color: Colors.white)),
-                        Image.asset('assets/images/img_1.png', scale: 1.6),
-                        Text('21°C',
+                        Image.network('${forecast?.forecastday?[index].day?.condition?.icon ?? ''}', scale: 1.6),
+                        Text(forecast?.forecastday?[index].day?.avgtempC.toString() ?? '',
                             style: TextStyle(
                                 fontSize: 22, color: Colors.white)),
                       ],
                     ),
                   )),
-              SizedBox(height: 10),
-              Row(
+              const SizedBox(height: 10),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.light_mode, size: 30, color: Colors.white),
@@ -111,7 +116,7 @@ class WeatherUI2 extends StatelessWidget {
                           color: Colors.white)),
                 ],
               ),
-              SizedBox(height: 10)
+              const SizedBox(height: 10)
             ],
           ),
         ),
