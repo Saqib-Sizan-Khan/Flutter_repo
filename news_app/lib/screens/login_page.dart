@@ -1,10 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/otp_page.dart';
 import 'package:news_app/widgets/texts.dart';
 import '../widgets/buttons.dart';
 import '../widgets/textfield.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  TextEditingController phoneController = TextEditingController();
+  static String verify = "";
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +26,78 @@ class LoginPage extends StatelessWidget {
               flex: 4,
               child: Column(
                 children: [
-                  AuthTextField(
-                      title: 'Phone Number',
-                      hint: '+88 (017) 00000000',
-                      textInputType: TextInputType.phone),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        Text('Phone Number', style: TextStyle(fontSize: 16)),
+                        SizedBox(height: 5),
+                        TextField(
+                          controller: phoneController,
+                          style: TextStyle(fontSize: 20, color: Colors.black),
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.grey.shade200,
+                              hintText: '01700000000',
+                              hintStyle: TextStyle(fontSize: 18),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(width: 2, color: Color(0xFFD9D9D9)),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(width: 3, color: Colors.purple),
+                              ),
+                              suffixIcon: Icon(Icons.help_outline)),
+                        ),
+                      ],
+                    ),
+                  ),
+
+
+                  // AuthTextField(
+                  //     title: 'Phone Number',
+                  //     hint: '+88 (017) 00000000',
+                  //     textInputType: TextInputType.phone),
                   AuthTextField(title: 'Password', hint: '', obscure: true),
                   SizedBox(height: 20),
-                  SimpleButton(title: 'Login'),
+
+                  InkWell(
+                    onTap: () async {
+                      await FirebaseAuth.instance.verifyPhoneNumber(
+                        phoneNumber: '+88${phoneController.text}',
+                        verificationCompleted: (PhoneAuthCredential credential) {},
+                        verificationFailed: (FirebaseAuthException e) {},
+                        codeSent: (String verificationId, int? resendToken) {
+                          LoginPage.verify = verificationId;
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => OTPPage()));
+                        },
+                        codeAutoRetrievalTimeout: (String verificationId) {},
+                      );
+                    },
+                    child: Container(
+                      width: 330,
+                      height: 42,
+                      decoration: ShapeDecoration(
+                          color: Color(0xFFF1582C),
+                          shape:
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+                      child: Center(
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      )
+                    ),
+                  ),
+
+                  //SimpleButton(title: 'Login'),
                   SizedBox(height: 20),
                   ClickableText(
                       normText: 'Forgot Password? ',

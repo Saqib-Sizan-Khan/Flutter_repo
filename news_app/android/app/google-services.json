@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "531527917036",
+    "project_id": "dhakalivenewsapp",
+    "storage_bucket": "dhakalivenewsapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531527917036:android:4794aa64ecb37f2e9a34c9",
+        "android_client_info": {
+          "package_name": "com.example.news_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531527917036-36p7tcjojc13mepos2fng9i4gbh4m6fn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0jldDgDF-Nlx3_p59Zo5gVyBfFxWRFLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531527917036-36p7tcjojc13mepos2fng9i4gbh4m6fn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

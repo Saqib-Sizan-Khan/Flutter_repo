@@ -4,12 +4,19 @@ import 'package:news_app/screens/category_page2.dart';
 import 'package:news_app/screens/homepage.dart';
 import 'package:news_app/screens/login_page.dart';
 import 'package:news_app/screens/news_bottom_nav.dart';
+import 'package:news_app/screens/otp_page.dart';
 import 'package:news_app/screens/search_page.dart';
 import 'package:news_app/screens/settings_page.dart';
 import 'package:news_app/screens/signup_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +32,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: NewsBottomNav(),
+      home: LoginPage(),
     );
   }
 }
