@@ -73,17 +73,26 @@ class WeatherController extends GetxController {
       final json = jsonDecode(resonse.body);
       weatherForecast = MyForecastModel.fromJson(json);
 
-      DateTime ft = DateTime.parse(weatherForecast?.forecast?.forecastday?[0].date ?? '');
+      DateTime ft =
+          DateTime.parse(weatherForecast?.forecast?.forecastday?[0].date ?? '');
       String forecatDate = DateFormat('MMMM d').format(ft);
       print(weatherForecast?.forecast?.forecastday?.length);
     }
   }
 
-  String dateFormatter (String dateTime) {
-
+  String dateFormatter(String dateTime) {
     if (dateTime != '') {
       DateTime ft = DateTime.parse(dateTime);
       String forecastDate = DateFormat('MMMM d').format(ft);
+      return forecastDate;
+    }
+    return '';
+  }
+
+  String timeFormatter(String dateTime) {
+    if (dateTime != '') {
+      DateTime ft = DateTime.parse(dateTime);
+      String forecastDate = DateFormat.jm().format(ft);
       return forecastDate;
     }
     return '';

@@ -9,8 +9,8 @@ class WeatherForecast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    var forecast = controller.weatherForecast?.forecast;
+    var dayForecast = controller.weatherForecast?.forecast;
+    var timeForecast = controller.weatherForecast?.forecast!.forecastday?[0];
     return Scaffold(
       backgroundColor: Color(0xFF4A98FA),
       appBar: AppBar(
@@ -37,15 +37,16 @@ class WeatherForecast extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Today',
                       style: TextStyle(
                           fontSize: 32,
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
                     ),
-                    Text('Sep, 12',
-                        style: TextStyle(fontSize: 24, color: Colors.white))
+                    Text(controller.dateFormatter(timeForecast?.date ?? ''),
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white))
                   ],
                 ),
               ),
@@ -56,24 +57,31 @@ class WeatherForecast extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: 10,
                     itemBuilder: (context, index) => Container(
-                      margin: EdgeInsets.symmetric(horizontal: 5),
-                      width: 110,
-                      decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text('22°C',
-                              style: TextStyle(
-                                  fontSize: 22, color: Colors.white)),
-                          Image.asset('assets/images/img_1.png'),
-                          Text('16.00',
-                              style: TextStyle(
-                                  fontSize: 22, color: Colors.white)),
-                        ],
-                      ),
-                    )),
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          width: 110,
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                  timeForecast?.hour?[index].tempC.toString() ??
+                                      '',
+                                  style: TextStyle(
+                                      fontSize: 22, color: Colors.white)),
+                              Image.network(
+                                  timeForecast?.hour?[index].condition?.icon ??
+                                      'assets/images/img_1.png',
+                                  scale: 1.1),
+                              Text(
+                                  controller.timeFormatter(
+                                      timeForecast?.hour?[index].time ?? ''),
+                                  style: TextStyle(
+                                      fontSize: 22, color: Colors.white)),
+                            ],
+                          ),
+                        )),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 24, horizontal: 8),
@@ -89,20 +97,30 @@ class WeatherForecast extends StatelessWidget {
                   itemCount: 10,
                   shrinkWrap: true,
                   itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(controller.dateFormatter(forecast?.forecastday?[index].date ?? ''),
-                            style: TextStyle(
-                                fontSize: 22, color: Colors.white)),
-                        Image.network('${forecast?.forecastday?[index].day?.condition?.icon ?? ''}', scale: 1.6),
-                        Text(forecast?.forecastday?[index].day?.avgtempC.toString() ?? '',
-                            style: TextStyle(
-                                fontSize: 22, color: Colors.white)),
-                      ],
-                    ),
-                  )),
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                                controller.dateFormatter(
+                                    dayForecast?.forecastday?[index].date ??
+                                        ''),
+                                style: TextStyle(
+                                    fontSize: 22, color: Colors.white)),
+                            Image.network(
+                                dayForecast?.forecastday?[index].day?.condition
+                                        ?.icon ??
+                                    'assets/images/img_1.png',
+                                scale: 1.1),
+                            Text(
+                                dayForecast?.forecastday?[index].day?.avgtempC
+                                        .toString() ??
+                                    '',
+                                style: TextStyle(
+                                    fontSize: 22, color: Colors.white)),
+                          ],
+                        ),
+                      )),
               const SizedBox(height: 10),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
