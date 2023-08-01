@@ -45,94 +45,104 @@ class WeatherUIHome extends StatelessWidget {
                 ),
               )),
           Expanded(
-            flex: 2,
-            child: Obx(() => Container(
-              width: 200,
-              height: double.maxFinite,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage('${controller.icon}'),
-                      fit: BoxFit.contain)),
-            ))
-          ),
+              flex: 2,
+              child: Obx(() => Container(
+                    width: 200,
+                    height: double.maxFinite,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                controller.weatherForecast.value.current
+                                        ?.condition?.icon ??
+                                    'assets/images/img_1.png',
+                                scale: 0.4),
+                            fit: BoxFit.scaleDown)),
+                  ))),
           Expanded(
             flex: 4,
             child: Obx(() => Container(
-              width: 350,
-              margin: const EdgeInsets.only(bottom: 150),
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('Today, ${controller.weatherTime}',
-                      style:
-                      const TextStyle(fontSize: 24, color: Colors.white)),
-                  Text('${controller.temperature}℃',
-                      style:
-                      const TextStyle(fontSize: 70, color: Colors.white)),
-                  Text('${controller.condition}',
-                      style:
-                      const TextStyle(fontSize: 28, color: Colors.white)),
-                  SizedBox(
-                      width: 200,
-                      height: 80,
-                      child: Row(
-                        children: [
-                          const Column(
+                  width: 350,
+                  margin: const EdgeInsets.only(bottom: 150),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                          'Today, ${controller.dateFormatter(controller.weatherForecast.value.current?.lastUpdated ?? '')}',
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white)),
+                      Text(
+                          '${controller.weatherForecast.value.current?.tempC ?? ''}℃',
+                          style: const TextStyle(
+                              fontSize: 62, color: Colors.white)),
+                      Text(
+                          controller.weatherForecast.value.current?.condition
+                                  ?.text ??
+                              '',
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white)),
+                      SizedBox(
+                          width: 200,
+                          height: 80,
+                          child: Row(
                             children: [
-                              Icon(Icons.air_outlined,
-                                  color: Colors.white, size: 30),
-                              SizedBox(height: 10),
-                              Icon(Icons.water_drop,
-                                  color: Colors.white, size: 30),
+                              const Column(
+                                children: [
+                                  Icon(Icons.air_outlined,
+                                      color: Colors.white, size: 30),
+                                  SizedBox(height: 10),
+                                  Icon(Icons.water_drop,
+                                      color: Colors.white, size: 30),
+                                ],
+                              ),
+                              const SizedBox(width: 5),
+                              const Column(
+                                children: [
+                                  Text('Wind',
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                  SizedBox(height: 20),
+                                  Text('Hum',
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                ],
+                              ),
+                              const SizedBox(width: 10),
+                              const Column(
+                                children: [
+                                  Text('|',
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                  SizedBox(height: 20),
+                                  Text('|',
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                ],
+                              ),
+                              const SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      '${controller.weatherForecast.value.current?.windKph ?? ''} km/h',
+                                      style: const TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                  const SizedBox(height: 20),
+                                  Text(
+                                      '${controller.weatherForecast.value.current?.humidity ?? ''}%',
+                                      style: const TextStyle(
+                                          fontSize: 20, color: Colors.white))
+                                ],
+                              ),
                             ],
-                          ),
-                          const SizedBox(width: 5),
-                          const Column(
-                            children: [
-                              Text('Wind',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.white)),
-                              SizedBox(height: 20),
-                              Text('Hum',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.white)),
-                            ],
-                          ),
-                          const SizedBox(width: 10),
-                          const Column(
-                            children: [
-                              Text('|',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.white)),
-                              SizedBox(height: 20),
-                              Text('|',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.white)),
-                            ],
-                          ),
-                          const SizedBox(width: 10),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('${controller.wind} km/h',
-                                  style: const TextStyle(
-                                      fontSize: 20, color: Colors.white)),
-                              const SizedBox(height: 20),
-                              Text('${controller.humidity}%',
-                                  style: const TextStyle(
-                                      fontSize: 20, color: Colors.white))
-                            ],
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-            )),
+                          )),
+                    ],
+                  ),
+                )),
           )
         ],
       ),

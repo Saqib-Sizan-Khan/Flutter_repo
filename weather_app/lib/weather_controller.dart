@@ -8,76 +8,43 @@ import 'package:intl/intl.dart';
 
 class WeatherController extends GetxController {
   //Position? position;
-  RxString selectedCity = 'Dhaka'.obs;
-  RxString locationName = ''.obs;
-  RxString temperature = ''.obs;
-  RxString condition = ''.obs;
-  RxString icon = ''.obs;
-  RxString wind = ''.obs;
-  RxString humidity = ''.obs;
-  RxString weatherTime = ''.obs;
 
-  MyForecastModel? weatherForecast;
+  RxString selectedCity = 'Dhaka'.obs;
+  Rx<MyForecastModel> weatherForecast = MyForecastModel().obs;
 
   var cityList = [
-    'Sylhet',
     'Dhaka',
+    'Sylhet',
     'Khulna',
     'Chittagong',
     'Rajshahi',
-    'Barishal'
+    'Barisal',
+    'Rangpur'
   ];
 
   @override
   void onInit() {
     //getCurrentLocation();
     //getCurrentPosition();
-    //getLocationWeather(selectedCity.value);
-    getForecastWeather();
+    getForecastWeather(selectedCity.value);
     super.onInit();
+  }
+
+  getForecastWeather(String city) async {
+    String apiKey = '4e735fb780e747dd83c45255232707';
+    final response = await http.get(Uri.parse(
+        'http://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$city&days=10&aqi=no&alerts=no'));
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      weatherForecast.value = MyForecastModel.fromJson(json);
+      print(weatherForecast.value.location?.name);
+    }
   }
 
   void citySelect(String newCity) {
     selectedCity.value = newCity;
-    getLocationWeather(selectedCity.value);
-  }
-
-  getLocationWeather(String city) async {
-    String apiKey = '4e735fb780e747dd83c45255232707';
-    final response = await http.get(Uri.parse(
-        'http://api.weatherapi.com/v1/current.json?key=$apiKey&q=$city&aqi=no'));
-
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-
-      DateTime wt = DateTime.parse(json['current']['last_updated']);
-
-      locationName.value = json['location']['name'];
-      temperature.value = json['current']['temp_c'].toString();
-      condition.value = json['current']['condition']['text'];
-      icon.value = json['current']['condition']['icon'];
-      wind.value = json['current']['wind_kph'].toString();
-      humidity.value = json['current']['humidity'].toString();
-      weatherTime.value = DateFormat('d MMMM').format(wt);
-    } else {
-      throw Exception('Weather not found');
-    }
-  }
-
-  getForecastWeather() async {
-    String apiKey = '4e735fb780e747dd83c45255232707';
-    final resonse = await http.get(Uri.parse(
-        'http://api.weatherapi.com/v1/forecast.json?key=4e735fb780e747dd83c45255232707&q=Dhaka&days=10&aqi=no&alerts=no'));
-
-    if (resonse.statusCode == 200) {
-      final json = jsonDecode(resonse.body);
-      weatherForecast = MyForecastModel.fromJson(json);
-
-      DateTime ft =
-          DateTime.parse(weatherForecast?.forecast?.forecastday?[0].date ?? '');
-      String forecatDate = DateFormat('MMMM d').format(ft);
-      print(weatherForecast?.forecast?.forecastday?.length);
-    }
+    getForecastWeather(selectedCity.value);
   }
 
   String dateFormatter(String dateTime) {
