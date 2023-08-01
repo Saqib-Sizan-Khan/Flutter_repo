@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:weather_app/forecast_model.dart';
-import 'package:weather_app/weather_model.dart';
-import 'package:intl/intl.dart';
+import 'package:weather_app/model/forecast_model.dart';
 
 class WeatherController extends GetxController {
   //Position? position;
@@ -42,27 +40,9 @@ class WeatherController extends GetxController {
     }
   }
 
-  void citySelect(String newCity) {
+  void changeLocation(String newCity) {
     selectedCity.value = newCity;
     getForecastWeather(selectedCity.value);
-  }
-
-  String dateFormatter(String dateTime) {
-    if (dateTime != '') {
-      DateTime ft = DateTime.parse(dateTime);
-      String forecastDate = DateFormat('MMMM d').format(ft);
-      return forecastDate;
-    }
-    return '';
-  }
-
-  String timeFormatter(String dateTime) {
-    if (dateTime != '') {
-      DateTime ft = DateTime.parse(dateTime);
-      String forecastDate = DateFormat.jm().format(ft);
-      return forecastDate;
-    }
-    return '';
   }
 
   // getCurrentLocation() async {

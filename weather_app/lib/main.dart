@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weather_app/weather_forecastpage.dart';
-import 'package:weather_app/weather_homepage.dart';
+import 'package:weather_app/screens/forecastpage.dart';
+import 'package:weather_app/screens/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WeatherUIHome(),
+      home: ForecastPage(),
     );
   }
 }
