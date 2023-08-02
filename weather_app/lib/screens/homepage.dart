@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [Colors.cyan, Colors.indigo]
+          colors: [Colors.blueAccent, Colors.redAccent]
         )
       ),
       child: Scaffold(

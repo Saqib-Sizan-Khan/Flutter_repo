@@ -15,18 +15,14 @@ class ForecastPage extends StatelessWidget {
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Colors.cyan, Colors.indigo])),
+              colors: [Colors.blue, Colors.redAccent])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           toolbarHeight: 80,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Row(children: [
-            Image.asset('assets/images/left_arrow_logo.png', scale: 1.5),
-            SizedBox(width: 10),
-            Text('Back', style: TextStyle(fontSize: 22, color: Colors.white))
-          ]),
+          title: Text('${controller.selectedCity.value} Forecst', style: const TextStyle(fontSize: 24),),
           actions: [
             Image.asset('assets/images/settings_logo.png', scale: 1.5),
           ],
@@ -62,14 +58,14 @@ class ForecastPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 200,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: 10,
                       itemBuilder: (context, index) => Container(
-                            margin: EdgeInsets.symmetric(horizontal: 5),
+                            margin: const EdgeInsets.symmetric(horizontal: 5),
                             width: 110,
                             decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.2),
@@ -82,7 +78,7 @@ class ForecastPage extends StatelessWidget {
                                             ?.forecastday?[0].hour?[index].tempC
                                             .toString() ??
                                         '',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 22, color: Colors.white)),
                                 Image.network(
                                     controller
@@ -104,7 +100,7 @@ class ForecastPage extends StatelessWidget {
                                             .hour?[index]
                                             .time ??
                                         ''),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 22, color: Colors.white)),
                               ],
                             ),
@@ -136,7 +132,7 @@ class ForecastPage extends StatelessWidget {
                                           ?.forecastday?[index]
                                           .date ??
                                       ''),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 22, color: Colors.white)),
                               Image.network(
                                   controller
@@ -154,7 +150,7 @@ class ForecastPage extends StatelessWidget {
                                           ?.forecastday?[index].day?.avgtempC
                                           .toString() ??
                                       '',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 22, color: Colors.white)),
                             ],
                           ),
