@@ -6,10 +6,11 @@ import 'package:news_app/widgets/containers.dart';
 import 'package:news_app/widgets/images.dart';
 import 'package:news_app/widgets/tags.dart';
 
+
+NewsControlller controlller = Get.put(NewsControlller());
+
 class NewsListView extends StatelessWidget {
   NewsListView({super.key});
-
-  NewsControlller controlller = Get.put(NewsControlller());
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class NewsListView extends StatelessWidget {
 }
 
 class SpotlightNewsListView extends StatelessWidget {
-  const SpotlightNewsListView({super.key});
+  SpotlightNewsListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class SpotlightNewsListView extends StatelessWidget {
               child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: 5,
+                  itemCount: controlller.generalNewsModel?.articles.length ?? 0,
                   itemBuilder: (context, index) {
                     return Stack(
                       children: [
@@ -54,7 +55,7 @@ class SpotlightNewsListView extends StatelessWidget {
                           width: 154,
                           margin: EdgeInsets.only(right: 10),
                           decoration: BoxDecoration(
-                              image: wallPaper('lounch.png'),
+                              image: NetWallPaper(controlller.generalNewsModel?.articles[index].urlToImage ?? ''),
                               borderRadius: BorderRadius.circular(10)),
                         ),
                         Container(
@@ -73,9 +74,9 @@ class SpotlightNewsListView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               NewsTags(
-                                  tagName: 'National', textColor: 0xFFFFFFFF),
+                                  tagName: 'General', textColor: const Color(0xFFFFFFFF)),
                               Text(
-                                'New rules for ferry movement on Shimulia-Banglabazar route',
+                                controlller.generalNewsModel?.articles[index].title ?? '',
                                 style: TextStyle(
                                     fontSize: 11,
                                     color: Colors.white,
@@ -96,32 +97,39 @@ class SpotlightNewsListView extends StatelessWidget {
 }
 
 class NewsListView2 extends StatelessWidget {
-  const NewsListView2({super.key});
+  NewsListView2({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        itemCount: newsImage.length,
-        itemBuilder: (context, index) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(newsTag[index],
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
-              SizedBox(height: 10),
-              OrdinaryNewsCon(
-                  image: newsImage[index],
-                  newsTag: newsTag[index],
-                  headline: newsHeadline[index]),
-              SmallNewsCon(
-                  image: newsImage[newsImage.length - index - 1],
-                  tag: newsTag[newsImage.length - index - 1],
-                  headline: newsHeadline[newsImage.length - index - 1])
-            ],
-          );
-        });
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Text("Sports",
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
+        ),
+        ListView.builder(
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            itemCount: controlller.sportsNewsModel?.articles.length ?? 0,
+            itemBuilder: (context, index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10),
+                  OrdinaryNewsCon(
+                      image: controlller.sportsNewsModel?.articles[index].urlToImage ?? '',
+                      newsTag: 'Sports',
+                      headline: controlller.sportsNewsModel?.articles[index].title ?? ''),
+                  SmallNewsCon2(
+                      image: controlller.sportsNewsModel?.articles[index].urlToImage ?? '',
+                      description: controlller.sportsNewsModel?.articles[index].description ?? '')
+                ],
+              );
+            }),
+      ],
+    );
   }
 }
 

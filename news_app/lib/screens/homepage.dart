@@ -35,10 +35,10 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: OrdinaryNewsCon(
-                image: controlller.generalNewsModel?.articles[10].urlToImage ?? '',
+                image: controlller.generalNewsModel?.articles[4].urlToImage ?? '',
                 newsTag: 'General',
-                headline: controlller.generalNewsModel?.articles[10].title ?? '',
-                subHeadline: controlller.generalNewsModel?.articles[10].description ?? '',
+                headline: controlller.generalNewsModel?.articles[4].title ?? '',
+                subHeadline: controlller.generalNewsModel?.articles[4].description ?? '',
               ),
             ),
             SpotlightNewsListView(),

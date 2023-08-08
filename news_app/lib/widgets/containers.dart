@@ -20,7 +20,9 @@ class BreakingNewsCon extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  NewsTags(tagName: 'Breaking News', textColor: 0xFFF1582C),
+                  NewsTags(
+                      tagName: 'Breaking News',
+                      textColor: const Color(0xFFF1582C)),
                   SizedBox(width: 5),
                   NewsTags(tagName: 'National'),
                 ],
@@ -140,6 +142,45 @@ class SmallNewsCon extends StatelessWidget {
                       fontSize: 9,
                       fontWeight: FontWeight.w300,
                       color: Color(0xFF494949))),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class SmallNewsCon2 extends StatelessWidget {
+  SmallNewsCon2({super.key, required this.image, required this.description});
+
+  String image;
+  String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 140,
+          height: 120,
+          decoration: ShapeDecoration(
+              image: NetWallPaper(image),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5))),
+        ),
+        SizedBox(width: 10),
+        Container(
+          width: 200,
+          height: 140,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                description,
+                style:
+                    const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+              ),
             ],
           ),
         )
