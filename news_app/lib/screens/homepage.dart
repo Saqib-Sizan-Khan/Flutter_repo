@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:news_app/controller/news_repo.dart';
 import 'package:news_app/widgets/containers.dart';
 import 'package:news_app/widgets/list_view.dart';
 import 'package:news_app/widgets/news_app_bar.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  NewsControlller controlller = Get.put(NewsControlller());
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +26,19 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: OrdinaryNewsCon(
-                image: 'fload2.png',
-                newsTag: 'National',
-                headline: 'The flood victims spend their days without food',
-                subHeadline:
-                    'The overall flood situation in the country has further deteriorated. All rivers in the north are rising.',
+                image: controlller.generalNewsModel?.articles[5].urlToImage ?? '',
+                newsTag: 'General',
+                headline: controlller.generalNewsModel?.articles[5].title ?? '',
+                subHeadline: controlller.generalNewsModel?.articles[5].description ?? '',
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: OrdinaryNewsCon(
-                image: 'edu.png',
-                newsTag: 'Education',
-                headline:
-                    'If you want to study in China, it is good to know the answers to the 10 questions',
-                subHeadline:
-                    'China is now a favorite destination for many students for higher education. About studying in China.',
+                image: controlller.generalNewsModel?.articles[10].urlToImage ?? '',
+                newsTag: 'General',
+                headline: controlller.generalNewsModel?.articles[10].title ?? '',
+                subHeadline: controlller.generalNewsModel?.articles[10].description ?? '',
               ),
             ),
             SpotlightNewsListView(),

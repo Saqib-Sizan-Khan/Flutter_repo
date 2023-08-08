@@ -14,7 +14,7 @@ class CategoryPage2 extends StatelessWidget {
         child: Column(
           children: [
             BreakingNewsCon(),
-            NewsListView()
+            //NewsListView()
           ],
         ),
       ),

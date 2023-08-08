@@ -70,7 +70,7 @@ class OrdinaryNewsCon extends StatelessWidget {
             Container(
               height: 160,
               decoration: ShapeDecoration(
-                  image: wallPaper(image),
+                  image: NetWallPaper(image),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5))),
             ),
@@ -114,17 +114,17 @@ class SmallNewsCon extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 130,
-          height: 90,
+          width: 140,
+          height: 120,
           decoration: ShapeDecoration(
-              image: wallPaper(image),
+              image: NetWallPaper(image),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5))),
         ),
         SizedBox(width: 10),
         Container(
-          width: 215,
-          height: 100,
+          width: 200,
+          height: 140,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

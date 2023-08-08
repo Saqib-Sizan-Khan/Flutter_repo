@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:news_app/controller/news_repo.dart';
 import 'package:news_app/widgets/images.dart';
 import 'package:news_app/widgets/list_view.dart';
 import 'package:news_app/widgets/textfield.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
+  SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
