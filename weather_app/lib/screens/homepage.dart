@@ -29,8 +29,13 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image.asset('assets/images/location_logo.png',
-                          scale: 1.6.sp),
+                      InkWell(
+                        onTap: () {
+                          controller.getCurrentLocationWeather();
+                        },
+                        child: Image.asset('assets/images/location_logo.png',
+                            scale: 1.6.sp),
+                      ),
                       InkWell(
                         onTap: () {
                           Get.bottomSheet(
