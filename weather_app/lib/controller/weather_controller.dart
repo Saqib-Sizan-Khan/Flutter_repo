@@ -6,19 +6,8 @@ import 'package:weather_app/model/forecast_model.dart';
 
 class WeatherController extends GetxController {
   //Position? position;
-
   RxString selectedCity = 'Dhaka'.obs;
   Rx<MyForecastModel> weatherForecast = MyForecastModel().obs;
-
-  var cityList = [
-    'Dhaka',
-    'Sylhet',
-    'Khulna',
-    'Chittagong',
-    'Rajshahi',
-    'Barisal',
-    'Rangpur'
-  ];
 
   @override
   void onInit() {
@@ -36,7 +25,6 @@ class WeatherController extends GetxController {
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       weatherForecast.value = MyForecastModel.fromJson(json);
-      print(weatherForecast.value.location?.name);
     }
   }
 

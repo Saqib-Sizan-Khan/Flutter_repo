@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/controller/date_time_formatter.dart';
 import 'package:weather_app/controller/weather_controller.dart';
@@ -19,12 +20,15 @@ class ForecastPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          toolbarHeight: 80,
+          toolbarHeight: 80.h,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text('${controller.selectedCity.value} Forecst', style: const TextStyle(fontSize: 24),),
+          title: Text(
+            '${controller.selectedCity.value} Forecast',
+            style: TextStyle(fontSize: 24.sp),
+          ),
           actions: [
-            Image.asset('assets/images/settings_logo.png', scale: 1.5),
+            Image.asset('assets/images/settings_logo.png', scale: 1.8.sp),
           ],
         ),
         body: SingleChildScrollView(
@@ -38,10 +42,10 @@ class ForecastPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
+                      Text(
                         'Today',
                         style: TextStyle(
-                            fontSize: 32,
+                            fontSize: 32.sp,
                             color: Colors.white,
                             fontWeight: FontWeight.w600),
                       ),
@@ -53,20 +57,20 @@ class ForecastPage extends StatelessWidget {
                                   ?.forecastday?[0]
                                   .date ??
                               ''),
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.white))
+                          style:
+                              TextStyle(fontSize: 24.sp, color: Colors.white))
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 200,
+                  height: 200.h,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: 10,
                       itemBuilder: (context, index) => Container(
                             margin: const EdgeInsets.symmetric(horizontal: 5),
-                            width: 110,
+                            width: 110.w,
                             decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(20)),
@@ -78,8 +82,8 @@ class ForecastPage extends StatelessWidget {
                                             ?.forecastday?[0].hour?[index].tempC
                                             .toString() ??
                                         '',
-                                    style: const TextStyle(
-                                        fontSize: 22, color: Colors.white)),
+                                    style: TextStyle(
+                                        fontSize: 22.sp, color: Colors.white)),
                                 Image.network(
                                     controller
                                             .weatherForecast
@@ -90,7 +94,7 @@ class ForecastPage extends StatelessWidget {
                                             .condition
                                             ?.icon ??
                                         'assets/images/img_1.png',
-                                    scale: 1.1),
+                                    scale: 1.3.sp),
                                 Text(
                                     DateTimeFormat.timeFormatter(controller
                                             .weatherForecast
@@ -100,18 +104,19 @@ class ForecastPage extends StatelessWidget {
                                             .hour?[index]
                                             .time ??
                                         ''),
-                                    style: const TextStyle(
-                                        fontSize: 22, color: Colors.white)),
+                                    style: TextStyle(
+                                        fontSize: 22.sp, color: Colors.white)),
                               ],
                             ),
                           )),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                   child: Text(
                     'Next Forecast',
                     style: TextStyle(
-                        fontSize: 28,
+                        fontSize: 28.sp,
                         fontWeight: FontWeight.w600,
                         color: Colors.white),
                   ),
@@ -120,7 +125,7 @@ class ForecastPage extends StatelessWidget {
                     itemCount: 10,
                     shrinkWrap: true,
                     itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -132,8 +137,8 @@ class ForecastPage extends StatelessWidget {
                                           ?.forecastday?[index]
                                           .date ??
                                       ''),
-                                  style: const TextStyle(
-                                      fontSize: 22, color: Colors.white)),
+                                  style: TextStyle(
+                                      fontSize: 22.sp, color: Colors.white)),
                               Image.network(
                                   controller
                                           .weatherForecast
@@ -144,14 +149,14 @@ class ForecastPage extends StatelessWidget {
                                           ?.condition
                                           ?.icon ??
                                       'assets/images/img_1.png',
-                                  scale: 1.1),
+                                  scale: 1.2.sp),
                               Text(
                                   controller.weatherForecast.value.forecast
                                           ?.forecastday?[index].day?.avgtempC
                                           .toString() ??
                                       '',
-                                  style: const TextStyle(
-                                      fontSize: 22, color: Colors.white)),
+                                  style: TextStyle(
+                                      fontSize: 22.sp, color: Colors.white)),
                             ],
                           ),
                         )),

@@ -87,7 +87,7 @@ class Current {
   double? windKph;
   int? windDegree;
   String? windDir;
-  int? pressureMb;
+  double? pressureMb;
   double? pressureIn;
   double? precipMm;
   double? precipIn;
@@ -95,7 +95,7 @@ class Current {
   int? cloud;
   double? feelslikeC;
   double? feelslikeF;
-  int? visKm;
+  double? visKm;
   int? visMiles;
   int? uv;
   double? gustMph;
