@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:news_app/controller/news_repo.dart';
-import 'package:news_app/widgets/images.dart';
-import 'package:news_app/widgets/list_view.dart';
-import 'package:news_app/widgets/textfield.dart';
+import '../widgets/list_view.dart';
+import '../widgets/textfield.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
@@ -16,7 +13,7 @@ class SearchPage extends StatelessWidget {
         toolbarHeight: 94,
         title: SearchTextField(hint: 'Sports'),
       ),
-      body: NewsListView(),
+      body: NewsListView(category: 'Sports'),
     );
   }
 }

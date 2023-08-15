@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/category_page.dart';
-import 'package:news_app/screens/homepage.dart';
-import 'package:news_app/screens/search_page.dart';
-import 'package:news_app/screens/settings_page.dart';
+import 'category_page.dart';
+import 'homepage.dart';
+import 'search_page.dart';
+import 'settings_page.dart';
+
 
 class NewsBottomNav extends StatefulWidget {
   const NewsBottomNav({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/widgets/containers.dart';
-import 'package:news_app/widgets/list_view.dart';
-import 'package:news_app/widgets/news_app_bar.dart';
+import '../widgets/list_view.dart';
+import '../widgets/news_app_bar.dart';
 
 class CategoryPage2 extends StatelessWidget {
-  const CategoryPage2({super.key});
+  CategoryPage2({super.key, required this.category});
 
+  String category;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,8 +13,8 @@ class CategoryPage2 extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            BreakingNewsCon(),
-            //NewsListView()
+            //BreakingNewsCon(),
+            NewsListView(category: category)
           ],
         ),
       ),

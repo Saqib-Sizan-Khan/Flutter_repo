@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/otp_page.dart';
-import 'package:news_app/widgets/texts.dart';
-import '../widgets/buttons.dart';
 import '../widgets/textfield.dart';
+import '../widgets/texts.dart';
+import 'otp_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

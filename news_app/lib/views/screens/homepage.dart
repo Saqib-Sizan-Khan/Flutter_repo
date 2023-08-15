@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/news_repo.dart';
-import 'package:news_app/widgets/containers.dart';
-import 'package:news_app/widgets/list_view.dart';
-import 'package:news_app/widgets/news_app_bar.dart';
+import '../widgets/containers.dart';
+import '../widgets/list_view.dart';
+import '../widgets/news_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.black.withOpacity(0.1),
                 indent: 16,
                 endIndent: 16),
-            NewsListView(),
+            NewsListView(category: 'Business'),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: OrdinaryNewsCon(

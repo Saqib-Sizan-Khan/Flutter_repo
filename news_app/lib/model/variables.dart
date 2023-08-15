@@ -9,16 +9,13 @@ var settingsOptions = [
 ];
 
 var categoryList = [
-  'National',
-  'International',
-  'Trade',
-  'Sports',
-  'Information and Technology',
-  'Education',
-  'Life Style',
-  'Video',
+  'General',
+  'Business',
+  'Health',
+  'Science',
+  'Technology',
   'Entertainment',
-  'Health'
+  'Sports',
 ];
 
 var newsImage = ['fload.png', 'mbappe.png', 'celebrity.png'];

@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/login_page.dart';
-import 'package:news_app/screens/news_bottom_nav.dart';
-import 'package:news_app/widgets/texts.dart';
 import 'package:pinput/pinput.dart';
-import '../widgets/buttons.dart';
-import '../widgets/textfield.dart';
+import 'login_page.dart';
+import 'news_bottom_nav.dart';
 
 class OTPPage extends StatelessWidget {
   OTPPage({super.key});

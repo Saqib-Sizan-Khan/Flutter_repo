@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/widgets/news_app_bar.dart';
-import 'package:news_app/widgets/buttons.dart';
-import 'package:news_app/widgets/images.dart';
-import '../variables/variables.dart';
+import '../../model/variables.dart';
+import '../widgets/buttons.dart';
+import '../widgets/images.dart';
+import '../widgets/news_app_bar.dart';
 
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});

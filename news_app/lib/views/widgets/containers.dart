@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/widgets/images.dart';
-import 'package:news_app/widgets/tags.dart';
+import 'package:get/get.dart';
+import 'package:news_app/controller/news_repo.dart';
+import 'images.dart';
+import 'tags.dart';
 
 class BreakingNewsCon extends StatelessWidget {
-  const BreakingNewsCon({super.key});
+  BreakingNewsCon({super.key});
+
+  NewsControlller controlller = Get.put(NewsControlller());
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +15,9 @@ class BreakingNewsCon extends StatelessWidget {
       children: [
         Container(
           height: 200,
-          decoration: BoxDecoration(image: wallPaper('padma_bridge.png')),
+          decoration: BoxDecoration(
+              image: NetWallPaper(
+                  controlller.headlinesModel?.articles[0].urlToImage ?? '')),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -28,11 +34,10 @@ class BreakingNewsCon extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 5),
-              Text('Inauguration of the dream Padma Bridge on June 25',
+              Text(controlller.headlinesModel?.articles[0].title ?? '',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
               SizedBox(height: 3),
-              Text(
-                  'The dream Padma Bridge will be inaugurated on June 25. Prime Minister Sheikh Hasina will inaugurate the bridge at 10 am today. The dream Padma Bridge will be inaugurated on June 25. Prime Minister at 10 am today',
+              Text(controlller.headlinesModel?.articles[0].description ?? '',
                   style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
                   textAlign: TextAlign.justify),
               SizedBox(height: 3),
@@ -162,8 +167,8 @@ class SmallNewsCon2 extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 140,
-          height: 120,
+          width: 130,
+          height: 130,
           decoration: ShapeDecoration(
               image: NetWallPaper(image),
               shape: RoundedRectangleBorder(
@@ -171,15 +176,15 @@ class SmallNewsCon2 extends StatelessWidget {
         ),
         SizedBox(width: 10),
         Container(
-          width: 200,
-          height: 140,
+          width: 215,
+          height: 150,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 description,
                 style:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                    const TextStyle(fontSize: 9, fontWeight: FontWeight.w400),
               ),
             ],
           ),

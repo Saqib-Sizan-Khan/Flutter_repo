@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/category_page.dart';
-import 'package:news_app/screens/category_page2.dart';
-import 'package:news_app/screens/homepage.dart';
-import 'package:news_app/screens/login_page.dart';
-import 'package:news_app/screens/news_bottom_nav.dart';
-import 'package:news_app/screens/otp_page.dart';
-import 'package:news_app/screens/search_page.dart';
-import 'package:news_app/screens/settings_page.dart';
-import 'package:news_app/screens/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
+import 'package:news_app/views/screens/category_page.dart';
+import 'package:news_app/views/screens/category_page2.dart';
+import 'package:news_app/views/screens/news_bottom_nav.dart';
 import 'firebase_options.dart';
+import 'views/screens/homepage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,14 +21,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: CategoryPage(),
     );
   }
 }

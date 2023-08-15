@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/news_repo.dart';
-import 'package:news_app/variables/variables.dart';
-import 'package:news_app/widgets/containers.dart';
-import 'package:news_app/widgets/images.dart';
-import 'package:news_app/widgets/tags.dart';
+import 'containers.dart';
+import 'images.dart';
+import 'tags.dart';
 
 
 NewsControlller controlller = Get.put(NewsControlller());
 
 class NewsListView extends StatelessWidget {
-  NewsListView({super.key});
+  NewsListView({super.key, required this.category});
+
+  String category;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    controlller.getNewsCategory(category);
+    return Obx(() => ListView.separated(
         shrinkWrap: true,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        itemCount: controlller.businessNewsModel?.articles.length ?? 0,
+        itemCount: controlller.categoryNewsModel.value.articles.length,
         itemBuilder: (context, index) {
           return SmallNewsCon(
-              image: controlller.businessNewsModel?.articles[index].urlToImage ?? '',
-              tag: 'Business',
-              headline: controlller.businessNewsModel?.articles[index].title ?? '');
+              image: controlller.categoryNewsModel.value.articles[index].urlToImage ?? '',
+              tag: category,
+              headline: controlller.categoryNewsModel.value.articles[index].title ?? '');
         },
         separatorBuilder: (context, index) =>
-            Divider(thickness: 1, color: Colors.black.withOpacity(0.2)));
+            Divider(thickness: 1, color: Colors.black.withOpacity(0.2))));
   }
 }
 
