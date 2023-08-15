@@ -12,6 +12,7 @@ class NewsAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: const Color(0xFF494949),
+      iconTheme: const IconThemeData(color: Colors.white),
       toolbarHeight: 94,
       title: Padding(
           padding: const EdgeInsets.only(left: 10),

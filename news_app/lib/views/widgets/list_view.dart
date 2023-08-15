@@ -5,29 +5,35 @@ import 'containers.dart';
 import 'images.dart';
 import 'tags.dart';
 
-
-NewsControlller controlller = Get.put(NewsControlller());
+NewsControlller controller = Get.put(NewsControlller());
 
 class NewsListView extends StatelessWidget {
-  NewsListView({super.key, required this.category});
+  const NewsListView({super.key, required this.category});
 
-  String category;
+  final String category;
 
   @override
   Widget build(BuildContext context) {
-    controlller.getNewsCategory(category);
-    return Obx(() => ListView.separated(
-        shrinkWrap: true,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        itemCount: controlller.categoryNewsModel.value.articles.length,
-        itemBuilder: (context, index) {
-          return SmallNewsCon(
-              image: controlller.categoryNewsModel.value.articles[index].urlToImage ?? '',
-              tag: category,
-              headline: controlller.categoryNewsModel.value.articles[index].title ?? '');
-        },
-        separatorBuilder: (context, index) =>
-            Divider(thickness: 1, color: Colors.black.withOpacity(0.2))));
+    controller.getNewsCategory(category);
+    return Obx(() => controller.isLoading.value
+        ? const SizedBox(
+            height: 500, child: Center(child: CircularProgressIndicator()))
+        : ListView.separated(
+            shrinkWrap: true,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            itemCount: controller.categoryNewsModel.value.articles.length,
+            itemBuilder: (context, index) {
+              return SmallNewsCon(
+                  image: controller
+                          .categoryNewsModel.value.articles[index].urlToImage ??
+                      '',
+                  tag: category,
+                  headline: controller
+                          .categoryNewsModel.value.articles[index].title ??
+                      '');
+            },
+            separatorBuilder: (context, index) =>
+                Divider(thickness: 1, color: Colors.black.withOpacity(0.2))));
   }
 }
 
@@ -49,7 +55,7 @@ class SpotlightNewsListView extends StatelessWidget {
               child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: controlller.generalNewsModel?.articles.length ?? 0,
+                  itemCount: controller.generalNewsModel?.articles.length ?? 0,
                   itemBuilder: (context, index) {
                     return Stack(
                       children: [
@@ -57,7 +63,9 @@ class SpotlightNewsListView extends StatelessWidget {
                           width: 154,
                           margin: EdgeInsets.only(right: 10),
                           decoration: BoxDecoration(
-                              image: NetWallPaper(controlller.generalNewsModel?.articles[index].urlToImage ?? ''),
+                              image: NetWallPaper(controller.generalNewsModel
+                                      ?.articles[index].urlToImage ??
+                                  ''),
                               borderRadius: BorderRadius.circular(10)),
                         ),
                         Container(
@@ -76,9 +84,12 @@ class SpotlightNewsListView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               NewsTags(
-                                  tagName: 'General', textColor: const Color(0xFFFFFFFF)),
+                                  tagName: 'General',
+                                  textColor: const Color(0xFFFFFFFF)),
                               Text(
-                                controlller.generalNewsModel?.articles[index].title ?? '',
+                                controller.generalNewsModel?.articles[index]
+                                        .title ??
+                                    '',
                                 style: TextStyle(
                                     fontSize: 11,
                                     color: Colors.white,
@@ -114,19 +125,27 @@ class NewsListView2 extends StatelessWidget {
         ListView.builder(
             shrinkWrap: true,
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            itemCount: controlller.sportsNewsModel?.articles.length ?? 0,
+            itemCount: controller.sportsNewsModel?.articles.length ?? 0,
             itemBuilder: (context, index) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 10),
                   OrdinaryNewsCon(
-                      image: controlller.sportsNewsModel?.articles[index].urlToImage ?? '',
+                      image: controller
+                              .sportsNewsModel?.articles[index].urlToImage ??
+                          '',
                       newsTag: 'Sports',
-                      headline: controlller.sportsNewsModel?.articles[index].title ?? ''),
+                      headline:
+                          controller.sportsNewsModel?.articles[index].title ??
+                              ''),
                   SmallNewsCon2(
-                      image: controlller.sportsNewsModel?.articles[index].urlToImage ?? '',
-                      description: controlller.sportsNewsModel?.articles[index].description ?? '')
+                      image: controller
+                              .sportsNewsModel?.articles[index].urlToImage ??
+                          '',
+                      description: controller
+                              .sportsNewsModel?.articles[index].description ??
+                          '')
                 ],
               );
             }),
@@ -146,8 +165,7 @@ class VideoListView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Video',
-              style: TextStyle(
-                  fontSize: 17, fontWeight: FontWeight.w400)),
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
           SizedBox(height: 10),
           ListView.builder(
               shrinkWrap: true,
@@ -204,4 +222,3 @@ class VideoListView extends StatelessWidget {
     );
   }
 }
-
