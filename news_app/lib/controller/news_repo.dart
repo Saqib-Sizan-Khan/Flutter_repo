@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_app/model/news_model.dart';
 
-class NewsControlller extends GetxController {
+class NewsController extends GetxController {
   RxBool isLoading = false.obs;
   NewsModel? businessNewsModel;
   NewsModel? generalNewsModel;

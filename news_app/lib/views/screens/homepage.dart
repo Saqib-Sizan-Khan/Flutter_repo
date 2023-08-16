@@ -8,7 +8,7 @@ import '../widgets/news_app_bar.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  NewsControlller controlller = Get.put(NewsControlller());
+  NewsController controlller = Get.put(NewsController());
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'tags.dart';
 class BreakingNewsCon extends StatelessWidget {
   BreakingNewsCon({super.key});
 
-  NewsControlller controlller = Get.put(NewsControlller());
+  NewsController controlller = Get.put(NewsController());
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class BreakingNewsCon extends StatelessWidget {
         Container(
           height: 200,
           decoration: BoxDecoration(
-              image: NetWallPaper(
+              image: netWallPaper(
                   controlller.headlinesModel?.articles[0].urlToImage ?? '')),
         ),
         Padding(
@@ -77,7 +77,7 @@ class OrdinaryNewsCon extends StatelessWidget {
             Container(
               height: 160,
               decoration: ShapeDecoration(
-                  image: NetWallPaper(image),
+                  image: netWallPaper(image),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5))),
             ),
@@ -124,7 +124,7 @@ class SmallNewsCon extends StatelessWidget {
           width: 140,
           height: 120,
           decoration: ShapeDecoration(
-              image: NetWallPaper(image),
+              image: netWallPaper(image),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5))),
         ),
@@ -170,7 +170,7 @@ class SmallNewsCon2 extends StatelessWidget {
           width: 130,
           height: 130,
           decoration: ShapeDecoration(
-              image: NetWallPaper(image),
+              image: netWallPaper(image),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5))),
         ),

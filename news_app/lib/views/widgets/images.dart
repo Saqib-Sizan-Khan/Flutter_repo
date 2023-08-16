@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
-  Logo({super.key, required this.name, this.scale = 2.5});
+  const Logo({super.key, required this.name, this.scale = 2.5});
 
-  String name;
-  double scale;
+  final String name;
+  final double scale;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ DecorationImage wallPaper(String imgName) {
       image: AssetImage('assets/images/$imgName'), fit: BoxFit.cover);
 }
 
-DecorationImage NetWallPaper(String imgName) {
+DecorationImage netWallPaper(String imgName) {
   return DecorationImage(
       image: NetworkImage(imgName), fit: BoxFit.cover);
 }

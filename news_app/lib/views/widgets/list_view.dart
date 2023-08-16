@@ -5,7 +5,7 @@ import 'containers.dart';
 import 'images.dart';
 import 'tags.dart';
 
-NewsControlller controller = Get.put(NewsControlller());
+NewsController controller = Get.put(NewsController());
 
 class NewsListView extends StatelessWidget {
   const NewsListView({super.key, required this.category});
@@ -63,7 +63,7 @@ class SpotlightNewsListView extends StatelessWidget {
                           width: 154,
                           margin: EdgeInsets.only(right: 10),
                           decoration: BoxDecoration(
-                              image: NetWallPaper(controller.generalNewsModel
+                              image: netWallPaper(controller.generalNewsModel
                                       ?.articles[index].urlToImage ??
                                   ''),
                               borderRadius: BorderRadius.circular(10)),

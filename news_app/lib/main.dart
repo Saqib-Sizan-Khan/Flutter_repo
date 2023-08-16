@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:news_app/views/screens/category_page.dart';
 import 'package:news_app/views/screens/category_page2.dart';
 import 'package:news_app/views/screens/news_bottom_nav.dart';
+import 'package:news_app/views/screens/search_page.dart';
 import 'firebase_options.dart';
 import 'views/screens/homepage.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: CategoryPage(),
+      home: SearchPage(),
     );
   }
 }
