@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/news_repo.dart';
+import 'package:news_app/controller/time_converter.dart';
 import 'images.dart';
 import 'tags.dart';
 
@@ -11,6 +12,8 @@ class BreakingNewsCon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int newsDuration =
+        timeConverter(controlller.headlinesModel?.articles[0].publishedAt);
     return Column(
       children: [
         Container(
@@ -41,7 +44,7 @@ class BreakingNewsCon extends StatelessWidget {
                   style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
                   textAlign: TextAlign.justify),
               SizedBox(height: 3),
-              Text('10 minutes ago',
+              Text('$newsDuration hours ago',
                   style: TextStyle(
                       fontSize: 9,
                       fontWeight: FontWeight.w300,
@@ -109,14 +112,17 @@ class SmallNewsCon extends StatelessWidget {
       {super.key,
       required this.image,
       required this.tag,
-      required this.headline});
+      required this.headline,
+      required this.newsTime});
 
   String image;
   String tag;
   String headline;
+  String newsTime;
 
   @override
   Widget build(BuildContext context) {
+    int newsDuration = timeConverter(newsTime);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -142,7 +148,7 @@ class SmallNewsCon extends StatelessWidget {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 5),
-              Text('10 minutes ago',
+              Text('$newsDuration hours ago',
                   style: TextStyle(
                       fontSize: 9,
                       fontWeight: FontWeight.w300,

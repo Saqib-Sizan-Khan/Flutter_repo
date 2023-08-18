@@ -24,12 +24,10 @@ class NewsListView extends StatelessWidget {
             itemCount: controller.categoryNewsModel.value.articles.length,
             itemBuilder: (context, index) {
               return SmallNewsCon(
-                  image: controller
-                          .categoryNewsModel.value.articles[index].urlToImage ??
-                      '',
+                  image: controller.categoryNewsModel.value.articles[index].urlToImage ?? '',
                   tag: category,
-                  headline: controller
-                          .categoryNewsModel.value.articles[index].title ??
+                  headline: controller.categoryNewsModel.value.articles[index].title ?? '',
+                  newsTime: controller.categoryNewsModel.value.articles[index].publishedAt ??
                       '');
             },
             separatorBuilder: (context, index) =>

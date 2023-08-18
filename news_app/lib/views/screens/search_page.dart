@@ -40,7 +40,7 @@ class SearchPage extends StatelessWidget {
             )),
         body: Obx(() => controller.isLoading.value
             ? const SizedBox(
-                height: 500, child: Center(child: CircularProgressIndicator()))
+                height: 400, child: Center(child: CircularProgressIndicator()))
             : ListView.separated(
                 shrinkWrap: true,
                 padding:
@@ -56,6 +56,9 @@ class SearchPage extends StatelessWidget {
                           : 'General',
                       headline: controller
                               .categoryNewsModel.value.articles[index].title ??
+                          '',
+                      newsTime: controller.categoryNewsModel.value
+                              .articles[index].publishedAt ??
                           '');
                 },
                 separatorBuilder: (context, index) => Divider(

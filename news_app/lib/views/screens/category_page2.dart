@@ -13,7 +13,11 @@ class CategoryPage2 extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            //BreakingNewsCon(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('$category News',
+                  style: const TextStyle(fontSize: 24, color: Color(0xFFF1582C))),
+            ),
             NewsListView(category: category)
           ],
         ),
