@@ -8,12 +8,12 @@ import '../widgets/news_app_bar.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  NewsController controlller = Get.put(NewsController());
+  final NewsController controller = Get.put(NewsController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NewsAppBar(),
+      appBar: const NewsAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -22,28 +22,28 @@ class HomePage extends StatelessWidget {
                 color: Colors.black.withOpacity(0.1),
                 indent: 16,
                 endIndent: 16),
-            NewsListView(category: 'Business'),
+            const NewsListView(category: 'Business'),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: OrdinaryNewsCon(
-                image: controlller.generalNewsModel?.articles[5].urlToImage ?? '',
+                image: controller.generalNewsModel?.articles[5].urlToImage ?? '',
                 newsTag: 'General',
-                headline: controlller.generalNewsModel?.articles[5].title ?? '',
-                subHeadline: controlller.generalNewsModel?.articles[5].description ?? '',
+                headline: controller.generalNewsModel?.articles[5].title ?? '',
+                subHeadline: controller.generalNewsModel?.articles[5].description ?? '',
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: OrdinaryNewsCon(
-                image: controlller.generalNewsModel?.articles[4].urlToImage ?? '',
+                image: controller.generalNewsModel?.articles[4].urlToImage ?? '',
                 newsTag: 'General',
-                headline: controlller.generalNewsModel?.articles[4].title ?? '',
-                subHeadline: controlller.generalNewsModel?.articles[4].description ?? '',
+                headline: controller.generalNewsModel?.articles[4].title ?? '',
+                subHeadline: controller.generalNewsModel?.articles[4].description ?? '',
               ),
             ),
             SpotlightNewsListView(),
             NewsListView2(),
-            VideoListView()
+            const VideoListView()
           ],
         ),
       ),

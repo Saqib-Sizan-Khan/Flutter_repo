@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'package:news_app/model/news_model.dart';
 
 class NewsController extends GetxController {
@@ -40,7 +39,7 @@ class NewsController extends GetxController {
       Map<String, dynamic> jsonResponse = json.decode(response.body);
       return NewsModel.fromJson(jsonResponse);
     } else {
-      throw Exception('Falied to get news');
+      throw Exception('Failed to get news');
     }
   }
 }

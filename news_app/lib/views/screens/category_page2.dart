@@ -3,13 +3,14 @@ import '../widgets/list_view.dart';
 import '../widgets/news_app_bar.dart';
 
 class CategoryPage2 extends StatelessWidget {
-  CategoryPage2({super.key, required this.category});
+  const CategoryPage2({super.key, required this.category});
 
-  String category;
+  final String category;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NewsAppBar(),
+      appBar: const NewsAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

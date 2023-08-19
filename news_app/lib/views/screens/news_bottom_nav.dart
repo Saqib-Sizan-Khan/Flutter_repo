@@ -1,46 +1,37 @@
 import 'package:flutter/material.dart';
-import 'category_page.dart';
-import 'homepage.dart';
-import 'search_page.dart';
-import 'settings_page.dart';
+import 'package:get/get.dart';
+import 'package:news_app/controller/navigation_controller.dart';
 
+class NewsBottomNav extends StatelessWidget {
+  NewsBottomNav({super.key});
 
-class NewsBottomNav extends StatefulWidget {
-  const NewsBottomNav({super.key});
-
-  @override
-  State<NewsBottomNav> createState() => _NewsBottomNavState();
-}
-
-class _NewsBottomNavState extends State<NewsBottomNav> {
-
-  var pages = [HomePage(), CategoryPage(), SearchPage(), SettingsPage()];
-  int page = 0;
+  final NavigationController controller = Get.put(NavigationController());
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages.elementAt(page),
-
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: page,
-        iconSize: 25,
-        elevation: 20,
-        showUnselectedLabels: true,
-        selectedItemColor: Color(0xFFF1582C),
-        unselectedItemColor: Color(0xFF494949),
-        onTap: (int value) {
-          setState(() {
-            page = value;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled),label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.category_outlined),label: 'Category'),
-          BottomNavigationBarItem(icon: Icon(Icons.search),label: 'Search'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings),label: 'Settings'),
-        ],
-      ),
-    );
+    return Obx(() => Scaffold(
+          body: controller.pages.elementAt(controller.pageIndex.value),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: controller.pageIndex.value,
+            iconSize: 25,
+            elevation: 20,
+            showUnselectedLabels: true,
+            selectedItemColor: const Color(0xFFF1582C),
+            unselectedItemColor: const Color(0xFF494949),
+            onTap: (int value) {
+              controller.changePage(value);
+            },
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home_filled), label: 'Home'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.category_outlined), label: 'Category'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.search), label: 'Search'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.settings), label: 'Settings'),
+            ],
+          ),
+        ));
   }
 }

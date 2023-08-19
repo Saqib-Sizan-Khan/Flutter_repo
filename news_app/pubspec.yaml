@@ -40,8 +40,6 @@ dependencies:
   pinput: ^2.3.0
   get: ^4.6.5
   http: ^1.1.0
-  intl: ^0.18.1
-
 
 
 dev_dependencies:
