@@ -1,50 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SimpleButton extends StatelessWidget {
-  SimpleButton(
+  const SimpleButton(
       {super.key, required this.title, this.image = '', this.scale = 0.1});
 
-  String title;
-  String image;
-  double scale;
+  final String title;
+  final String image;
+  final double scale;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
-      child: Container(
-        width: 330,
-        height: 42,
-        decoration: ShapeDecoration(
-            color: Color(0xFFF1582C),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-        child: image == ''
-            ? Center(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400),
-                ),
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(image, scale: scale),
-                  SizedBox(width: 5),
-                  Text(
+        onTap: () {},
+        child: Container(
+            width: 330.w,
+            height: 42.h,
+            decoration: ShapeDecoration(
+                color: const Color(0xFFF1582C),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5))),
+            child: image == ''
+                ? Center(
+                    child: Text(
                     title,
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 15,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-      ),
-    );
+                  ))
+                : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Image.asset(image, scale: scale),
+                    SizedBox(width: 5.w),
+                    Text(
+                      title,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w400),
+                    )
+                  ])));
   }
 }
 

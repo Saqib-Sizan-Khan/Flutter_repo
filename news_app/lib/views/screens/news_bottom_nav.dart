@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/navigation_controller.dart';
 
@@ -13,7 +14,7 @@ class NewsBottomNav extends StatelessWidget {
           body: controller.pages.elementAt(controller.pageIndex.value),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: controller.pageIndex.value,
-            iconSize: 25,
+            iconSize: 25.sp,
             elevation: 20,
             showUnselectedLabels: true,
             selectedItemColor: const Color(0xFFF1582C),

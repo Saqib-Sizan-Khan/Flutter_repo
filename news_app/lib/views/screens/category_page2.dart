@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/list_view.dart';
 import '../widgets/news_app_bar.dart';
 
@@ -17,7 +18,7 @@ class CategoryPage2 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text('$category News',
-                  style: const TextStyle(fontSize: 24, color: Color(0xFFF1582C))),
+                  style: TextStyle(fontSize: 24.spMax, color: const Color(0xFFF1582C))),
             ),
             NewsListView(category: category)
           ],

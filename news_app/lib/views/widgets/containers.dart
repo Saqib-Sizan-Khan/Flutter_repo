@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/news_repo.dart';
 import 'package:news_app/controller/time_converter.dart';
@@ -8,194 +9,167 @@ import 'tags.dart';
 class BreakingNewsCon extends StatelessWidget {
   BreakingNewsCon({super.key});
 
-  NewsController controlller = Get.put(NewsController());
+  final NewsController controller = Get.put(NewsController());
 
   @override
   Widget build(BuildContext context) {
     int newsDuration =
-        timeConverter(controlller.headlinesModel?.articles[0].publishedAt);
-    return Column(
-      children: [
-        Container(
-          height: 200,
+        timeConverter(controller.headlinesModel?.articles[0].publishedAt);
+    return Column(children: [
+      Container(
+          height: 250.h,
           decoration: BoxDecoration(
               image: netWallPaper(
-                  controlller.headlinesModel?.articles[0].urlToImage ?? '')),
-        ),
-        Padding(
+                  controller.headlinesModel?.articles[0].urlToImage ?? ''))),
+      Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  NewsTags(
-                      tagName: 'Breaking News',
-                      textColor: const Color(0xFFF1582C)),
-                  SizedBox(width: 5),
-                  NewsTags(tagName: 'National'),
-                ],
-              ),
-              SizedBox(height: 5),
-              Text(controlller.headlinesModel?.articles[0].title ?? '',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
-              SizedBox(height: 3),
-              Text(controlller.headlinesModel?.articles[0].description ?? '',
-                  style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
-                  textAlign: TextAlign.justify),
-              SizedBox(height: 3),
-              Text('$newsDuration hours ago',
-                  style: TextStyle(
-                      fontSize: 9,
-                      fontWeight: FontWeight.w300,
-                      color: Color(0xFF494949))),
-            ],
-          ),
-        ),
-      ],
-    );
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(
+              children: [
+                const NewsTags(
+                    tagName: 'Breaking News', textColor: Color(0xFFF1582C)),
+                SizedBox(width: 5.w),
+                const NewsTags(tagName: 'National'),
+              ],
+            ),
+            SizedBox(height: 5.h),
+            Text(controller.headlinesModel?.articles[0].title ?? '',
+                style:
+                    TextStyle(fontSize: 17.spMax, fontWeight: FontWeight.w400)),
+            SizedBox(height: 3.h),
+            Text(controller.headlinesModel?.articles[0].description ?? '',
+                style:
+                    TextStyle(fontSize: 11.spMax, fontWeight: FontWeight.w300),
+                textAlign: TextAlign.justify),
+            SizedBox(height: 3.h),
+            Text('$newsDuration hours ago',
+                style: TextStyle(
+                    fontSize: 9.spMax,
+                    fontWeight: FontWeight.w300,
+                    color: const Color(0xFF494949))),
+          ]))
+    ]);
   }
 }
 
 class OrdinaryNewsCon extends StatelessWidget {
-  OrdinaryNewsCon(
+  const OrdinaryNewsCon(
       {super.key,
       required this.image,
       required this.newsTag,
       required this.headline,
       this.subHeadline = ''});
 
-  String image;
-  String newsTag;
-  String headline;
-  String subHeadline;
+  final String image;
+  final String newsTag;
+  final String headline;
+  final String subHeadline;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 160,
-              decoration: ShapeDecoration(
-                  image: netWallPaper(image),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5))),
-            ),
-            SizedBox(height: 10),
-            NewsTags(tagName: newsTag),
-            SizedBox(height: 5),
-            Text(headline,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
-            SizedBox(height: 3),
-            Text(subHeadline,
-                style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
-                textAlign: TextAlign.justify),
-            SizedBox(height: 3),
-            Text('40 minutes ago',
-                style: TextStyle(
-                    fontSize: 9,
-                    fontWeight: FontWeight.w300,
-                    color: Color(0xFF494949))),
-            Divider(color: Colors.black.withOpacity(0.1)),
-          ],
+    return Column(children: [
+      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          height: 200.h,
+          decoration: ShapeDecoration(
+              image: netWallPaper(image),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.r))),
         ),
-      ],
-    );
+        SizedBox(height: 10.h),
+        NewsTags(tagName: newsTag),
+        SizedBox(height: 5.h),
+        Text(headline,
+            style: TextStyle(fontSize: 15.spMax, fontWeight: FontWeight.w400)),
+        SizedBox(height: 3.h),
+        Text(subHeadline,
+            style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w300),
+            textAlign: TextAlign.justify),
+        SizedBox(height: 3.h),
+        Text('40 minutes ago',
+            style: TextStyle(
+                fontSize: 9.sp,
+                fontWeight: FontWeight.w300,
+                color: const Color(0xFF494949))),
+        Divider(color: Colors.black.withOpacity(0.2))
+      ])
+    ]);
   }
 }
 
 class SmallNewsCon extends StatelessWidget {
-  SmallNewsCon(
+  const SmallNewsCon(
       {super.key,
       required this.image,
       required this.tag,
       required this.headline,
       required this.newsTime});
 
-  String image;
-  String tag;
-  String headline;
-  String newsTime;
+  final String image;
+  final String tag;
+  final String headline;
+  final String newsTime;
 
   @override
   Widget build(BuildContext context) {
     int newsDuration = timeConverter(newsTime);
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 140,
-          height: 120,
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Container(
+          width: 140.w,
+          height: 120.h,
           decoration: ShapeDecoration(
               image: netWallPaper(image),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5))),
-        ),
-        SizedBox(width: 10),
-        Container(
-          width: 200,
-          height: 140,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              NewsTags(tagName: tag),
-              SizedBox(height: 5),
-              Text(
-                headline,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-              ),
-              SizedBox(height: 5),
-              Text('$newsDuration hours ago',
-                  style: TextStyle(
-                      fontSize: 9,
-                      fontWeight: FontWeight.w300,
-                      color: Color(0xFF494949))),
-            ],
-          ),
-        )
-      ],
-    );
+                  borderRadius: BorderRadius.circular(5.r)))),
+      SizedBox(width: 10.w),
+      SizedBox(
+          width: 200.w,
+          height: 140.h,
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            NewsTags(tagName: tag),
+            SizedBox(height: 5.h),
+            Text(headline,
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400)),
+            SizedBox(height: 5.h),
+            Text('$newsDuration hours ago',
+                style: TextStyle(
+                    fontSize: 9.sp,
+                    fontWeight: FontWeight.w300,
+                    color: const Color(0xFF494949)))
+          ]))
+    ]);
   }
 }
 
 class SmallNewsCon2 extends StatelessWidget {
-  SmallNewsCon2({super.key, required this.image, required this.description});
+  const SmallNewsCon2(
+      {super.key, required this.image, required this.description});
 
-  String image;
-  String description;
+  final String image;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 130,
-          height: 130,
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Container(
+          width: 130.w,
+          height: 130.h,
           decoration: ShapeDecoration(
               image: netWallPaper(image),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5))),
-        ),
-        SizedBox(width: 10),
-        Container(
-          width: 215,
-          height: 150,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                description,
+                  borderRadius: BorderRadius.circular(5)))),
+      SizedBox(width: 10.w),
+      SizedBox(
+          width: 215.w,
+          height: 150.h,
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(description,
                 style:
-                    const TextStyle(fontSize: 9, fontWeight: FontWeight.w400),
-              ),
-            ],
-          ),
-        )
-      ],
-    );
+                    TextStyle(fontSize: 9.spMax, fontWeight: FontWeight.w400))
+          ]))
+    ]);
   }
 }

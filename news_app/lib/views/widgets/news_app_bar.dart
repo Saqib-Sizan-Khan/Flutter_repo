@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'images.dart';
 
 class NewsAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -13,14 +14,14 @@ class NewsAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: const Color(0xFF494949),
       iconTheme: const IconThemeData(color: Colors.white),
-      toolbarHeight: 94,
-      title: const Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Logo(name: 'dhakaLive_logo_dark.png', scale: 2)),
-      actions: const [
+      toolbarHeight: 94.h,
+      title: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Logo(name: 'dhakaLive_logo_dark.png', scale: 3.sp)),
+      actions: [
         Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Logo(name: 'bell_logo.png', scale: 0.8))
+            padding: const EdgeInsets.only(right: 16),
+            child: Logo(name: 'bell_logo.png', scale: 1.5.sp))
       ],
     );
   }

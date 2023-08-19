@@ -18,31 +18,24 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             BreakingNewsCon(),
-            Divider(
-                color: Colors.black.withOpacity(0.1),
-                indent: 16,
-                endIndent: 16),
+            const Divider(color: Colors.black, indent: 8, endIndent: 8),
             const NewsListView(category: 'Business'),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: OrdinaryNewsCon(
-                image: controller.generalNewsModel?.articles[5].urlToImage ?? '',
-                newsTag: 'General',
-                headline: controller.generalNewsModel?.articles[5].title ?? '',
-                subHeadline: controller.generalNewsModel?.articles[5].description ?? '',
-              ),
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                child: OrdinaryNewsCon(
+                    image: controller.generalNewsModel?.articles[5].urlToImage ?? '',
+                    newsTag: 'General',
+                    headline: controller.generalNewsModel?.articles[5].title ?? '',
+                    subHeadline: controller.generalNewsModel?.articles[5].description ?? '')),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: OrdinaryNewsCon(
-                image: controller.generalNewsModel?.articles[4].urlToImage ?? '',
-                newsTag: 'General',
-                headline: controller.generalNewsModel?.articles[4].title ?? '',
-                subHeadline: controller.generalNewsModel?.articles[4].description ?? '',
-              ),
-            ),
-            SpotlightNewsListView(),
-            NewsListView2(),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                child: OrdinaryNewsCon(
+                    image: controller.generalNewsModel?.articles[4].urlToImage ?? '',
+                    newsTag: 'General',
+                    headline: controller.generalNewsModel?.articles[4].title ?? '',
+                    subHeadline: controller.generalNewsModel?.articles[4].description ?? '')),
+            const SpotlightNewsListView(),
+            const NewsListView2(),
             const VideoListView()
           ],
         ),

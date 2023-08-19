@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:news_app/controller/news_repo.dart';
 import 'containers.dart';
@@ -16,27 +17,33 @@ class NewsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.getNewsCategory(category);
     return Obx(() => controller.isLoading.value
-        ? const SizedBox(
-            height: 500, child: Center(child: CircularProgressIndicator()))
+        ? SizedBox(
+            height: 400.h,
+            child: const Center(child: CircularProgressIndicator()))
         : ListView.separated(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             itemCount: controller.categoryNewsModel.value.articles.length,
             itemBuilder: (context, index) {
               return SmallNewsCon(
-                  image: controller.categoryNewsModel.value.articles[index].urlToImage ?? '',
+                  image: controller
+                          .categoryNewsModel.value.articles[index].urlToImage ??
+                      '',
                   tag: category,
-                  headline: controller.categoryNewsModel.value.articles[index].title ?? '',
-                  newsTime: controller.categoryNewsModel.value.articles[index].publishedAt ??
+                  headline: controller
+                          .categoryNewsModel.value.articles[index].title ??
+                      '',
+                  newsTime: controller.categoryNewsModel.value.articles[index]
+                          .publishedAt ??
                       '');
             },
             separatorBuilder: (context, index) =>
-                Divider(thickness: 1, color: Colors.black.withOpacity(0.2))));
+                Divider(thickness: 2, color: Colors.black.withOpacity(0.2))));
   }
 }
 
 class SpotlightNewsListView extends StatelessWidget {
-  SpotlightNewsListView({super.key});
+  const SpotlightNewsListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +53,11 @@ class SpotlightNewsListView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Spotlight',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
-          SizedBox(height: 10),
-          Container(
-              height: 219,
+              style:
+                  TextStyle(fontSize: 17.spMax, fontWeight: FontWeight.w400)),
+          SizedBox(height: 10.h),
+          SizedBox(
+              height: 219.h,
               child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
@@ -58,38 +66,38 @@ class SpotlightNewsListView extends StatelessWidget {
                     return Stack(
                       children: [
                         Container(
-                          width: 154,
-                          margin: EdgeInsets.only(right: 10),
+                          width: 154.w,
+                          margin: const EdgeInsets.only(right: 10),
                           decoration: BoxDecoration(
                               image: netWallPaper(controller.generalNewsModel
                                       ?.articles[index].urlToImage ??
                                   ''),
-                              borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(10.r)),
                         ),
                         Container(
-                          width: 154,
-                          height: 219,
-                          padding: EdgeInsets.only(left: 10, bottom: 10),
+                          width: 154.w,
+                          height: 219.h,
+                          padding: const EdgeInsets.only(left: 10, bottom: 10),
                           decoration: ShapeDecoration(
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                   begin: Alignment(0, -1),
                                   end: Alignment(0, 1),
                                   colors: [Color(0x00D9D9D9), Colors.black]),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
+                                  borderRadius: BorderRadius.circular(10.r))),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              NewsTags(
+                              const NewsTags(
                                   tagName: 'General',
-                                  textColor: const Color(0xFFFFFFFF)),
+                                  textColor: Color(0xFFFFFFFF)),
                               Text(
                                 controller.generalNewsModel?.articles[index]
                                         .title ??
                                     '',
                                 style: TextStyle(
-                                    fontSize: 11,
+                                    fontSize: 11.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w400),
                               )
@@ -99,8 +107,8 @@ class SpotlightNewsListView extends StatelessWidget {
                       ],
                     );
                   })),
-          SizedBox(height: 10),
-          Divider(color: Colors.black.withOpacity(0.1))
+          SizedBox(height: 10.h),
+          Divider(color: Colors.black.withOpacity(0.2))
         ],
       ),
     );
@@ -108,7 +116,7 @@ class SpotlightNewsListView extends StatelessWidget {
 }
 
 class NewsListView2 extends StatelessWidget {
-  NewsListView2({super.key});
+  const NewsListView2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -118,17 +126,18 @@ class NewsListView2 extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: Text("Sports",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
+              style:
+                  TextStyle(fontSize: 17.spMax, fontWeight: FontWeight.w400)),
         ),
         ListView.builder(
             shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             itemCount: controller.sportsNewsModel?.articles.length ?? 0,
             itemBuilder: (context, index) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   OrdinaryNewsCon(
                       image: controller
                               .sportsNewsModel?.articles[index].urlToImage ??
@@ -163,8 +172,9 @@ class VideoListView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Video',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400)),
-          SizedBox(height: 10),
+              style:
+                  TextStyle(fontSize: 17.spMax, fontWeight: FontWeight.w400)),
+          SizedBox(height: 10.h),
           ListView.builder(
               shrinkWrap: true,
               itemCount: 2,
@@ -175,22 +185,22 @@ class VideoListView extends StatelessWidget {
                     Stack(
                       children: [
                         Container(
-                          width: 358,
-                          height: 197,
+                          width: 400.w,
+                          height: 250.h,
                           decoration: ShapeDecoration(
                               image: wallPaper('fload.png'),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5))),
                         ),
                         Container(
-                          width: 358,
-                          height: 197,
+                          width: 400.w,
+                          height: 250.h,
                           decoration: ShapeDecoration(
                               color: Colors.black.withOpacity(0.6),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5))),
                         ),
-                        Positioned(
+                        const Positioned(
                             top: 1,
                             right: 1,
                             left: 1,
@@ -198,20 +208,20 @@ class VideoListView extends StatelessWidget {
                             child: Logo(name: 'play_logo.png', scale: 2))
                       ],
                     ),
-                    SizedBox(height: 10),
-                    NewsTags(tagName: 'International'),
-                    SizedBox(height: 5),
+                    SizedBox(height: 10.h),
+                    const NewsTags(tagName: 'International'),
+                    SizedBox(height: 5.h),
                     Text(
                         '70 people died in floods in Assam, more than 3 million people are homeless',
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w400)),
-                    SizedBox(height: 5),
+                            fontSize: 15.spMax, fontWeight: FontWeight.w400)),
+                    SizedBox(height: 5.h),
                     Text('10 minutes ago',
                         style: TextStyle(
-                            fontSize: 9,
+                            fontSize: 9.sp,
                             fontWeight: FontWeight.w300,
-                            color: Color(0xFF494949))),
-                    SizedBox(height: 20),
+                            color: const Color(0xFF494949))),
+                    SizedBox(height: 20.h),
                   ],
                 );
               })
