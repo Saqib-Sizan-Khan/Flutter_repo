@@ -31,6 +31,7 @@ class SettingsPage extends StatelessWidget {
                           right: 1,
                           child: CircleAvatar(
                               radius: 9.r,
+                              backgroundColor: Colors.white,
                               child: const Logo(
                                   name: 'camera_logo.png', scale: 1.8)),
                         )
@@ -78,6 +79,7 @@ class SettingsPage extends StatelessWidget {
           ListView.separated(
               itemCount: settingsOptions.length,
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Container(
                     padding:
@@ -92,7 +94,7 @@ class SettingsPage extends StatelessWidget {
                                 fontWeight: FontWeight.w300,
                                 color: const Color(0xFF494949)),
                           ),
-                          Logo(name: 'arrow_right_logo.png', scale: 1.5.sp)
+                          Logo(name: 'arrow_right_logo.png')
                         ]));
               },
               separatorBuilder: (context, index) => Divider(
@@ -109,7 +111,7 @@ class SettingsPage extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(children: [
-                Logo(name: 'facebook_logo.png', scale: 4.8.spMin),
+                Logo(name: 'facebook_logo.png', scale: 5),
                 SizedBox(width: 10.w),
                 Logo(name: 'telegram_logo.png'),
                 SizedBox(width: 10.w),

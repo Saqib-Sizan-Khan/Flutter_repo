@@ -10,17 +10,19 @@ class BreakingNewsCon extends StatelessWidget {
   BreakingNewsCon({super.key});
 
   final NewsController controller = Get.put(NewsController());
+  int i = 0;
 
   @override
   Widget build(BuildContext context) {
+    controller.headlinesModel?.articles[i].title == null ? i++ : i = 0;
     int newsDuration =
-        timeConverter(controller.headlinesModel?.articles[0].publishedAt);
+        timeConverter(controller.headlinesModel?.articles[i].publishedAt);
     return Column(children: [
       Container(
           height: 250.h,
           decoration: BoxDecoration(
               image: netWallPaper(
-                  controller.headlinesModel?.articles[0].urlToImage ?? ''))),
+                  controller.headlinesModel?.articles[i].urlToImage ?? ''))),
       Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child:
@@ -34,16 +36,16 @@ class BreakingNewsCon extends StatelessWidget {
               ],
             ),
             SizedBox(height: 5.h),
-            Text(controller.headlinesModel?.articles[0].title ?? '',
+            Text(controller.headlinesModel?.articles[i].title ?? '',
                 style:
                     TextStyle(fontSize: 17.spMax, fontWeight: FontWeight.w400)),
             SizedBox(height: 3.h),
-            Text(controller.headlinesModel?.articles[0].description ?? '',
+            Text(controller.headlinesModel?.articles[i].description ?? '',
                 style:
                     TextStyle(fontSize: 11.spMax, fontWeight: FontWeight.w300),
                 textAlign: TextAlign.justify),
             SizedBox(height: 3.h),
-            Text('$newsDuration hours ago',
+            Text('$newsDuration day ago',
                 style: TextStyle(
                     fontSize: 9.spMax,
                     fontWeight: FontWeight.w300,
@@ -117,15 +119,15 @@ class SmallNewsCon extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
           width: 140.w,
-          height: 120.h,
+          height: 150.h,
           decoration: ShapeDecoration(
               image: netWallPaper(image),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.r)))),
       SizedBox(width: 10.w),
       SizedBox(
-          width: 200.w,
-          height: 140.h,
+          width: 210.w,
+          height: 150.h,
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             NewsTags(tagName: tag),
@@ -133,7 +135,7 @@ class SmallNewsCon extends StatelessWidget {
             Text(headline,
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400)),
             SizedBox(height: 5.h),
-            Text('$newsDuration hours ago',
+            Text('$newsDuration day ago',
                 style: TextStyle(
                     fontSize: 9.sp,
                     fontWeight: FontWeight.w300,

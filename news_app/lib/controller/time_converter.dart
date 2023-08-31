@@ -7,7 +7,7 @@ int timeConverter(rawTime) {
     DateTime currentTime = DateTime.now();
     Duration timeLeft = currentTime.difference(newsTime);
 
-    return timeLeft.inHours;
+    return timeLeft.inDays;
   } else {
     return 0;
   }

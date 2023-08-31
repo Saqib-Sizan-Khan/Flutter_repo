@@ -13,8 +13,7 @@ class NewsTags extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Chip(
-      labelPadding: const EdgeInsets.all(0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       backgroundColor: tagName == 'Breaking News'
           ? const Color(0x19F1582C)
           : textColor == const Color(0xFFFFFFFF)

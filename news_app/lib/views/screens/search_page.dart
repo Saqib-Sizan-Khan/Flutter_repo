@@ -50,21 +50,31 @@ class SearchPage extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 itemCount: controller.categoryNewsModel.value.articles.length,
                 itemBuilder: (context, index) {
-                  return SmallNewsCon(
-                      image: controller.categoryNewsModel.value.articles[index]
-                              .urlToImage ??
-                          '',
-                      tag: searchController.text != ''
-                          ? searchController.text
-                          : 'General',
-                      headline: controller
-                              .categoryNewsModel.value.articles[index].title ??
-                          '',
-                      newsTime: controller.categoryNewsModel.value
-                              .articles[index].publishedAt ??
-                          '');
+                  return controller
+                              .categoryNewsModel.value.articles[index].title ==
+                          null
+                      ? const SizedBox()
+                      : SmallNewsCon(
+                          image: controller.categoryNewsModel.value
+                                  .articles[index].urlToImage ??
+                              '',
+                          tag: searchController.text != ''
+                              ? searchController.text
+                              : 'General',
+                          headline: controller.categoryNewsModel.value
+                                  .articles[index].title ??
+                              '',
+                          newsTime: controller.categoryNewsModel.value
+                                  .articles[index].publishedAt ??
+                              '');
                 },
-                separatorBuilder: (context, index) => Divider(
-                    thickness: 1, color: Colors.black.withOpacity(0.2)))));
+                separatorBuilder: (context, index) {
+                  return controller
+                              .categoryNewsModel.value.articles[index].title ==
+                          null
+                      ? const SizedBox()
+                      : Divider(
+                          thickness: 1, color: Colors.black.withOpacity(0.2));
+                })));
   }
 }

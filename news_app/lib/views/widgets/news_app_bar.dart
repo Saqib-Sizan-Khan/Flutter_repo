@@ -15,13 +15,13 @@ class NewsAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: const Color(0xFF494949),
       iconTheme: const IconThemeData(color: Colors.white),
       toolbarHeight: 94.h,
-      title: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Logo(name: 'dhakaLive_logo_dark.png', scale: 3.sp)),
-      actions: [
+      title: const Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Logo(name: 'dhakaLive_logo_dark.png')),
+      actions: const [
         Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Logo(name: 'bell_logo.png', scale: 1.5.sp))
+            padding: EdgeInsets.only(right: 10),
+            child: Logo(name: 'bell_logo.png', scale: 1.7))
       ],
     );
   }

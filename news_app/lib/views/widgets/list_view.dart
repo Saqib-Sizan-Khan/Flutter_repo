@@ -22,23 +22,31 @@ class NewsListView extends StatelessWidget {
             child: const Center(child: CircularProgressIndicator()))
         : ListView.separated(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             itemCount: controller.categoryNewsModel.value.articles.length,
             itemBuilder: (context, index) {
-              return SmallNewsCon(
-                  image: controller
-                          .categoryNewsModel.value.articles[index].urlToImage ??
-                      '',
-                  tag: category,
-                  headline: controller
-                          .categoryNewsModel.value.articles[index].title ??
-                      '',
-                  newsTime: controller.categoryNewsModel.value.articles[index]
-                          .publishedAt ??
-                      '');
+              return controller.categoryNewsModel.value.articles[index].title ==
+                      null
+                  ? const SizedBox()
+                  : SmallNewsCon(
+                      image: controller.categoryNewsModel.value.articles[index]
+                              .urlToImage ??
+                          '',
+                      tag: category,
+                      headline: controller
+                              .categoryNewsModel.value.articles[index].title ??
+                          '',
+                      newsTime: controller.categoryNewsModel.value
+                              .articles[index].publishedAt ??
+                          '');
             },
-            separatorBuilder: (context, index) =>
-                Divider(thickness: 2, color: Colors.black.withOpacity(0.2))));
+            separatorBuilder: (context, index) {
+              return controller.categoryNewsModel.value.articles[index].title ==
+                      null
+                  ? const SizedBox()
+                  : Divider(thickness: 1, color: Colors.black.withOpacity(0.2));
+            }));
   }
 }
 
@@ -56,57 +64,74 @@ class SpotlightNewsListView extends StatelessWidget {
               style:
                   TextStyle(fontSize: 17.spMax, fontWeight: FontWeight.w400)),
           SizedBox(height: 10.h),
-          SizedBox(
-              height: 219.h,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: controller.generalNewsModel?.articles.length ?? 0,
-                  itemBuilder: (context, index) {
-                    return Stack(
-                      children: [
-                        Container(
-                          width: 154.w,
-                          margin: const EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                              image: netWallPaper(controller.generalNewsModel
-                                      ?.articles[index].urlToImage ??
-                                  ''),
-                              borderRadius: BorderRadius.circular(10.r)),
-                        ),
-                        Container(
-                          width: 154.w,
-                          height: 219.h,
-                          padding: const EdgeInsets.only(left: 10, bottom: 10),
-                          decoration: ShapeDecoration(
-                              gradient: const LinearGradient(
-                                  begin: Alignment(0, -1),
-                                  end: Alignment(0, 1),
-                                  colors: [Color(0x00D9D9D9), Colors.black]),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.r))),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const NewsTags(
-                                  tagName: 'General',
-                                  textColor: Color(0xFFFFFFFF)),
-                              Text(
-                                controller.generalNewsModel?.articles[index]
-                                        .title ??
-                                    '',
-                                style: TextStyle(
-                                    fontSize: 11.sp,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    );
-                  })),
+          Obx(() => SizedBox(
+              height: 230.h,
+              child: controller.isLoading.value
+                  ? const Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount:
+                          controller.generalNewsModel?.articles.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return controller
+                                    .generalNewsModel?.articles[index].title ==
+                                null
+                            ? const SizedBox()
+                            : Stack(
+                                children: [
+                                  Container(
+                                    width: 154.w,
+                                    margin: const EdgeInsets.only(right: 10),
+                                    decoration: BoxDecoration(
+                                        image: netWallPaper(controller
+                                                .generalNewsModel
+                                                ?.articles[index]
+                                                .urlToImage ??
+                                            ''),
+                                        borderRadius:
+                                            BorderRadius.circular(10.r)),
+                                  ),
+                                  Container(
+                                    width: 154.w,
+                                    height: 230.h,
+                                    padding: const EdgeInsets.only(
+                                        left: 10, bottom: 10),
+                                    decoration: ShapeDecoration(
+                                        gradient: const LinearGradient(
+                                            begin: Alignment(0, -1),
+                                            end: Alignment(0, 1),
+                                            colors: [
+                                              Color(0x00D9D9D9),
+                                              Colors.black
+                                            ]),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.r))),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const NewsTags(
+                                            tagName: 'General',
+                                            textColor: Color(0xFFFFFFFF)),
+                                        SizedBox(height: 5.h),
+                                        Text(
+                                          controller.generalNewsModel
+                                                  ?.articles[index].title ??
+                                              '',
+                                          style: TextStyle(
+                                              fontSize: 11.sp,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              );
+                      }))),
           SizedBox(height: 10.h),
           Divider(color: Colors.black.withOpacity(0.2))
         ],
@@ -129,33 +154,40 @@ class NewsListView2 extends StatelessWidget {
               style:
                   TextStyle(fontSize: 17.spMax, fontWeight: FontWeight.w400)),
         ),
-        ListView.builder(
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            itemCount: controller.sportsNewsModel?.articles.length ?? 0,
-            itemBuilder: (context, index) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10.h),
-                  OrdinaryNewsCon(
-                      image: controller
-                              .sportsNewsModel?.articles[index].urlToImage ??
-                          '',
-                      newsTag: 'Sports',
-                      headline:
-                          controller.sportsNewsModel?.articles[index].title ??
-                              ''),
-                  SmallNewsCon2(
-                      image: controller
-                              .sportsNewsModel?.articles[index].urlToImage ??
-                          '',
-                      description: controller
-                              .sportsNewsModel?.articles[index].description ??
-                          '')
-                ],
-              );
-            }),
+        Obx(() => controller.isLoading.value
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                itemCount: controller.sportsNewsModel?.articles.length ?? 0,
+                itemBuilder: (context, index) {
+                  return controller.sportsNewsModel?.articles[index].title ==
+                          null
+                      ? const SizedBox()
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 10.h),
+                            OrdinaryNewsCon(
+                                image: controller.sportsNewsModel
+                                        ?.articles[index].urlToImage ??
+                                    '',
+                                newsTag: 'Sports',
+                                headline: controller.sportsNewsModel
+                                        ?.articles[index].title ??
+                                    ''),
+                            SmallNewsCon2(
+                                image: controller.sportsNewsModel
+                                        ?.articles[index].urlToImage ??
+                                    '',
+                                description: controller.sportsNewsModel
+                                        ?.articles[index].description ??
+                                    '')
+                          ],
+                        );
+                })),
       ],
     );
   }
@@ -177,6 +209,7 @@ class VideoListView extends StatelessWidget {
           SizedBox(height: 10.h),
           ListView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: 2,
               itemBuilder: (context, index) {
                 return Column(
