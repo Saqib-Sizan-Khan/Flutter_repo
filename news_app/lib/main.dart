@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:news_app/views/screens/news_bottom_nav.dart';
-import 'package:news_app/views/screens/settings_page.dart';
+import 'package:news_app/views/screens/splash_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -22,13 +21,12 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         builder: (context, child) {
           return GetMaterialApp(
-            title: 'Flutter Demo',
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
               //useMaterial3: true,
             ),
             debugShowCheckedModeBanner: false,
-            home: NewsBottomNav(),
+            home: SplashView(),
           );
         });
   }
